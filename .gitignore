@@ -1,0 +1,5 @@
+# File types
+*.esproj
+
+# Specific files
+.DS_Store
