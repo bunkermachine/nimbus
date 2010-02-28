@@ -1,0 +1,1 @@
+$(function() {  $("#add-button").click(function(e) {    e.preventDefault();    addParameter();  });});/* Parameter List */function addParameter(){  var newFilter = $("#filter-template").clone();  $("#filters").append(newFilter);  }
