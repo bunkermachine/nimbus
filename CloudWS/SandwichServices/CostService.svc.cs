@@ -21,16 +21,12 @@ namespace SandwichServices
             //HttpWebRequest Request = 
             // Add your operation implementation here
             //string album = Request.QueryString["album"];
-            try
-            {
-                Process.Start("C:\\My Stuff\\My Work\\Stanford\\nimbus\\hdfread\\readhdf.exe");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("{0} Exception caught.", e);
-            }
-                
+            //Process.Start("C:\\My Stuff\\My Work\\Stanford\\nimbus\\hdfread\\readhdf.exe");
             //return "Here's your foot-long subway!";
+            Program HDFParser = new Program();
+            String hdfFileName = "C:\\My Stuff\\My Work\\Stanford\\nimbus\\hdfop\\sample.he5";
+            Console.WriteLine("Sucess entering!");
+            HDFParser.parseHDF(hdfFileName);
         }
 
         // Add more operations here and mark them with [OperationContract]
