@@ -1,18 +1,2 @@
-﻿<%@ Page language="c#" Codebehind="Default.aspx.cs" AutoEventWireup="false" Inherits="HDFFileReceiver.Default" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
-<HTML>
-  <HEAD>
-    <title>Welcome</title>
-    <meta name="GENERATOR" Content="Microsoft Visual Studio 2008">
-    <meta name="CODE_LANGUAGE" Content="C#">
-    <meta name=vs_defaultClientScript content="JavaScript">
-    <meta name=vs_targetSchema content="http://schemas.microsoft.com/intellisense/ie5">
-  </HEAD>
-  <body>
-<form id="Form1" method="post" enctype="multipart/form-data" runat="server">
-<INPUT type=file id=File1 name=File1 runat="server" >
-<br>
-<input type="submit" id="Submit1" value="Upload" runat="server" NAME="Submit1">
-</form>
-  </body>
-</HTML>
+<%@ Page language="c#" Codebehind="Default.aspx.cs" AutoEventWireup="false" Inherits="HDFFileReceiver.Default" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html><head>  <title>CloudLab</title>  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css">  <link rel="stylesheet" type="text/css" href="css/master.css">  <script src="js/jquery-1.4.1.js" type="text/javascript"></script>  <script src="js/jquery.jup.js" type="text/javascript"></script>  <script src="js/jquery.dataTables.js" type="text/javascript"></script>  <script src="js/master.js" type="text/javascript"></script></head><body><div id="application">  <div id="application-frame">    <!-- Begin header -->    <div id="header"><div class="tr"><div class="tl"></div></div></div>    <!-- End header -->        <!-- Begin content -->    <div id="content">      <iframe frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="http://dev.virtualearth.net/embeddedMap/v1/ajax/aerial?zoomLevel=4" id="map"></iframe>            <div class="hud" id="data"><table id="data-table"></table></div>            <div class="hud" id="parameters">        <h1>Time</h1>        <div><label>From</label> <input type="text" /></div>        <div><label>To</label> <input type="text" /></div>        <h1>Upload HDF</h1>        <form id="Form1" enctype="multipart/form-data" runat="server" method="POST">          <div><label>File</label> <input type="file" id="File1" name="File1" runat="server" /></div>          <input type="submit" id="Submit1" value="Upload" runat="server" name="Submit1" />         </form>      </div>    </div>      <!-- End content -->        <!-- Begin footer -->    <div id="footer"><div class="br"><div class="bl"></div></div></div>    <!-- End footer -->    </div></div></body></html>
