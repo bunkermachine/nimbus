@@ -3,3 +3,8 @@ C:\My Stuff\My Work\Stanford\CS210\HDFServiceSolution\HDFFileReceiver\bin\HDFFil
 C:\My Stuff\My Work\Stanford\CS210\HDFServiceSolution\HDFFileReceiver\bin\HDFFileReceiver.pdb
 C:\My Stuff\My Work\Stanford\CS210\HDFServiceSolution\HDFFileReceiver\obj\Debug\HDFFileReceiver.dll
 C:\My Stuff\My Work\Stanford\CS210\HDFServiceSolution\HDFFileReceiver\obj\Debug\HDFFileReceiver.pdb
+C:\Users\Shantanu\nimbus\CloudWS\HDFFileReceiver\bin\HDFFileReceiver.dll
+C:\Users\Shantanu\nimbus\CloudWS\HDFFileReceiver\bin\HDFFileReceiver.pdb
+C:\Users\Shantanu\nimbus\CloudWS\HDFFileReceiver\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Shantanu\nimbus\CloudWS\HDFFileReceiver\obj\Debug\HDFFileReceiver.dll
+C:\Users\Shantanu\nimbus\CloudWS\HDFFileReceiver\obj\Debug\HDFFileReceiver.pdb

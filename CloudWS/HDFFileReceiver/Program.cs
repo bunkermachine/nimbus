@@ -11,7 +11,7 @@ namespace HDFFileReceiver
         public void parseHDF(String hdfFileName)
         {
             Process process = new Process();
-            process.StartInfo.FileName = "C:\\My Stuff\\My Work\\Stanford\\nimbus\\hdfop\\rdhdf.exe";
+            process.StartInfo.FileName = "C:\\readhdf.exe";
             process.StartInfo.Arguments = hdfFileName;
             try
             {

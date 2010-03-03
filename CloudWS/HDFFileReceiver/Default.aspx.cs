@@ -55,9 +55,10 @@ namespace HDFFileReceiver
                 try
                 {
                     Program HDFParser = new Program();
-                    HDFParser.parseHDF(File1.PostedFile.FileName);
+                    
                     File1.PostedFile.SaveAs(SaveLocation);
                     Response.Write("The file has been uploaded.");
+                    HDFParser.parseHDF(SaveLocation);
                     
                     
                 }
