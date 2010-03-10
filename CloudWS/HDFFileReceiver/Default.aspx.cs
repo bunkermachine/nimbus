@@ -8,6 +8,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.IO;
 
 namespace HDFFileReceiver
 {
@@ -58,8 +59,13 @@ namespace HDFFileReceiver
                     
                     File1.PostedFile.SaveAs(SaveLocation);
                     Response.Write("The file has been uploaded.");
-                    HDFParser.parseHDF(SaveLocation);
-                    
+                    StreamReader stream = HDFParser.parseHDF(SaveLocation);
+                    String line = "";
+                    while (!stream.EndOfStream)
+                    {
+                        line = stream.ReadLine();
+                    }
+                    Response.Write(line);
                     
                 }
                 catch (Exception ex)
