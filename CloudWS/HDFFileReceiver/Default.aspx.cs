@@ -19,6 +19,7 @@ namespace HDFFileReceiver
     {
         protected System.Web.UI.HtmlControls.HtmlInputFile File1;
         protected System.Web.UI.HtmlControls.HtmlInputButton Submit1;
+        protected System.Web.UI.HtmlControls.HtmlContainerControl Data;
 
         private void Page_Load(object sender, System.EventArgs e)
         {
@@ -60,12 +61,8 @@ namespace HDFFileReceiver
                     File1.PostedFile.SaveAs(SaveLocation);
                     Response.Write("The file has been uploaded.");
                     StreamReader stream = HDFParser.parseHDF(SaveLocation);
-                    String line = "";
-                    while (!stream.EndOfStream)
-                    {
-                        line = stream.ReadLine();
-                    }
-                    Response.Write(line);
+                    String line = stream.ReadToEnd();
+                    Data.InnerHtml = line;
                     
                 }
                 catch (Exception ex)
