@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Diagnostics;
+using System.IO;
 
 namespace HDFFileReceiver
 {
     public class Program
     {
-        public void parseHDF(String hdfFileName)
+        public StreamReader parseHDF(String hdfFileName)
         {
+            char[] data;
+            data = new char[1000];
+     
             Process process = new Process();
-            process.StartInfo.FileName = "C:\\RdHdf.exe";
-            process.StartInfo.Arguments = hdfFileName;
+            process.StartInfo.FileName = "notepad.exe";
+            process.StartInfo.Arguments = "RdHDF.m";
+            process.StartInfo.RedirectStandardOutput = true;
             try
             {
                 process.Start();
@@ -28,6 +33,8 @@ namespace HDFFileReceiver
                 Console.WriteLine("");
 
             }
+
+            return process.StandardOutput;
         }
     }
 }
