@@ -3,3 +3,13 @@
 
 # Specific files
 .DS_Store
+
+# Visual Studios
+*.vcproj.*.user
+*.ncp
+*.aps
+*.suo
+*.sln.cache
+bin
+obj
+
