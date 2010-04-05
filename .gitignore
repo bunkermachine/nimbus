@@ -6,6 +6,7 @@
 
 # Visual Studios
 *.vcproj.*.user
+*.csproj.user
 *.ncp
 *.aps
 *.suo

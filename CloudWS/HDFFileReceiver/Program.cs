@@ -16,9 +16,13 @@ namespace HDFFileReceiver
      
             Process process = new Process();
             process.StartInfo.FileName = "C:\\rdHDF.exe";
+<<<<<<< HEAD
             process.StartInfo.Arguments = hdfFileName;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
+=======
+            process.StartInfo.Arguments = hdfFileName;
+>>>>>>> d4a516dcb613988c559097705c11de866ced072d
 
             try
             {
