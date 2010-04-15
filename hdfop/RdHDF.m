@@ -17,7 +17,7 @@ toplevel
 size(toplevel.Groups,2)
 display([' datasets available to view.']);
 display('Enter dataset which you would like to view:');
-idx = input('Enter option here : ');
+idx = 2;
 
 display('Displaying Group ');
 idx
