@@ -5,7 +5,7 @@ using System.Web;
 using System.Diagnostics;
 using System.IO;
 
-namespace HDFFileReceiver
+namespace CloudLab
 {
     public class Program
     {

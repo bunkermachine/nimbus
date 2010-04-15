@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDFFileReceiver", "HDFFileReceiver.csproj", "{3A01C719-EF76-44D9-9A1A-E0F838738149}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudLab", "CloudLab.csproj", "{3A01C719-EF76-44D9-9A1A-E0F838738149}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
