@@ -5,7 +5,7 @@ using System.Web;
 using System.Diagnostics;
 using System.IO;
 
-namespace WebRole1
+namespace WorkerRole1
 {
     public class Program
     {
