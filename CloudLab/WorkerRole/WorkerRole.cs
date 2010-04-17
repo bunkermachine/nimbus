@@ -43,10 +43,10 @@ namespace WorkerRole
                     downloadContainer.CreateIfNotExist();
 
                     var permissions = container.GetPermissions();
-                    var downloadPerminssions = downloadContainer.GetPermissions();
+                    var downloadPermissions = downloadContainer.GetPermissions();
 
                     permissions.PublicAccess = BlobContainerPublicAccessType.Container;
-                    downloadPerminssions.PublicAccess = BlobContainerPublicAccessType.Container;
+                    downloadPermissions.PublicAccess = BlobContainerPublicAccessType.Container;
 
                     container.SetPermissions(permissions);
                     downloadContainer.SetPermissions(downloadPerminssions);
