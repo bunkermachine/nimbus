@@ -49,10 +49,10 @@ namespace WorkerRole
                     downloadPermissions.PublicAccess = BlobContainerPublicAccessType.Container;
 
                     container.SetPermissions(permissions);
-                    downloadContainer.SetPermissions(downloadPerminssions);
+                    downloadContainer.SetPermissions(downloadPermissions);
 
                     permissions = container.GetPermissions();
-                    downloadPerminssions = downloadContainer.GetPermissions();
+                    downloadPermissions = downloadContainer.GetPermissions();
 
                     queue.CreateIfNotExist();
 
