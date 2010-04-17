@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,8 +8,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebRole1</RootNamespace>
-    <AssemblyName>WebRole1</AssemblyName>
+    <RootNamespace>WebRole</RootNamespace>
+    <AssemblyName>WebRole</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -62,12 +63,25 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\img\app-background.png" />
+    <Content Include="css\img\background.png" />
+    <Content Include="css\img\frame-b.png" />
+    <Content Include="css\img\frame-bl.png" />
+    <Content Include="css\img\frame-br.png" />
+    <Content Include="css\img\frame-l.png" />
+    <Content Include="css\img\frame-r.png" />
+    <Content Include="css\img\frame-t.png" />
+    <Content Include="css\img\frame-tl.png" />
+    <Content Include="css\img\frame-tr.png" />
+    <Content Include="css\img\frame.png" />
+    <Content Include="css\img\hud-bg.png" />
+    <Content Include="css\master.css" />
     <Content Include="Default.aspx" />
-    <Content Include="jquery-1.4.1.js" />
-    <Content Include="jquery.dataTables.js" />
-    <Content Include="jquery.jup.js" />
-    <Content Include="master.css" />
-    <Content Include="master.js" />
+    <Content Include="js\jquery-1.4.1.js" />
+    <Content Include="js\jquery.dataTables.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.jup.js" />
+    <Content Include="js\master.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +94,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebRole.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="css\.DS_Store" />
+    <None Include="css\img\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

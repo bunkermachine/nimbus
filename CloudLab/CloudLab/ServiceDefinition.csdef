@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="CloudService4" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
-  <WebRole name="WebRole1">
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="CloudLab" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <WebRole name="WebRole">
     <InputEndpoints>
       <InputEndpoint name="HttpIn" protocol="http" port="80" />
     </InputEndpoints>
@@ -9,7 +9,7 @@
       <Setting name="DiagnosticsConnectionString" />
     </ConfigurationSettings>
   </WebRole>
-  <WorkerRole name="WorkerRole1">
+  <WorkerRole name="WorkerRole">
     <ConfigurationSettings>
       <Setting name="DataConnectionString" />
       <Setting name="DiagnosticsConnectionString" />

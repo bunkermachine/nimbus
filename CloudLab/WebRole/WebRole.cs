@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 
-namespace WebRole1
+namespace WebRole
 {
     public class WebRole : RoleEntryPoint
     {

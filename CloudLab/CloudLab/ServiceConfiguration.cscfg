@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ServiceConfiguration serviceName="CloudService4" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration">
-  <Role name="WebRole1">
+<ServiceConfiguration serviceName="CloudLab" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration">
+  <Role name="WebRole">
     <Instances count="1" />
     <ConfigurationSettings>
       <!--
@@ -10,7 +10,7 @@
       <Setting name="DiagnosticsConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cs210teststorage;AccountKey=FPQpo2jyJiLzz/QOFXPMGwqODvZf3hQXTjgzBkqwxapIT211RbtTAr4S17eB/ciaZK/O5T7rms1BKystoj8JDg==" />
     </ConfigurationSettings>
   </Role>
-  <Role name="WorkerRole1">
+  <Role name="WorkerRole">
     <Instances count="1" />
     <ConfigurationSettings>
       <!--

@@ -11,7 +11,7 @@ using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
 using System.IO;
 
-namespace WorkerRole1
+namespace WorkerRole
 {
     public class WorkerRole : RoleEntryPoint
     {
@@ -20,9 +20,7 @@ namespace WorkerRole1
             var storageAccount = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
 
             CloudBlobClient blobStorage = storageAccount.CreateCloudBlobClient();
-            CloudBlobClient otherBlobStorage = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobStorage.GetContainerReference("program");
-            CloudBlobContainer downloadContainer = otherBlobStorage.GetContainerReference("downloadcontainer");
 
             CloudQueueClient queueStorage = storageAccount.CreateCloudQueueClient();
             CloudQueue queue = queueStorage.GetQueueReference("programrunner");
@@ -40,19 +38,14 @@ namespace WorkerRole1
                 try
                 {
                     container.CreateIfNotExist();
-                    downloadContainer.CreateIfNotExist();
 
                     var permissions = container.GetPermissions();
-                    var downloadPerminssions = downloadContainer.GetPermissions();
 
                     permissions.PublicAccess = BlobContainerPublicAccessType.Container;
-                    downloadPerminssions.PublicAccess = BlobContainerPublicAccessType.Container;
 
                     container.SetPermissions(permissions);
-                    downloadContainer.SetPermissions(downloadPerminssions);
 
                     permissions = container.GetPermissions();
-                    downloadPerminssions = downloadContainer.GetPermissions();
 
                     queue.CreateIfNotExist();
 
@@ -95,33 +88,26 @@ namespace WorkerRole1
                         CloudBlockBlob hdf_content = container.GetBlockBlobReference(hdf_name);
 
                         CloudBlockBlob output_content = container.GetBlockBlobReference("output.txt");
-                        CloudBlockBlob upload_download_content = downloadContainer.GetBlockBlobReference("downloadedFile.jpg");
 
                         string exe_path = Path.Combine(RoleEnvironment.GetLocalResource("LocalStorage1").RootPath, exe_name);
                         string hdf_path = Path.Combine(RoleEnvironment.GetLocalResource("LocalStorage1").RootPath, hdf_name);
 
-                        //exe_content.DownloadToFile(exe_path);
-                        //hdf_content.DownloadToFile(hdf_path);
+                        exe_content.DownloadToFile(exe_path);
+                        hdf_content.DownloadToFile(hdf_path);
 
                         #region run process
                         try
                         {                                            
                             Program HDFParser = new Program();
-                            DownloadFTP ftp = new DownloadFTP();
                              
-                            //StreamReader stream = HDFParser.parseHDF(exe_path, hdf_path);
-                            //String line = stream.ReadToEnd();
+                            StreamReader stream = HDFParser.parseHDF(exe_path, hdf_path);
+                            String line = stream.ReadToEnd();
 
-                            upload_download_content.UploadByteArray(ftp.getDataFromFTP());
-
-                            //output_content.UploadText(line);
+                            output_content.UploadText(line);
                         }
                         catch (Exception ex)
                         {
-                            throw;
-                            //Note: Exception.Message returns a detailed message that describes the current exception. 
-                            //For security reasons, we do not recommend that you return Exception.Message to end users in 
-                            //production environments. It would be better to return a generic error message. 
+                            Trace.TraceError(ex.Message);
                         }
                         #endregion 
 
