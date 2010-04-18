@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="CloudLab">
+</Property><Property Name="Solution File" Value="C:\Users\Ghiblian\Development\CloudLab\CloudLab\CloudLab.sln">
+</Property><Property Name="User Options File" Value="C:\Users\Ghiblian\Development\CloudLab\CloudLab\CloudLab.suo">
+</Property><Property Name="Date" Value="Saturday, April 17, 2010">
+</Property><Property Name="Time" Value="22:23 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="CloudLab.sln" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\CloudLab.sln">
+</Event><Event ErrorLevel="0" Project="" Source="CloudLab.suo" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\CloudLab.suo">
+</Event><Event ErrorLevel="0" Project="C:\Users\Ghiblian\Development\CloudLab\CloudLab\CloudLab\CloudLab.ccproj" Source="CloudLab\CloudLab.ccproj" Description="Project file successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\CloudLab\CloudLab.ccproj">
+</Event><Event ErrorLevel="0" Project="C:\Users\Ghiblian\Development\CloudLab\CloudLab\CloudLab\CloudLab.ccproj" Source="CloudLab\CloudLab.ccproj.user" Description="Project user file successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\CloudLab\CloudLab.ccproj.user">
+</Event><Event ErrorLevel="0" Project="C:\Users\Ghiblian\Development\CloudLab\CloudLab\CloudLab\CloudLab.ccproj" Source="CloudLab\ServiceDefinition.csdef" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\CloudLab\ServiceDefinition.csdef">
+</Event><Event ErrorLevel="0" Project="C:\Users\Ghiblian\Development\CloudLab\CloudLab\CloudLab\CloudLab.ccproj" Source="CloudLab\ServiceConfiguration.cscfg" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\CloudLab\ServiceConfiguration.cscfg">
+</Event><Event ErrorLevel="0" Project="C:\Users\Ghiblian\Development\CloudLab\CloudLab\CloudLab\CloudLab.ccproj" Source="CloudLab\CloudLab.ccproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="C:\Users\Ghiblian\Development\CloudLab\CloudLab\CloudLab\CloudLab.ccproj" Source="CloudLab\CloudLab.ccproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\WebRole.csproj" Description="Project file successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\WebRole.csproj">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\WebRole.csproj.user" Description="Project user file successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\WebRole.csproj.user">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\Default.aspx.cs" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\Default.aspx.cs">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\Default.aspx.designer.cs" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\Default.aspx.designer.cs">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\WebRole.cs" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\WebRole.cs">
+</Event><Event ErrorLevel="2" Project="WebRole" Source="WebRole\css\.DS_Store" Description="Failed to backup file as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\.DS_Store">
+</Event><Event ErrorLevel="2" Project="WebRole" Source="WebRole\css\img\.DS_Store" Description="Failed to backup file as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\.DS_Store">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\app-background.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\app-background.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\background.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\background.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\frame-b.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\frame-b.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\frame-bl.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\frame-bl.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\frame-br.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\frame-br.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\frame-l.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\frame-l.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\frame-r.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\frame-r.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\frame-t.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\frame-t.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\frame-tl.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\frame-tl.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\frame-tr.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\frame-tr.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\frame.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\frame.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\img\hud-bg.png" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\img\hud-bg.png">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\css\master.css" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\css\master.css">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\Default.aspx" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\Default.aspx">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\js\jquery-1.4.1.js" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\js\jquery-1.4.1.js">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\js\jquery.dataTables.js" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\js\jquery.dataTables.js">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\js\jquery.js" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\js\jquery.js">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\js\jquery.jup.js" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\js\jquery.jup.js">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\js\master.js" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\js\master.js">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\Web.config" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WebRole\Web.config">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\WebRole.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="WebRole" Source="WebRole\WebRole.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="WorkerRole" Source="WorkerRole\WorkerRole.csproj" Description="Project file successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WorkerRole\WorkerRole.csproj">
+</Event><Event ErrorLevel="0" Project="WorkerRole" Source="WorkerRole\DownloadFTP.cs" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WorkerRole\DownloadFTP.cs">
+</Event><Event ErrorLevel="0" Project="WorkerRole" Source="WorkerRole\Program.cs" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WorkerRole\Program.cs">
+</Event><Event ErrorLevel="0" Project="WorkerRole" Source="WorkerRole\WorkerRole.cs" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WorkerRole\WorkerRole.cs">
+</Event><Event ErrorLevel="0" Project="WorkerRole" Source="WorkerRole\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WorkerRole\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="WorkerRole" Source="WorkerRole\app.config" Description="File successfully backed up as C:\Users\Ghiblian\Development\CloudLab\CloudLab\Backup\WorkerRole\app.config">
+</Event><Event ErrorLevel="0" Project="WorkerRole" Source="WorkerRole\WorkerRole.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="WorkerRole" Source="WorkerRole\WorkerRole.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="CloudLab.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="CloudLab.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="WebRole" Source="WebRole\WebRole.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="WorkerRole" Source="WorkerRole\WorkerRole.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

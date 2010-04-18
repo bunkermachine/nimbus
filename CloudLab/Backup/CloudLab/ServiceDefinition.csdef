@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="CloudLab" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <WebRole name="WebRole">
+    <InputEndpoints>
+      <InputEndpoint name="HttpIn" protocol="http" port="80" />
+    </InputEndpoints>
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" />
+      <Setting name="DiagnosticsConnectionString" />
+    </ConfigurationSettings>
+  </WebRole>
+  <WorkerRole name="WorkerRole">
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" />
+      <Setting name="DiagnosticsConnectionString" />
+    </ConfigurationSettings>
+    <LocalResources>
+      <LocalStorage name="LocalStorage1" cleanOnRoleRecycle="false" sizeInMB="1000" />
+    </LocalResources>
+  </WorkerRole>
+</ServiceDefinition>
