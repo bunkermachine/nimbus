@@ -97,7 +97,7 @@
                 <td><asp:FileUpload runat="server" id="exeFile" /></td>
               </tr>
             </table>
-            <asp:Button id="startTask" UseSubmitBehavior="false" Text="Start Task" runat="server" OnClientClick="return CloudLab.startTask()" OnClick="CreateTask" />
+            <asp:Button id="startTask" Text="Start Task" runat="server" OnClientClick="return CloudLab.startTask()" OnClick="CreateTask" />
           </ContentTemplate>
         </asp:UpdatePanel>
         <asp:UpdatePanel id="output" runat="server">
