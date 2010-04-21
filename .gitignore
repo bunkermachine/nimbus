@@ -14,8 +14,6 @@
 
 *.vcproj.*.user
 
-*.csproj.user
-
 *.ncp
 
 *.aps
@@ -27,5 +25,6 @@
 bin
 
 obj
+
 
 res

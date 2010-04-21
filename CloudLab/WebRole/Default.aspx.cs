@@ -15,8 +15,6 @@ namespace WebRole
 {
   public partial class Default : System.Web.UI.Page
   {
-
-    ArrayList datasets;
     ArrayList files;
 
     private static CloudBlobClient blobStorage;
@@ -27,14 +25,14 @@ namespace WebRole
 
     protected void Page_Load(object sender, EventArgs e)
     {
-      datasets = new ArrayList();
-      datasets.Add("ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/");
-      datasetList.DataSource = datasets;
-      datasetList.DataBind();
+      //files = GetFileList("ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/", "anonymous", "guest");
+      //fileList.DataSource = files;
+      //fileList.DataBind();
+    }
 
-      files = GetFileList("ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/", "anonymous", "guest");
-      fileList.DataSource = files;
-      fileList.DataBind();
+    protected void LoadWorkspace(object sender, System.EventArgs e)
+    {
+
     }
 
     protected void UploadComplete(object sender, AsyncFileUploadEventArgs e)
@@ -43,36 +41,37 @@ namespace WebRole
 
     protected void CreateProject(object sender, System.EventArgs e)
     {
-      datasets.Add(newDataset.Text);
+        workspace.ContentTemplateContainer.Controls.Clear();
+        workspace.ContentTemplateContainer.Controls.Add(LoadControl("NewProject.ascx"));
     }
 
-    protected void CreateTask(object sender, System.EventArgs e)
-    {
-      string exeName = exeFile.FileName;
-      GetProgramContainer().GetBlockBlobReference(exeName).UploadFromStream(exeFile.FileContent);
-      foreach (ListItem item in fileList.Items)
-      {
-        if (!item.Selected) continue;
+    //protected void CreateTask(object sender, System.EventArgs e)
+    //{
+    //  string exeName = exeFile.FileName;
+    //  GetProgramContainer().GetBlockBlobReference(exeName).UploadFromStream(exeFile.FileContent);
+    //  foreach (ListItem item in fileList.Items)
+    //  {
+    //    if (!item.Selected) continue;
 
-        string hdfName = item.Value;
-        string queueMsg = exeName + "+" + hdfName;
-        //GetProgramContainer().GetBlockBlobReference(hdfName).UploadFromStream(hdf.FileContent);
+    //    string hdfName = item.Value;
+    //    string queueMsg = exeName + "+" + hdfName;
+    //    //GetProgramContainer().GetBlockBlobReference(hdfName).UploadFromStream(hdf.FileContent);
 
-        GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg)));
+    //    GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg)));
 
-        System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", queueMsg));
-      }
-    }
+    //    System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", queueMsg));
+    //  }
+    //}
 
-    protected void DatasetSelected(object sender, EventArgs e)
-    {
-      // ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/
-      // fileList.DataSource = GetFileList(datasetList.Text, "anonymous", "guest");
-      files = new ArrayList();
-      files.Add("Test");
-      fileList.DataSource = files;
-      fileList.DataBind();
-    }
+    //protected void DatasetSelected(object sender, EventArgs e)
+    //{
+    //  // ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/
+    //  // fileList.DataSource = GetFileList(datasetList.Text, "anonymous", "guest");
+    //  files = new ArrayList();
+    //  files.Add("Test");
+    //  fileList.DataSource = files;
+    //  fileList.DataBind();
+    //}
 
     //Connects to the FTP server and request the list of available files
     protected ArrayList GetFileList(string FTPAddress, string username, string password)
@@ -174,16 +173,16 @@ namespace WebRole
       return queueStorage.GetQueueReference("programrunner");
     }
 
-    protected void Page_PreRender(object sender, EventArgs e)
-    {
-      try
-      {
-        programOutput.Text = GetProgramContainer().GetBlockBlobReference("output.txt").DownloadText();
-      }
-      catch (Exception)
-      {
-      }
-    }
+    //protected void Page_PreRender(object sender, EventArgs e)
+    //{
+    //  try
+    //  {
+    //    programOutput.Text = GetProgramContainer().GetBlockBlobReference("output.txt").DownloadText();
+    //  }
+    //  catch (Exception)
+    //  {
+    //  }
+    //}
 
   }
 }

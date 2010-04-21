@@ -1,4 +1,8 @@
-/** * Hardcoded Test Data * ------------------- * Some sample data before we have the full fledged table setup */
+/**
+ * Hardcoded Test Data
+ * -------------------
+ * Some sample data before we have the full fledged table setup
+ */
 // User ID, Username, real name
 var users = [[0, 'davidli@cs.stanford.edu', 'David Li']];
 // User ID, Project Name, Project Shortname
@@ -7,7 +11,11 @@ var projects = [];
 var tasks = [];
 // Task ID, Queued Item
 var queue = [[0, 'MODISAOE_1']];
-/** * Website Interactions * -------------------- * Controls most of the major page changes */
+/**
+ * Website Interactions
+ * --------------------
+ * Controls most of the major page changes
+ */
 var CloudLab = new function() {
   this.redisplay = function() {
     $('#workspace').width($(window).width()).height($(window).height() - 67);
@@ -36,7 +44,11 @@ var CloudLab = new function() {
     return false;
   };
 }
-/** * Sidebar * --------- * Bundles the sidebar */
+/**
+ * Sidebar
+ * ---------
+ * Bundles the sidebar
+ */
 var Sidebar = new function() {
   var sidebar = $('#sidebar');
   var sidebarTemplates = sidebar.children('#sidebarTemplates');
@@ -86,7 +98,11 @@ var Sidebar = new function() {
     sidebarHeight = 0;
   };
 };
-/** * HUD Boxes * --------- * Draggable, movable, hidable boxes for showing different task modules */
+/**
+ * HUD Boxes
+ * ---------
+ * Draggable, movable, hidable boxes for showing different task modules
+ */
 $.fn.hud = function(options) {
   var settings = jQuery.extend({
     title: 'Datasets',
@@ -111,7 +127,11 @@ $.fn.hud = function(options) {
   container.append(titleBar);
   return this;
 };
-/** * Workspace * --------- * Houses the main work area of CloudLab */
+/**
+ * Workspace
+ * ---------
+ * Houses the main work area of CloudLab
+ */
 var Workspace = new function() {
   var workspace = $('#workspace');
   /* Virtual Earth Map */
