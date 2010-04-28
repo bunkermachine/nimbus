@@ -13,57 +13,39 @@ namespace WebRole {
     public partial class Default {
         
         /// <summary>
-        /// application control.
+        /// CloudLab control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm application;
+        protected global::System.Web.UI.HtmlControls.HtmlForm CloudLab;
         
         /// <summary>
-        /// scriptManager control.
+        /// Manager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager scriptManager;
+        protected global::AjaxControlToolkit.ToolkitScriptManager Manager;
         
         /// <summary>
-        /// statusBar control.
+        /// StatusBar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress statusBar;
+        protected global::System.Web.UI.UpdateProgress StatusBar;
         
         /// <summary>
-        /// data control.
+        /// Data control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl data;
-        
-        /// <summary>
-        /// workspace control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel workspace;
-        
-        /// <summary>
-        /// testButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button testButton;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Data;
     }
 }

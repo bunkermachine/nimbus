@@ -23,45 +23,15 @@ namespace WebRole
     private static bool s_createdContainerAndQueue = false;
     private static object s_lock = new Object();
 
+    public string CurrentControl
+    {
+        get { return ViewState["Workspace"] as string; }
+        set { ViewState["Workspace"] = value; }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-      //files = GetFileList("ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/", "anonymous", "guest");
-      //fileList.DataSource = files;
-      //fileList.DataBind();
     }
-
-    protected void LoadWorkspace(object sender, System.EventArgs e)
-    {
-
-    }
-
-    protected void UploadComplete(object sender, AsyncFileUploadEventArgs e)
-    {
-    }
-
-    protected void CreateProject(object sender, System.EventArgs e)
-    {
-        workspace.ContentTemplateContainer.Controls.Clear();
-        workspace.ContentTemplateContainer.Controls.Add(LoadControl("NewProject.ascx"));
-    }
-
-    //protected void CreateTask(object sender, System.EventArgs e)
-    //{
-    //  string exeName = exeFile.FileName;
-    //  GetProgramContainer().GetBlockBlobReference(exeName).UploadFromStream(exeFile.FileContent);
-    //  foreach (ListItem item in fileList.Items)
-    //  {
-    //    if (!item.Selected) continue;
-
-    //    string hdfName = item.Value;
-    //    string queueMsg = exeName + "+" + hdfName;
-    //    //GetProgramContainer().GetBlockBlobReference(hdfName).UploadFromStream(hdf.FileContent);
-
-    //    GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg)));
-
-    //    System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", queueMsg));
-    //  }
-    //}
 
     //protected void DatasetSelected(object sender, EventArgs e)
     //{

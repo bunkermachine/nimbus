@@ -11,14 +11,15 @@ var projects = [];
 var tasks = [];
 // Task ID, Queued Item
 var queue = [[0, 'MODISAOE_1']];
+
 /**
  * Website Interactions
  * --------------------
  * Controls most of the major page changes
  */
-var CloudLab = new function() {
+CloudLab = new function() {
   this.redisplay = function() {
-    $('#workspace').width($(window).width()).height($(window).height() - 67);
+    $('#Workspace').width($(window).width()).height($(window).height() - 67);
     //$('#main').css('display','none').css('display','block');
     Workspace.refresh();
   }
@@ -26,7 +27,7 @@ var CloudLab = new function() {
     for (var idx in projects) {
       if (projects[idx][0] == projectID) {
         Sidebar.initList(tasks, 'Basic');
-        $('#projectTitle').text(projects[idx][1]);
+        $('#ProjectTitle').text(projects[idx][1]);
         Workspace.setMode('map');
         break;
       }
@@ -34,31 +35,34 @@ var CloudLab = new function() {
   }
   this.startTask = function(taskName) {
     Workspace.setMode('map');
-    tasks.push([0, $('#newTaskName').val(), 'Downloading', 0]);
+    tasks.push([0, $('#NewTaskName').val(), 'Downloading', 0]);
     Sidebar.initList(tasks, 'Basic');
     return false;
   };
   this.startProject = function(projectName) {
-    projects.push([projects.length, $('#newProjectName').val(), 'test']);
+    projects.push([projects.length, $('#NewProjectName').val(), 'test']);
     CloudLab.selectProject(projects.length - 1);
     return false;
   };
 }
+
 /**
  * Sidebar
  * ---------
  * Bundles the sidebar
  */
-var Sidebar = new function() {
-  var sidebar = $('#sidebar');
-  var sidebarTemplates = sidebar.children('#sidebarTemplates');
-  var sidebarTitle = sidebar.children('#sidebarTitle');
-  var sidebarContent = sidebar.children('#sidebarContent');
+
+Sidebar = new function() {
+  var sidebar = $('#Sidebar');
+  var sidebarTemplates = sidebar.children('#SidebarTemplates');
+  var sidebarTitle = sidebar.children('#SidebarTitle');
+  var sidebarContent = sidebar.children('#SidebarContent');
   var sidebarHeight = 0;
+
   this.initList = function(list, style) {
     this.clearList();
     sidebar.show();
-    var template = sidebarTemplates.children('#sidebarTemplate' + style);
+    var template = sidebarTemplates.children('#SidebarTemplate' + style);
     var sidebarList = $(document.createElement('ul'));
     sidebarList.addClass('sidebarMode');
     // Add a list entry for each of the items
@@ -82,27 +86,32 @@ var Sidebar = new function() {
     sidebarHeight = sidebarList.height();
     this.expand();
   };
+
   this.expand = function() {
     sidebarContent.animate({ height: sidebarHeight }, 'fast');
     sidebarTitle.unbind('click');
     sidebarTitle.click(Sidebar.collapse);
   };
+
   this.collapse = function() {
     sidebarContent.animate({ height: 0 }, 'fast');
     sidebarTitle.unbind('click');
     sidebarTitle.click(Sidebar.expand);
   };
+
   this.clearList = function() {
     sidebar.hide();
     sidebarContent.children().remove();
     sidebarHeight = 0;
   };
 };
+
 /**
  * HUD Boxes
  * ---------
  * Draggable, movable, hidable boxes for showing different task modules
  */
+
 $.fn.hud = function(options) {
   var settings = jQuery.extend({
     title: 'Datasets',
@@ -127,13 +136,15 @@ $.fn.hud = function(options) {
   container.append(titleBar);
   return this;
 };
+
 /**
  * Workspace
  * ---------
  * Houses the main work area of CloudLab
  */
-var Workspace = new function() {
-  var workspace = $('#workspace');
+
+Workspace = new function() {
+  var workspace = $('#Workspace');
   /* Virtual Earth Map */
   var map = null;
   this.mode = 'projects';
@@ -249,14 +260,14 @@ $(function() {
   //GetMap();
   CloudLab.redisplay();
   Sidebar.clearList();
-  $('#addButton').click(function(e) {
+  $('#AddButton').click(function(e) {
     e.preventDefault();
     addParameter();
   });
-  $('#projectTitle').click(function() {
+  $('#ProjectTitle').click(function() {
     Workspace.setMode('projects');
   });
-  $('#upload').submit(function() {
+  $('#Upload').submit(function() {
     tasks.push([0, $('#taskName').val(), 'Processing', 0]);
   });
   Workspace.setMode('projects');
