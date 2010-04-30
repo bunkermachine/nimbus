@@ -14,7 +14,7 @@ namespace WebRole
 
         }
 
-        protected void CreateTask(object sender, System.EventArgs e)
+        protected void LaunchTaskBtn_Click(object sender, System.EventArgs e)
         {
         //  string exeName = exeFile.FileName;
         //  GetProgramContainer().GetBlockBlobReference(exeName).UploadFromStream(exeFile.FileContent);

@@ -20,31 +20,44 @@ var queue = [[0, 'MODISAOE_1']];
 CloudLab = new function() {
   this.redisplay = function() {
     $('#Workspace').width($(window).width()).height($(window).height() - 67);
-    //$('#main').css('display','none').css('display','block');
-    Workspace.refresh();
   }
-  this.selectProject = function(projectID) {
-    for (var idx in projects) {
-      if (projects[idx][0] == projectID) {
-        Sidebar.initList(tasks, 'Basic');
-        $('#ProjectTitle').text(projects[idx][1]);
-        Workspace.setMode('map');
-        break;
-      }
-    }
-  }
-  this.startTask = function(taskName) {
-    Workspace.setMode('map');
-    tasks.push([0, $('#NewTaskName').val(), 'Downloading', 0]);
-    Sidebar.initList(tasks, 'Basic');
-    return false;
-  };
-  this.startProject = function(projectName) {
-    projects.push([projects.length, $('#NewProjectName').val(), 'test']);
-    CloudLab.selectProject(projects.length - 1);
-    return false;
-  };
 }
+
+/**
+ * UserBar
+ * -----------
+ * Bundles the userbar functionality
+ */
+
+UserBar = new function() {
+  var userBar = $('#UserBar');
+  var projectTitle = $('#ProjectTitle');
+  var projectDropdown = $('#ProjectDropdown');
+
+  this.init = function() {
+    projectTitle.click(UserBar.showProjects);
+  };
+
+  this.addProject = function(project) {
+  };
+
+  this.setProject = function(projectName) {
+    userBar.show();
+    projectTitle.text(projectName);
+  };
+
+  this.showProjects = function() {
+    projectDropdown.show();
+    projectTitle.unbind('click');
+    projectTitle.click(UserBar.hideProjects);
+  };
+
+  this.hideProjects = function() {
+    projectDropdown.hide();
+    projectTitle.unbind('click');
+    projectTitle.click(UserBar.showProjects);
+  };
+};
 
 /**
  * Sidebar
@@ -57,7 +70,21 @@ Sidebar = new function() {
   var sidebarTemplates = sidebar.children('#SidebarTemplates');
   var sidebarTitle = sidebar.children('#SidebarTitle');
   var sidebarContent = sidebar.children('#SidebarContent');
-  var sidebarHeight = 0;
+  var sidebarHandle = sidebar.children('#SidebarHandle');
+  var sidebarWidth = 0;
+
+  this.init = function() {
+    this.clearList();
+    sidebarWidth = sidebar.width();
+    sidebar.resizable({ handles: 'w', maxWidth: 300, stop: function(event, ui) {
+      sidebarWidth = sidebar.width();
+    } });
+    sidebarHandle.click(Sidebar.collapse);
+  }
+
+  this.setTitle = function(title) {
+    sidebarTitle.text(title);
+  }
 
   this.initList = function(list, style) {
     this.clearList();
@@ -69,40 +96,37 @@ Sidebar = new function() {
     for (var idx in list) {
       var sidebarListElement = template.clone();
       sidebarListElement.removeAttr('id');
-      sidebarListElement.children('.title').text(list[idx][1]);
-      sidebarListElement.children('.description').text('Status: ' + list[idx][2] + ' (' + list[idx][3] + '%)');
-      sidebarListElement.click(function() {
-        Workspace.setMode('output');
-      });
+      sidebarListElement.children('.title').text(list[idx]['title']);
+      sidebarListElement.children('.description').text('Status: ' + list[idx]['description'] + ' (' + list[idx]['progress'] + '%)');
+      sidebarListElement.click(list[idx]['click']);
       sidebarList.append(sidebarListElement);
     }
     var newTask = $(document.createElement('li'));
     newTask.text('Add Task');
     newTask.click(function() {
-      Workspace.setMode('task');
+      Workspace.set('NewTask');
     });
     sidebarList.append(newTask);
     sidebarContent.append(sidebarList);
-    sidebarHeight = sidebarList.height();
-    this.expand();
+    sidebarHandle.height(sidebar.height());
   };
 
   this.expand = function() {
-    sidebarContent.animate({ height: sidebarHeight }, 'fast');
-    sidebarTitle.unbind('click');
-    sidebarTitle.click(Sidebar.collapse);
+    sidebar.animate({ width: sidebarWidth }, 'fast');
+    sidebarHandle.unbind('click');
+    sidebarHandle.click(Sidebar.collapse);
   };
 
   this.collapse = function() {
-    sidebarContent.animate({ height: 0 }, 'fast');
-    sidebarTitle.unbind('click');
-    sidebarTitle.click(Sidebar.expand);
+    sidebar.animate({ width: sidebarHandle.width() }, 'fast');
+    sidebarHandle.unbind('click');
+    sidebarHandle.click(Sidebar.expand);
   };
 
   this.clearList = function() {
     sidebar.hide();
     sidebarContent.children().remove();
-    sidebarHeight = 0;
+    sidebarHandle.height(sidebar.height());
   };
 };
 
@@ -145,56 +169,12 @@ $.fn.hud = function(options) {
 
 Workspace = new function() {
   var workspace = $('#Workspace');
-  /* Virtual Earth Map */
-  var map = null;
-  this.mode = 'projects';
-  this.refresh = function() {
-    this.setMode(this.mode);
+
+  this.init = function() {
   };
-  this.setMode = function(mode) {
-    this.mode = mode;
-    workspace.children().hide();
-    switch (mode) {
-      case 'task': this.taskMode(); break;
-      case 'projects': this.projectsMode(); break;
-      case 'project': this.projectMode(); break;
-      case 'map': this.mapMode(); break;
-    }
-    $('#' + mode).show();
-  };
-  this.taskMode = function() {
-    $('form')[0].reset();
-  };
-  this.projectsMode = function() {
-    Sidebar.clearList();
-    $('#projects ul').children().remove();
-    // Add behavior to the project buttons
-    for (var idx in projects) {
-      var project = $(document.createElement('li'));
-      project.text(projects[idx][1]);
-      project.click(function() {
-        CloudLab.selectProject(projects[idx][0]);
-      });
-      $('#projects ul').append(project);
-    }
-    // New project button
-    var newProjectButton = $(document.createElement('li'));
-    $('#projects ul').append(newProjectButton);
-    newProjectButton.click(function() {
-      Workspace.setMode('project');
-    });
-    newProjectButton.text('New Project');
-  };
-  this.projectMode = function() {
-    $('form')[0].reset();
-  };
-  this.mapMode = function() {
-    if (!map) {
-      map = new VEMap('map');
-      map.LoadMap();
-      map.SetMapStyle(VEMapStyle.Aerial);
-    }
-    map.Resize($('#workspace').width(), $('#workspace').height());
+
+  this.set = function(mode) {
+    workspace.attr('src', mode + '.aspx');
   };
 };
 
@@ -211,74 +191,15 @@ $.fn.clearForm = function() {
       this.selectedIndex = -1;
   });
 };
-// Data Table 
-//var dataTable = null;
-//
-//function initDataTable()
-//{
-//  dataTable = $('#DataTable').dataTable({
-//    'aoColumns': [
-//      { 'sTitle': 'Date' },
-//      { 'sTitle': 'Surf. Pressure' },
-//      { 'sTitle': 'Air Temp.' },
-//      { 'sTitle': 'Rel. Hum.' },
-//      { 'sTitle': 'Cloud Cov.' },
-//      { 'sTitle': 'Precipitation' },
-//      { 'sTitle': 'Down. Short. Rad.' },
-//      { 'sTitle': 'Down. Long. Rad. '}
-//    ],
-//   	'bSortClasses': false
-//  });
-//  
-//  $('#data-table tbody td').hover(function() {
-//      var iCol = $('td').index(this) % 5;
-//    	var nTrs = dataTable.fnGetNodes();
-//    	$('td:nth-child('+(iCol+1)+')', nTrs).addClass('highlighted');
-//    },
-//    function() {
-//    	var nTrs = dataTable.fnGetNodes();
-//    	$('td.highlighted', nTrs).removeClass('highlighted');
-//  });
-//}
-//
-///* Parameter List */
-//function displayHDFData(response, formId)
-//{
-//  dataTable.fnAddData([
-//    [ 2010021818 , 1014 , 23 , 27 , 'NaN' , 'NaN' , 'NaN' , 'NaN' ],
-//    [ 2010021821 , 1015.7 , 22.4 , 30.5 , 23 , 0 , 0 , 336 ],
-//    [ 2010021900 , 1016.7 , 30.2 , 19.5 , 12 , 0 , 130 , 338 ],
-//    [ 2010021903 , 1014.8 , 35.1 , 14 , 10 , 0 , 880 , 368 ],
-//    [ 2010021906 , 1011.5 , 37.2 , 11.4 , 5 , 0 , 945 , 375 ],  
-//    [ 2010021909 , 1010 , 35.8 , 11.8 , 1 , 0 , 560 , 381 ],
-//    [ 2010021912 , 1012.1 , 29.8 , 16.7 , 0 , 0 , 292 , 371 ],
-//    [ 2010021915 , 1012.4 , 26.9 , 19.4 , 0 , 0 , 0 , 345 ],
-//    [ 2010021918 , 1011.3 , 25.6 , 23.5 , 4 , 0 , 0 , 343 ]
-//  ]);
-//}
-$(function() {
-  //GetMap();
-  CloudLab.redisplay();
-  Sidebar.clearList();
-  $('#AddButton').click(function(e) {
-    e.preventDefault();
-    addParameter();
-  });
-  $('#ProjectTitle').click(function() {
-    Workspace.setMode('projects');
-  });
-  $('#Upload').submit(function() {
-    tasks.push([0, $('#taskName').val(), 'Processing', 0]);
-  });
-  Workspace.setMode('projects');
 
-  // Add HUD functionalities to our modal boxes
-  //$('#DataSources').hud({ position: 'bottom' });
-  //$('#Data').hud({ position: 'bottom' });
-  //$('#parameters').hud({ position: 'right' });
-  // Setup the HDF uploader
-  //$('#UploadHDF').jup({ json: true, onComplete: displayHDFData });
-  // Resize the map whenever the window is resized
+/**
+ * Main Initialization Functions
+ */
+$(function() {
+  // Initialize the components
+  UserBar.init();
+  Sidebar.init();
+  Workspace.init();
+
   $(window).bind('load resize', CloudLab.redisplay);
-  //initDataTable();
 });

@@ -1,3 +1,3 @@
 ﻿$(function() {
-  $('input').corners("3px");
+  // $("select, input:checkbox, input:radio, input:file").uniform();
 });

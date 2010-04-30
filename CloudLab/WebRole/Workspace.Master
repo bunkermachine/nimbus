@@ -5,7 +5,10 @@
 <head runat="server">
   <title>CloudLab</title>
   <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css" />
+  <link rel="stylesheet" type="text/css" href="css/reset.css" />
   <link rel="stylesheet" type="text/css" href="css/workspace.css" />
+  <link rel="stylesheet" type="text/css" href="css/uniform.default.css" />
+  <script language="javascript" type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
 
@@ -14,14 +17,17 @@
   <ajaxToolkit:ToolkitScriptManager ID="manager" EnablePartialRendering="true" runat="server" />
 
   <asp:ContentPlaceHolder ID="Content" runat="server" />
+
+  <script type="text/javascript">
+    <asp:ContentPlaceHolder ID="Scripts" runat="server" />
+  </script>
 </form>
 
-<script language="javascript" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2" />
-<script language="javascript" type="text/javascript" src="js/jquery.js" />
-<script language="javascript" type="text/javascript" src="js/jquery.jup.js" />
-<script language="javascript" type="text/javascript" src="js/jquery.corners.js" />
-<script language="javascript" type="text/javascript" src="js/jquery.dataTables.js" />
-<script language="javascript" type="text/javascript" src="js/workspace.js" />
+<script language="javascript" type="text/javascript" src="js/jquery.ui.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery.jup.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery.dataTables.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery.uniform.js"></script>
+<script language="javascript" type="text/javascript" src="js/workspace.js"></script>
 
 </body>
 </html>

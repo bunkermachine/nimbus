@@ -13,33 +13,6 @@ namespace WebRole {
     public partial class Default {
         
         /// <summary>
-        /// CloudLab control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm CloudLab;
-        
-        /// <summary>
-        /// Manager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager Manager;
-        
-        /// <summary>
-        /// StatusBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress StatusBar;
-        
-        /// <summary>
         /// Data control.
         /// </summary>
         /// <remarks>
