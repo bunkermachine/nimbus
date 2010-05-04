@@ -2,7 +2,7 @@
 <ServiceDefinition name="CloudLab" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
   <WebRole name="WebRole">
     <InputEndpoints>
-      <InputEndpoint name="HttpIn" protocol="http" port="80" />
+      <InputEndpoint name="HttpIn" protocol="http" port="5949" />
     </InputEndpoints>
     <ConfigurationSettings>
       <Setting name="DataConnectionString" />

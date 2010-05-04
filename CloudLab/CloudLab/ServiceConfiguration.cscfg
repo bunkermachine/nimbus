@@ -6,8 +6,8 @@
       <!--
       <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="DiagnosticsConnectionString" value="UseDevelopmentStorage=true" /> -->
-      <Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cs210teststorage;AccountKey=FPQpo2jyJiLzz/QOFXPMGwqODvZf3hQXTjgzBkqwxapIT211RbtTAr4S17eB/ciaZK/O5T7rms1BKystoj8JDg==" />
-      <Setting name="DiagnosticsConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cs210teststorage;AccountKey=FPQpo2jyJiLzz/QOFXPMGwqODvZf3hQXTjgzBkqwxapIT211RbtTAr4S17eB/ciaZK/O5T7rms1BKystoj8JDg==" />
+      <Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cs210teststorage;AccountKey=8MnUQggcDt0lNfsRzQLp99+HN09Wy13Ch5Bz8dTH58BWlTAgJFVGZ0zKWFTtOLXmbePWniIgGAjP3o73nu0P/g==" />
+      <Setting name="DiagnosticsConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cs210teststorage;AccountKey=8MnUQggcDt0lNfsRzQLp99+HN09Wy13Ch5Bz8dTH58BWlTAgJFVGZ0zKWFTtOLXmbePWniIgGAjP3o73nu0P/g==" />
     </ConfigurationSettings>
   </Role>
   <Role name="WorkerRole">
@@ -16,8 +16,8 @@
       <!--
       <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="DiagnosticsConnectionString" value="UseDevelopmentStorage=true" /> -->
-      <Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cs210teststorage;AccountKey=FPQpo2jyJiLzz/QOFXPMGwqODvZf3hQXTjgzBkqwxapIT211RbtTAr4S17eB/ciaZK/O5T7rms1BKystoj8JDg==" />
-      <Setting name="DiagnosticsConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cs210teststorage;AccountKey=FPQpo2jyJiLzz/QOFXPMGwqODvZf3hQXTjgzBkqwxapIT211RbtTAr4S17eB/ciaZK/O5T7rms1BKystoj8JDg==" />
+      <Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cs210teststorage;AccountKey=8MnUQggcDt0lNfsRzQLp99+HN09Wy13Ch5Bz8dTH58BWlTAgJFVGZ0zKWFTtOLXmbePWniIgGAjP3o73nu0P/g==" />
+      <Setting name="DiagnosticsConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cs210teststorage;AccountKey=8MnUQggcDt0lNfsRzQLp99+HN09Wy13Ch5Bz8dTH58BWlTAgJFVGZ0zKWFTtOLXmbePWniIgGAjP3o73nu0P/g==" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
