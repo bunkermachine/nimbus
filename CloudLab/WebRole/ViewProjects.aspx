@@ -16,7 +16,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Scripts" runat="server">
 $(function() {
   $('.projectListElement').click(function() {
-    parent.UserBar.setProject($(this).text());
+    CloudLab.UserBar.setProject($(this).text());
   });
 });
 </asp:Content>

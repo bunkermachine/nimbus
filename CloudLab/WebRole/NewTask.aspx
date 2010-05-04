@@ -12,10 +12,10 @@
       <td><asp:ListBox ID="fileList" runat="server" Width="300px" SelectionMode="Multiple" /></td>
     </tr>
     <tr>
-      <td><asp:label ID="Label6" runat="server" Width="112px">Executable</asp:label></td>
+      <td><label>Executable</label></td>
       <td><asp:FileUpload runat="server" id="exeFile" /></td>
     </tr>
   </table>
-  <asp:Button runat="server" ID="LaunchTaskBtn" Text="Test" PostBackUrl="~/MapControl.aspx" Onclick="LaunchTaskBtn_Click" />
+  <asp:Button runat="server" ID="LaunchTaskBtn" Text="Test" Onclick="LaunchTaskBtn_Click" />
 
 </asp:Content>

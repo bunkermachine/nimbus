@@ -29,13 +29,13 @@ CloudLab = new function() {
  * Bundles the userbar functionality
  */
 
-UserBar = new function() {
+CloudLab.UserBar = new function() {
   var userBar = $('#UserBar');
   var projectTitle = $('#ProjectTitle');
   var projectDropdown = $('#ProjectDropdown');
 
   this.init = function() {
-    projectTitle.click(UserBar.showProjects);
+    projectTitle.click(CloudLab.UserBar.showProjects);
   };
 
   this.addProject = function(project) {
@@ -49,13 +49,13 @@ UserBar = new function() {
   this.showProjects = function() {
     projectDropdown.show();
     projectTitle.unbind('click');
-    projectTitle.click(UserBar.hideProjects);
+    projectTitle.click(CloudLab.UserBar.hideProjects);
   };
 
   this.hideProjects = function() {
     projectDropdown.hide();
     projectTitle.unbind('click');
-    projectTitle.click(UserBar.showProjects);
+    projectTitle.click(CloudLab.UserBar.showProjects);
   };
 };
 
@@ -65,7 +65,7 @@ UserBar = new function() {
  * Bundles the sidebar
  */
 
-Sidebar = new function() {
+CloudLab.Sidebar = new function() {
   var sidebar = $('#Sidebar');
   var sidebarTemplates = sidebar.children('#SidebarTemplates');
   var sidebarTitle = sidebar.children('#SidebarTitle');
@@ -79,7 +79,7 @@ Sidebar = new function() {
     sidebar.resizable({ handles: 'w', maxWidth: 300, stop: function(event, ui) {
       sidebarWidth = sidebar.width();
     } });
-    sidebarHandle.click(Sidebar.collapse);
+    sidebarHandle.click(CloudLab.Sidebar.collapse);
   }
 
   this.setTitle = function(title) {
@@ -114,13 +114,13 @@ Sidebar = new function() {
   this.expand = function() {
     sidebar.animate({ width: sidebarWidth }, 'fast');
     sidebarHandle.unbind('click');
-    sidebarHandle.click(Sidebar.collapse);
+    sidebarHandle.click(CloudLab.Sidebar.collapse);
   };
 
   this.collapse = function() {
     sidebar.animate({ width: sidebarHandle.width() }, 'fast');
     sidebarHandle.unbind('click');
-    sidebarHandle.click(Sidebar.expand);
+    sidebarHandle.click(CloudLab.Sidebar.expand);
   };
 
   this.clearList = function() {
@@ -167,7 +167,7 @@ $.fn.hud = function(options) {
  * Houses the main work area of CloudLab
  */
 
-Workspace = new function() {
+CloudLab.Workspace = new function() {
   var workspace = $('#Workspace');
 
   this.init = function() {
@@ -197,9 +197,9 @@ $.fn.clearForm = function() {
  */
 $(function() {
   // Initialize the components
-  UserBar.init();
-  Sidebar.init();
-  Workspace.init();
+  CloudLab.UserBar.init();
+  CloudLab.Sidebar.init();
+  CloudLab.Workspace.init();
 
   $(window).bind('load resize', CloudLab.redisplay);
 });

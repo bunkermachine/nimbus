@@ -12,13 +12,13 @@ var tasks = [
      description: "Processing",
      progress: 50,
      click: function() {
-       parent.Workspace.set('NewTask');
+       CloudLab.Workspace.set('NewTask');
      }
   }
 ];
 
 $(function() {
-  parent.Sidebar.initList(tasks, 'Basic');
+  CloudLab.Sidebar.initList(tasks, 'Basic');
 
   var map = new VEMap('map');
   map.LoadMap();

@@ -31,15 +31,6 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.ListBox fileList;
         
         /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
         /// exeFile control.
         /// </summary>
         /// <remarks>
