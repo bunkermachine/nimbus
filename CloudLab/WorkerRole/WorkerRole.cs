@@ -26,7 +26,7 @@ namespace WorkerRole
             CloudBlobContainer downloadContainer = otherBlobStorage.GetContainerReference("downloadcontainer");
             
             CloudQueueClient queueStorage = storageAccount.CreateCloudQueueClient();
-            CloudQueue queue = queueStorage.GetQueueReference("uploadqueue3");
+            CloudQueue queue = queueStorage.GetQueueReference("programqueue");
 
             Trace.TraceInformation("Creating container and queue...");
 
