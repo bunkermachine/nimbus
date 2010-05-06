@@ -1,4 +1,4 @@
-﻿<%@ Page Title="New Task" Language="C#" MasterPageFile="~/Workspace.Master" AutoEventWireup="true" CodeBehind="NewTask.aspx.cs" Inherits="WebRole.NewTask" %>
+﻿ <%@ Page Title="New Task" Language="C#" MasterPageFile="~/Workspace.Master" AutoEventWireup="true" CodeBehind="NewTask.aspx.cs" Inherits="WebRole.NewTask" %>
 <asp:Content ContentPlaceHolderID="Content" runat="server">
 
   <h1>Launch a new task</h1>
@@ -12,15 +12,26 @@
       <td><asp:ListBox ID="DatasetList" runat="server" SelectionMode="Multiple" /></td>
     </tr>
     <tr>
+      <td><label>Year</label></td>
+      <td><asp:Textbox ID="YearText" runat="server" /></td>
+    </tr>
+    <tr>
+      <td><label>Day</label></td>
+      <td><asp:TextBox ID="DayText" runat="server" /></td>
+    </tr>
+    <tr>
       <td><label>Files</label></td>
-      <asp:UpdatePanel runat="server" ID="Files">
+      <asp:UpdatePanel runat="server" ID="Files" UpdateMode="Conditional">
         <ContentTemplate>
-          <td><asp:ListBox ID="FileList" runat="server" SelectionMode="Multiple" /></td>
+          <td>
+            <asp:ListBox ID="FileList" runat="server" SelectionMode="Multiple" />
+          </td>
         </ContentTemplate>
         <Triggers>
-          <asp:AsyncPostBackTrigger ControlID="DatasetList" />
+          <asp:AsyncPostBackTrigger ControlID="PopulateListBtn" />
         </Triggers>
       </asp:UpdatePanel>
+      <asp:Button runat="server" ID="PopulateListBtn" text="Populate List" Onclick="PopulateListBtn_Click" />
     </tr>
     <tr>
       <td><label>Executable</label></td>

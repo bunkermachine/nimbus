@@ -101,7 +101,6 @@
     <Content Include="js\master.js" />
     <Content Include="CreateProject.aspx" />
     <Content Include="js\workspace.js" />
-    <Content Include="Login.aspx" />
     <Content Include="NewTask.aspx" />
     <Content Include="css\workspace.css" />
     <Content Include="ViewProjects.aspx" />
@@ -121,13 +120,6 @@
     </Compile>
     <Compile Include="CreateProject.aspx.designer.cs">
       <DependentUpon>CreateProject.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewTask.aspx.cs">
       <DependentUpon>NewTask.aspx</DependentUpon>

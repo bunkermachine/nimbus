@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DownloadFTP.cs" />
     <Compile Include="DownloadTask.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="WorkerRole.cs" />

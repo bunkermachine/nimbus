@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Net;
 using System.IO;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
 using CloudLab.Common;
@@ -22,20 +23,47 @@ namespace WebRole
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DatasetList.DataSource = SourceInfo.products;
-            DatasetList.DataBind();
+            if (!Page.IsPostBack)
+            {
+                DatasetList.DataSource = SourceInfo.products;
+                DatasetList.DataTextField = "productName";
+                DatasetList.DataBind();
+            }
+        }
+
+        protected void PopulateListBtn_Click(object sender, System.EventArgs e)
+        {
+            int year = Convert.ToInt32(YearText.Text);
+            int day = Convert.ToInt32(DayText.Text);
+            string DatasetFTP = SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
+            ArrayList files = DownloadFTP.GetFileList("ftp://" + DatasetFTP + "/", "anonymous", "guest");
+            FileList.DataSource = files;
+            FileList.DataBind();
         }
 
         protected void LaunchTaskBtn_Click(object sender, System.EventArgs e)
         {
-          string exeName = exeFile.FileName;
-          GetProgramContainer().GetBlockBlobReference(exeName).UploadFromStream(exeFile.FileContent);
-            string queueMsg = exeName + "+" + "BLAH";
+            int year = Convert.ToInt32(YearText.Text);
+            int day = Convert.ToInt32(DayText.Text);
+            string DatasetFTP = SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
 
-            GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg)));
+            StringBuilder queueMsg = new StringBuilder();
+            queueMsg.Append(TaskNameText.Text);
+            queueMsg.Append(" " + exeFile.FileName);
+            queueMsg.Append(" " + DatasetFTP);
 
+            foreach (ListItem item in FileList.Items)
+            {
+                if (item.Selected)
+                {
+                    queueMsg.Append(" " + item.Text);
+                }
+            }
+
+            GetProgramContainer().GetBlockBlobReference(exeFile.FileName).UploadFromStream(exeFile.FileContent);
+            GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg.ToString())));
             System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", queueMsg));
-          Server.Transfer("MapControl.aspx");
+            Server.Transfer("MapControl.aspx");
         }
 
         //protected void DatasetSelected(object sender, EventArgs e)
@@ -47,49 +75,6 @@ namespace WebRole
         //  fileList.DataSource = files;
         //  fileList.DataBind();
         //}
-
-        //Connects to the FTP server and request the list of available files
-        protected List<string> GetFileList(string FTPAddress, string username, string password)
-        {
-            List<string> files = new List<string>();
-
-            try
-            {
-                //Create FTP request
-                FtpWebRequest request = FtpWebRequest.Create(FTPAddress) as FtpWebRequest;
-
-                request.Method = WebRequestMethods.Ftp.ListDirectory;
-                request.Credentials = new NetworkCredential(username, password);
-                request.UsePassive = true;
-                request.UseBinary = true;
-                request.KeepAlive = false;
-
-                //Read the server's response
-                FtpWebResponse response = request.GetResponse() as FtpWebResponse;
-                Stream responseStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(responseStream);
-
-                while (!reader.EndOfStream)
-                {
-                    files.Add(reader.ReadLine());
-                }
-
-
-                //Clean-up
-                reader.Close();
-                responseStream.Close(); //redundant
-                response.Close();
-                return files;
-            }
-            catch (Exception)
-            {
-            }
-
-            username = string.Empty;
-            password = string.Empty;
-
-            return null;
-        }
 
         private void CreateOnceContainerAndQueue()
         {

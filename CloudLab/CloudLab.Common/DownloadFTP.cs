@@ -8,17 +8,14 @@ using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Net;
-using CloudLab.Common;
 
-namespace WorkerRole
+namespace CloudLab.Common
 {
     /*Called from run() in WorkerRole.cs*/
-    class DownloadFTP
+    public class DownloadFTP
     {
-        private static string[] fileList;
-        
         [STAThread]
-        public byte[] getDataFromFTP()
+        public static byte[] getDataFromFTP()
         {
             /*
              * Function called when dataset is to be downloaded 
@@ -50,7 +47,7 @@ namespace WorkerRole
 
 
         // Connects to the FTP server and downloads the specified file
-        public byte[] downloadFile(string FTPAddress, string fileName, /*string downloadPath,*/ string username, string password)
+        public static byte[] downloadFile(string FTPAddress, string fileName, /*string downloadPath,*/ string username, string password)
         {
             byte[] downloadedData = new byte[0];
 
@@ -119,7 +116,7 @@ namespace WorkerRole
 
 
         // Connects to the FTP server and downloads the entire data source and stores it on the cloud
-        public void downloadSource(string FTPAddress, string downloadPath, string username, string password)
+        public static void downloadSource(string FTPAddress, string downloadPath, string username, string password)
         {
             ArrayList fileList = null;
 
@@ -154,7 +151,7 @@ namespace WorkerRole
 
 
         //Connects to the FTP server and request the list of available files
-        protected ArrayList GetFileList(string FTPAddress, string username, string password)
+        public static ArrayList GetFileList(string FTPAddress, string username, string password)
         {
             ArrayList files = new ArrayList();
 

@@ -31,6 +31,24 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.ListBox DatasetList;
         
         /// <summary>
+        /// YearText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox YearText;
+        
+        /// <summary>
+        /// DayText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DayText;
+        
+        /// <summary>
         /// Files control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace WebRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox FileList;
+        
+        /// <summary>
+        /// PopulateListBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PopulateListBtn;
         
         /// <summary>
         /// exeFile control.

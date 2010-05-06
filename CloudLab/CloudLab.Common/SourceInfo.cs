@@ -51,6 +51,11 @@ namespace CloudLab.Common
             observeInterval = days;
         }
 
+        public string ToString()
+        {
+            return productName;
+        }
+
         public string GetFtpUrl(int year, int day)
         {
             if (productType == ProductType.Atmos)
