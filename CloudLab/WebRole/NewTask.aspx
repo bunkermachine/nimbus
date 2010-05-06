@@ -53,8 +53,7 @@
               <asp:AsyncPostBackTrigger ControlID="FileList" />
             </Triggers>
           </asp:UpdatePanel>
-          <asp:RequiredFieldValidator runat="server" ID="SelectedValidator" ControlToValidate="SelectedFileList" ErrorMessage="Files must be added for processing" />
-          <ajaxToolkit:ValidatorCalloutExtender runat="server" ID="SelectedValidatorCalloutExtender" TargetControlID="SelectedValidator" CssClass="validator" HighlightCssClass="validatorCalloutHighlight" />
+          
         </td>
       </tr>
           OR
