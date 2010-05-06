@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,38 +8,58 @@ using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Net;
+using CloudLab.Common;
 
 namespace WorkerRole
 {
+    /*Called from run() in WorkerRole.cs*/
     class DownloadFTP
     {
-        // The main entry point for the application.
+        private static string[] fileList;
+        
         [STAThread]
         public byte[] getDataFromFTP()
         {
+            /*
+             * Function called when dataset is to be downloaded 
+             */
             //string FTPAddress = args[0];
             //string filename = args[1];
-            //string savefilename = args[2];
-            string FTPAddress = "ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/";
-            string filename = "BROWSE.MOD09A1.A2000049.h00v08.005.2006268222533.1.jpg	";
-            string savefilename = "C://BROWSE.MOD09A1.A2000049.h00v08.005.2006268222533.1.jpg	";
+            //string productName = args[2];
+            //int year = args[3];
+            //int day = args[4];
+            //string downloadPath = args[5];
 
-            return downloadFile(FTPAddress, filename, savefilename, "anonymous", "guest");
+            //string FTPAddress = "ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/";
+            //string fileName = "BROWSE.MOD09A1.A2000049.h00v08.005.2006268222533.1.jpg	";
+            string productName = "MOD09A1";
+            int year = 2000;
+            int day = 31 + 18;
+            string downloadPath = "";
+            //string downloadPath = "C://BROWSE.MOD09A1.A2000049.h00v08.005.2006268222533.1.jpg	";
 
+            /* Find ftp URL from productName, year and day */
+            string FTPAddress = SourceInfo.GetFtpUrl(productName, year, day);
+
+            downloadSource(FTPAddress, downloadPath, "anonymous", "guest");
+
+            // Find relevant file and return it
+            string fileName = "BROWSE.MOD09A1.A2000049.h00v08.005.2006268222533.1.jpg	";
+            return downloadFile(FTPAddress, fileName, /*downloadPath,*/ "anonymous", "guest");
         }
 
-        
-        //Connects to the FTP server and downloads the file
-        private byte[] downloadFile(string FTPAddress, string filename, string savefilename, string username, string password)
+
+        // Connects to the FTP server and downloads the specified file
+        public byte[] downloadFile(string FTPAddress, string fileName, /*string downloadPath,*/ string username, string password)
         {
             byte[] downloadedData = new byte[0];
 
             try
             {
-                FtpWebRequest request = FtpWebRequest.Create(FTPAddress + "/" + filename) as FtpWebRequest;
+                FtpWebRequest request = FtpWebRequest.Create(FTPAddress + "/" + fileName) as FtpWebRequest;
 
                 //get the data
-                request = FtpWebRequest.Create(FTPAddress + "/" + filename) as FtpWebRequest;
+                request = FtpWebRequest.Create(FTPAddress + "/" + fileName) as FtpWebRequest;
                 request.Method = WebRequestMethods.Ftp.DownloadFile;
                 request.Credentials = new NetworkCredential(username, password);
                 request.UsePassive = true;
@@ -52,7 +73,7 @@ namespace WorkerRole
                 //Download to memory
                 //Note: adjust the streams here to download directly to the hard drive
                 MemoryStream memStream = new MemoryStream();
-                byte[] buffer = new byte[1024]; //downloads in chuncks
+                byte[] buffer = new byte[1024]; //downloads in chunks
 
                 while (true)
                 {
@@ -63,7 +84,6 @@ namespace WorkerRole
                     if (bytesRead == 0)
                     {
                         //Nothing was read, finished downloading
-
                         break;
                     }
                     else
@@ -84,21 +104,6 @@ namespace WorkerRole
 
                 Trace.TraceInformation(string.Format("Downloaded Successfully"));
 
-                //Save the file to hard drive
-                /*
-                if (downloadedData != null && downloadedData.Length != 0)
-                {
-                    //Write the bytes to a file
-                    FileStream newFile = new FileStream(savefilename, FileMode.Create);
-                    newFile.Write(downloadedData, 0, downloadedData.Length);
-                    newFile.Close();
-
-                    Trace.TraceInformation(string.Format("Saved Successfully"));
-
-                }
-                else
-                    Trace.TraceInformation(string.Format("No files downloaded yet"));
-                */
             }
 
             catch (Exception)
@@ -106,11 +111,90 @@ namespace WorkerRole
                 Trace.TraceInformation(string.Format("Error connecting to the FTP server"));
 
             }
-            
 
             username = string.Empty;
             password = string.Empty;
             return downloadedData;
         }
+
+
+        // Connects to the FTP server and downloads the entire data source and stores it on the cloud
+        public void downloadSource(string FTPAddress, string downloadPath, string username, string password)
+        {
+            ArrayList fileList = null;
+
+            // Get container name from storage architecture
+            //string containerName = "SourceContainerName";
+
+            // Get list of tiles
+            // List<string> tileList = CommonAlgorithms.GetSeparateStrings(locationList, '/');
+
+            // For every tile in list, download file from ftp site
+            //foreach (string t in tileList)
+            //{
+                //string blobName = "SourceBlobName";
+                // Need to download from external FTP site
+                //get file list
+
+                if (fileList == null)
+                    fileList = GetFileList(FTPAddress, "anonymous", "guest");
+                //fileList = GetFileList(false);
+
+                if (fileList != null)
+                {
+                    foreach (string fileName in fileList)
+                        //for every file in list, download file
+                        downloadFile(FTPAddress, fileName, "anonymous", "guest");
+                        //store the downloaded file to blobName/containerName; this is happening in WorkerRole.cs as of now; might need to change that
+                }
+                return;
+            //}
+
+        }
+
+
+        //Connects to the FTP server and request the list of available files
+        protected ArrayList GetFileList(string FTPAddress, string username, string password)
+        {
+            ArrayList files = new ArrayList();
+
+            try
+            {
+                //Create FTP request
+                FtpWebRequest request = FtpWebRequest.Create(FTPAddress) as FtpWebRequest;
+
+                request.Method = WebRequestMethods.Ftp.ListDirectory;
+                request.Credentials = new NetworkCredential(username, password);
+                request.UsePassive = true;
+                request.UseBinary = true;
+                request.KeepAlive = false;
+
+                //Read the server's response
+                FtpWebResponse response = request.GetResponse() as FtpWebResponse;
+                Stream responseStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(responseStream);
+
+                while (!reader.EndOfStream)
+                {
+                    files.Add(reader.ReadLine());
+                }
+
+
+                //Clean-up
+                reader.Close();
+                responseStream.Close(); //redundant
+                response.Close();
+                return files;
+            }
+            catch (Exception)
+            {
+            }
+
+            username = string.Empty;
+            password = string.Empty;
+
+            return null;
+        }
+
     }
 }

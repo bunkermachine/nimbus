@@ -10,60 +10,42 @@
 namespace WebRole {
     
     
-    public partial class NewTask {
+    public partial class Login {
         
         /// <summary>
-        /// TaskNameText control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TaskNameText;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// DatasetList control.
+        /// UserLoginView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox DatasetList;
+        protected global::System.Web.UI.WebControls.GridView UserLoginView;
         
         /// <summary>
-        /// Files control.
+        /// frmAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel Files;
+        protected global::System.Web.UI.WebControls.FormView frmAdd;
         
         /// <summary>
-        /// FileList control.
+        /// UserLoginData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox FileList;
-        
-        /// <summary>
-        /// exeFile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload exeFile;
-        
-        /// <summary>
-        /// LaunchTaskBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LaunchTaskBtn;
+        protected global::System.Web.UI.WebControls.ObjectDataSource UserLoginData;
     }
 }

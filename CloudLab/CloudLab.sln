@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRole", "WebRole\WebRole.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerRole", "WorkerRole\WorkerRole.csproj", "{81DE4A1A-C6C4-41EF-A977-D499216B8526}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudLab.Common", "CloudLab.Common\CloudLab.Common.csproj", "{3EECC3AB-F8AD-4495-9976-9B08B55286B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{81DE4A1A-C6C4-41EF-A977-D499216B8526}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81DE4A1A-C6C4-41EF-A977-D499216B8526}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81DE4A1A-C6C4-41EF-A977-D499216B8526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EECC3AB-F8AD-4495-9976-9B08B55286B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EECC3AB-F8AD-4495-9976-9B08B55286B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EECC3AB-F8AD-4495-9976-9B08B55286B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EECC3AB-F8AD-4495-9976-9B08B55286B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

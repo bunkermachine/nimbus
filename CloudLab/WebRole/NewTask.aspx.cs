@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
+using CloudLab.Common;
 
 namespace WebRole
 {
@@ -21,7 +22,8 @@ namespace WebRole
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            DatasetList.DataSource = SourceInfo.products;
+            DatasetList.DataBind();
         }
 
         protected void LaunchTaskBtn_Click(object sender, System.EventArgs e)
