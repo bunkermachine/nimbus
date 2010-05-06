@@ -27,21 +27,19 @@ namespace CloudLab.Common
             //int day = args[4];
             //string downloadPath = args[5];
 
-            //string FTPAddress = "ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/";
-            //string fileName = "BROWSE.MOD09A1.A2000049.h00v08.005.2006268222533.1.jpg	";
-            string productName = "MOD09A1";
+            string productName = "MOD04_L2";
             int year = 2000;
-            int day = 31 + 18;
-            string downloadPath = "";
+            int day = 55;
+            //string downloadPath = "";
             //string downloadPath = "C://BROWSE.MOD09A1.A2000049.h00v08.005.2006268222533.1.jpg	";
 
             /* Find ftp URL from productName, year and day */
             string FTPAddress = SourceInfo.GetFtpUrl(productName, year, day);
-
-            downloadSource(FTPAddress, downloadPath, "anonymous", "guest");
+            FTPAddress = "ftp://" + FTPAddress;
+            //downloadSource(FTPAddress, downloadPath, "anonymous", "guest");
 
             // Find relevant file and return it
-            string fileName = "BROWSE.MOD09A1.A2000049.h00v08.005.2006268222533.1.jpg	";
+            string fileName = "MOD04_L2.A2000055.0010.005.2006253050115.hdf";
             return downloadFile(FTPAddress, fileName, /*downloadPath,*/ "anonymous", "guest");
         }
 
