@@ -24,7 +24,7 @@ namespace WorkerRole
             CloudBlobClient otherBlobStorage = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobStorage.GetContainerReference("program");
             CloudBlobContainer downloadContainer = otherBlobStorage.GetContainerReference("downloadcontainer");
-
+            
             CloudQueueClient queueStorage = storageAccount.CreateCloudQueueClient();
             CloudQueue queue = queueStorage.GetQueueReference("programrunner");
 
