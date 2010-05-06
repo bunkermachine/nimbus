@@ -58,4 +58,49 @@
     </table>
     <asp:Button runat="server" ID="LaunchTaskBtn" Text="Test" Onclick="LaunchTask" />
   </div>
+  <script language="javascript" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2"></script>
+  <div id="ParameterControls">
+    <div id="Map"></div>
+
+    <fieldset>
+      <legend>Location</legend>
+      <label>From (Northwest)</label> <asp:Textbox runat="server" ID="topLeftLong" />
+      <label>To (Southeast)</label> <asp:Textbox ClientID="topLeftLat" runat="server" ID="topLeftLat" />
+    </fieldset>
+
+    <asp:Textbox runat="server" ID="TopLat" />
+    <asp:Textbox runat="server" ID="BottomLat" />
+
+    <asp:Textbox runat="server" ID="LeftLong" />
+    <asp:Textbox runat="server" ID="RightLong" />
+
+    <asp:TextBox runat="server" ID="FromDateText" />
+    <asp:Textbox runat="server" ID="ToDateText" />
+
+  </div>
+</asp:Content>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="Scripts" runat="server">
+var tasks = [
+  {
+    title: "Evapotranspiration",
+    description: "Processing",
+    progress: 50,
+    click: function() {
+      CloudLab.Workspace.set("MapControl");
+    }
+  }
+];
+
+$(function() {
+  CloudLab.Sidebar.initList(tasks, 'Basic');
+ 
+  // Setup our map
+  var map = new VEMap('Map');
+  map.LoadMap();
+  map.SetMapStyle(VEMapStyle.Aerial);
+
+  // Setup the paramter controls
+  $("#fromDate, #toDate").datepicker();
+});
 </asp:Content>

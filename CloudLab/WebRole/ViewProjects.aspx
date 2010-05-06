@@ -21,17 +21,6 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="Scripts" runat="server">
-var projects = [
-  {
-    title: "Evapotranspiration",
-    description: "Processing",
-    progress: 50,
-    click: function() {
-      CloudLab.Workspace.set("MapControl");
-    }
-  }
-];
-
 $(function() {
   $('.projectListElement').click(function() {
     CloudLab.UserBar.setProject($(this).text());
