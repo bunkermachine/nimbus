@@ -31,30 +31,30 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.TextBox NewProjectName;
         
         /// <summary>
-        /// CreateProjectBtn control.
+        /// CreateProjectLinkBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CreateProjectBtn;
+        protected global::System.Web.UI.WebControls.LinkButton CreateProjectLinkBtn;
         
         /// <summary>
-        /// npRequired control.
+        /// NewProjectValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator npRequired;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NewProjectValidator;
         
         /// <summary>
-        /// ValidatorCalloutExtender1 control.
+        /// NewProjectValidatorCallout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ValidatorCalloutExtender ValidatorCalloutExtender1;
+        protected global::AjaxControlToolkit.ValidatorCalloutExtender NewProjectValidatorCallout;
     }
 }

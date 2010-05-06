@@ -13,7 +13,7 @@
   </asp:ListView>
   <li id="CreateProjectItem">
     <asp:Textbox runat="server" ID="NewProjectName"  />
-    <asp:LinkButton runat="server" ID="CreateProjectBtn" Text="+" OnClick="CreateProject" />
+    <asp:LinkButton runat="server" ID="CreateProjectLinkBtn" Text="+" OnClick="CreateProject" />
     <asp:RequiredFieldValidator runat="server" ID="NewProjectValidator" ControlToValidate="NewProjectName" ErrorMessage="* Project must be given a name" Display="static">*</asp:RequiredFieldValidator>
     <ajaxToolkit:ValidatorCalloutExtender runat="server" ID="NewProjectValidatorCallout" TargetControlID="NewProjectValidator" HighlightCssClass="validatorCalloutHighlight" />
   </li>

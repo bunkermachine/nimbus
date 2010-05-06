@@ -11,6 +11,7 @@ namespace WebRole
 {
     public partial class ViewProjects : System.Web.UI.Page
     {
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
