@@ -8,20 +8,18 @@
   <script language="javascript" type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
-<form id="form1" runat="server">
-    <div>
-        <asp:button id="Signout" text="Log out" onclick="SubmitBtn_Click" runat="server"/>
-    </div>
-</form>
+<form id="form" runat="server">
 <div id="CloudLab">
   <div id="ApplicationFrame">
     <!-- Begin header -->
     <div id="Header"><div class="tl"><div class="tr">
+      <div id="ProfileTag">David <asp:button id="Signout" text="Log out" onclick="SubmitBtn_Click" runat="server" /></div>
       <div id="UserBar">
-        <div id="ProjectTitle">Test</div>
+        <div id="ProjectTitle"></div>
         <ul id="ProjectDropdown">
           <li>Global Evapotranspiration</li>
           <li>Cloud Nimbus</li>
+          <li id="ProjectDropdownAll"><a href="ViewProjects.aspx" target="Workspace">Projects</a></li>
         </ul>
       </div>
     </div></div></div>
@@ -55,6 +53,7 @@
     <!-- End footer -->  
   </div>
 </div>
+</form>
 
 <script language="javascript" type="text/javascript" src="js/jquery.ui.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.js"></script>

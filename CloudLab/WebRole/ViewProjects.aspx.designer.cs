@@ -13,22 +13,13 @@ namespace WebRole {
     public partial class ViewProjects {
         
         /// <summary>
-        /// NewProjectBtn control.
+        /// ProjectListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton NewProjectBtn;
-        
-        /// <summary>
-        /// CreateProjectDialog control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel CreateProjectDialog;
+        protected global::System.Web.UI.WebControls.ListView ProjectListView;
         
         /// <summary>
         /// NewProjectName control.
@@ -40,6 +31,15 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.TextBox NewProjectName;
         
         /// <summary>
+        /// CreateProjectBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CreateProjectBtn;
+        
+        /// <summary>
         /// npRequired control.
         /// </summary>
         /// <remarks>
@@ -49,21 +49,12 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator npRequired;
         
         /// <summary>
-        /// CreateProjectBtn control.
+        /// ValidatorCalloutExtender1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CreateProjectBtn;
-        
-        /// <summary>
-        /// CloseDialogBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CloseDialogBtn;
+        protected global::AjaxControlToolkit.ValidatorCalloutExtender ValidatorCalloutExtender1;
     }
 }
