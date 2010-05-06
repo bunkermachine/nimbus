@@ -86,13 +86,37 @@ namespace WorkerRole
                     if (msg != null)
                     {
                         string queueMsg = msg.AsString;
-                        string exeName = queueMsg.Substring(0, queueMsg.IndexOf('+'));
-                        string hdfName = queueMsg.Substring(queueMsg.IndexOf('+') + 1);
+                        int index = queueMsg.IndexOf('+');
+                        string userName = queueMsg.Substring(0, index);
+                        string projectName = queueMsg.Substring(index+1, queueMsg.IndexOf('+', index+1));
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string taskName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1));
+                        //index = queueMsg.IndexOf('+', index + 1);
+                        //string exeName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1));
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string numDownloadsStr = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1));
+                        int numDownloads = Convert.ToInt32(numDownloadsStr);
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string FTPUrl = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1)); 
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string FTPDatasetName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1)); 
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string FTPFileName = queueMsg.Substring(index + 1);
+
+                        string exeName = "program.exe";
+
+                        //string exeName = queueMsg.Substring(0, queueMsg.IndexOf('+'));
+                        //string hdfName = queueMsg.Substring(queueMsg.IndexOf('+') + 1);
 
                         Trace.TraceInformation(string.Format("Dequeued '{0}'", queueMsg));
 
-                        CloudBlockBlob exeContent = container.GetBlockBlobReference(exeName);
-                        CloudBlockBlob hdfContent = container.GetBlockBlobReference(hdfName);
+                        CloudBlockBlob taskContent = container.GetBlockBlobReference(userName+"/"+projectName+"/"+taskName);
+
+                        CloudBlobDirectory directory = container.GetDirectoryReference(userName + "/" + projectName + "/" + taskName);
+
+                        int blobCount = directory.ListBlobs().c
+
+                        //CloudBlockBlob hdfContent = container.GetBlockBlobReference(hdfName);
 
                         CloudBlockBlob outputContent = container.GetBlockBlobReference("output.txt");
                         CloudBlockBlob uploadDownloadContent = downloadContainer.GetBlockBlobReference("downloadedFile.jpg");
@@ -112,7 +136,7 @@ namespace WorkerRole
                             //StreamReader stream = HDFParser.parseHDF(exe_path, hdf_path);
                             //String line = stream.ReadToEnd();
 
-                            uploadDownloadContent.UploadByteArray(ftp.getDataFromFTP());
+                            //uploadDownloadContent.UploadByteArray(ftp.getDataFromFTP());
 
                             //output_content.UploadText(line);
                         }

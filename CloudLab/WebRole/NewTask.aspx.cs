@@ -117,7 +117,7 @@ namespace WebRole
 
                     queueStorage = storageAccount.CreateCloudQueueClient();
                     CloudQueue queue = queueStorage.GetQueueReference("programrunner");
-
+                    
                     queue.CreateIfNotExist();
                 }
                 catch (WebException)
