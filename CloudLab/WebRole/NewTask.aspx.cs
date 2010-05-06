@@ -66,7 +66,6 @@ namespace WebRole
 
             int year = Convert.ToInt32(YearText.Text);
             int day = Convert.ToInt32(DayText.Text);
-<<<<<<< HEAD
             string DatasetFTP = "ftp://" + SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
             
             StringBuilder queueMsg;

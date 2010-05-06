@@ -25,13 +25,13 @@ namespace WebRole
 
         protected void OpenProject(object sender, ListViewCommandEventArgs e)
         {
-            UserState.CurrentProject = e.CommandArgument.ToString();
+            //UserState.CurrentProject = e.CommandArgument.ToString();
             Server.Transfer("NewTask.aspx");
         }
 
         protected void CreateProject(object sender, EventArgs e)
         {
-            UserState.CurrentProject = NewProjectName.Text;
+            //UserState.CurrentProject = NewProjectName.Text;
             Server.Transfer("NewTask.aspx");
         }
     }
