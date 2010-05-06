@@ -62,23 +62,36 @@ namespace WebRole
 
         protected void LaunchTask(object sender, System.EventArgs e)
         {
+            string projectName = "NewProject";
+
             int year = Convert.ToInt32(YearText.Text);
             int day = Convert.ToInt32(DayText.Text);
-            string DatasetFTP = SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
 
-            StringBuilder queueMsg = new StringBuilder();
-            queueMsg.Append(TaskNameText.Text);
-            queueMsg.Append(" " + ExeFile.FileName);
-            queueMsg.Append(" " + DatasetFTP);
-
+            string DatasetFTP = "ftp://" + SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
+            
+            StringBuilder queueMsg;
             foreach (ListItem item in SelectedFileList.Items)
             {
-                queueMsg.Append(" " + item.Text);
+                queueMsg = new StringBuilder();
+                queueMsg.Append(User.Identity.Name);
+                queueMsg.Append("+" + projectName);
+                queueMsg.Append("+" + TaskNameText.Text);
+                queueMsg.Append("+" + ExeFile.FileName);
+                int[] indices = FileList.GetSelectedIndices();
+                queueMsg.Append("+" + indices.Length);
+                queueMsg.Append("+" + DatasetFTP);
+                queueMsg.Append("+" + DatasetList.SelectedValue);
+                queueMsg.Append("+" + item.Text);
+
+                string msg = queueMsg.ToString();
+
+                Response.Write("ENQUEUED => " + msg + "\n");
+
+                GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg.ToString())));
+                System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", msg));
             }
 
-            GetProgramContainer().GetBlockBlobReference(ExeFile.FileName).UploadFromStream(ExeFile.FileContent);
-            GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg.ToString())));
-            System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", queueMsg));
+            GetProgramContainer().GetBlockBlobReference(User.Identity.Name + "/" + projectName + "/" + TaskNameText.Text + "/" + ExeFile.FileName).UploadFromStream(ExeFile.FileContent);
             Server.Transfer("ViewTask.aspx");
         }
 
@@ -109,8 +122,8 @@ namespace WebRole
                     container.SetPermissions(permissions);
 
                     queueStorage = storageAccount.CreateCloudQueueClient();
-                    CloudQueue queue = queueStorage.GetQueueReference("programrunner");
-
+                    CloudQueue queue = queueStorage.GetQueueReference("uploadqueue3");
+                    
                     queue.CreateIfNotExist();
                 }
                 catch (WebException)
@@ -136,7 +149,7 @@ namespace WebRole
         private CloudQueue GetProgramRunnerQueue()
         {
             CreateOnceContainerAndQueue();
-            return queueStorage.GetQueueReference("programrunner");
+            return queueStorage.GetQueueReference("uploadqueue3");
         }
     }
 }

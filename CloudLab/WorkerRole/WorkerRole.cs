@@ -24,9 +24,9 @@ namespace WorkerRole
             CloudBlobClient otherBlobStorage = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobStorage.GetContainerReference("program");
             CloudBlobContainer downloadContainer = otherBlobStorage.GetContainerReference("downloadcontainer");
-
+            
             CloudQueueClient queueStorage = storageAccount.CreateCloudQueueClient();
-            CloudQueue queue = queueStorage.GetQueueReference("programrunner");
+            CloudQueue queue = queueStorage.GetQueueReference("uploadqueue3");
 
             Trace.TraceInformation("Creating container and queue...");
 
@@ -84,47 +84,84 @@ namespace WorkerRole
                 try
                 {
                     CloudQueueMessage msg = queue.GetMessage();
+                    //Trace.TraceInformation("I AM HERE => GOT MESSAGE !! \n");
                     if (msg != null)
                     {
                         string queueMsg = msg.AsString;
-                        string exeName = queueMsg.Substring(0, queueMsg.IndexOf('+'));
-                        string hdfName = queueMsg.Substring(queueMsg.IndexOf('+') + 1);
+                        Trace.TraceInformation("MESSAGE IS => " + queueMsg + "\n");
+                        int index = queueMsg.IndexOf('+');
+                        string userName = queueMsg.Substring(0, index);
+                        string projectName = queueMsg.Substring(index+1, queueMsg.IndexOf('+', index+1) - (index+1));
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string taskName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1));
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string exeName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1));                
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string numDownloadsStr = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1));
+                        int numDownloads = Convert.ToInt32(numDownloadsStr);
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string FTPUrl = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1)); 
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string FTPDatasetName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1)); 
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string FTPFileName = queueMsg.Substring(index + 1);
+                        
+                        Trace.TraceInformation("FTP URL is => " + userName + ", " + projectName + ", " + taskName + ", " + numDownloadsStr);
+                        Trace.TraceInformation("DATASET is => " + FTPUrl + ", " + FTPDatasetName + ", " + FTPFileName);
+                        Trace.TraceInformation("FILE is => ");
+
+                        CloudBlockBlob uploadDownloadContent = container.GetBlockBlobReference(FTPDatasetName+"/"+FTPFileName);
+                        uploadDownloadContent.UploadByteArray(DownloadFTP.getDataFromFTP(FTPUrl, FTPFileName));
+                        CloudBlockBlob again = container.GetBlockBlobReference(userName+"/"+projectName+"/"+taskName+"/" + FTPFileName);
+                        again.UploadByteArray(DownloadFTP.getDataFromFTP(FTPUrl, FTPFileName));
+
+                        //string exeName = queueMsg.Substring(0, queueMsg.IndexOf('+'));
+                        //string hdfName = queueMsg.Substring(queueMsg.IndexOf('+') + 1);
 
                         Trace.TraceInformation(string.Format("Dequeued '{0}'", queueMsg));
 
-                        CloudBlockBlob exeContent = container.GetBlockBlobReference(exeName);
-                        CloudBlockBlob hdfContent = container.GetBlockBlobReference(hdfName);
+                        CloudBlobDirectory directory = container.GetDirectoryReference(userName + "/" + projectName + "/" + taskName);
 
-                        CloudBlockBlob outputContent = container.GetBlockBlobReference("output.txt");
-                        CloudBlockBlob uploadDownloadContent = downloadContainer.GetBlockBlobReference("downloadedFile.jpg");
+                        IEnumerable<IListBlobItem> blobs = directory.ListBlobs();
+                        int count = 0;
+                        foreach (IListBlobItem blobItem in blobs){ count++; }
 
-                        string exePath = Path.Combine(RoleEnvironment.GetLocalResource("LocalStorage1").RootPath, exeName);
-                        string hdfPath = Path.Combine(RoleEnvironment.GetLocalResource("LocalStorage1").RootPath, hdfName);
-
-                        //exe_content.DownloadToFile(exe_path);
-                        //hdf_content.DownloadToFile(hdf_path);
-
-                        #region run process
-                        try
+                        
+                        if (count == numDownloads+1)
                         {
-                            Program HDFParser = new Program();
+                            Trace.TraceInformation("FINALLY !!!! \n");
+                            CloudBlockBlob exeContent = container.GetBlockBlobReference(userName + "/" + projectName + "/" + taskName + "/" + exeName);
+                            CloudBlockBlob hdfContent = container.GetBlockBlobReference(userName + "/" + projectName + "/" + taskName + "/" + FTPFileName);
+                            CloudBlockBlob outputContent = container.GetBlockBlobReference(userName + "/" + projectName + "/" + taskName + "/" + "output.txt");
 
-                            //StreamReader stream = HDFParser.parseHDF(exe_path, hdf_path);
-                            //String line = stream.ReadToEnd();
+                            string exePath = Path.Combine(RoleEnvironment.GetLocalResource("LocalStorage2").RootPath, exeName);
+                            string hdfOnePath = Path.Combine(RoleEnvironment.GetLocalResource("LocalStorage2").RootPath, FTPFileName);
 
-                            uploadDownloadContent.UploadByteArray(DownloadFTP.getDataFromFTP());
+                            exeContent.DownloadToFile(exePath);
+                            hdfContent.DownloadToFile(hdfOnePath);
 
-                            //output_content.UploadText(line);
+                            #region run process
+                            try
+                            {
+                                Trace.TraceInformation("Before ");
+                                Program HDFParser = new Program();
+                                StreamReader stream = HDFParser.parseHDF(exePath, hdfOnePath);
+                                String line = stream.ReadToEnd();
+                                Trace.TraceInformation("after " + line);
+                                outputContent.UploadText(line);
+                            }
+                            catch (Exception ex)
+                            {
+                                throw;
+                                //Note: Exception.Message returns a detailed message that describes the current exception. 
+                                //For security reasons, we do not recommend that you return Exception.Message to end users in 
+                                //production environments. It would be better to return a generic error message. 
+                            }
+                            #endregion
+                            
+
                         }
-                        catch (Exception ex)
-                        {
-                            throw;
-                            //Note: Exception.Message returns a detailed message that describes the current exception. 
-                            //For security reasons, we do not recommend that you return Exception.Message to end users in 
-                            //production environments. It would be better to return a generic error message. 
-                        }
-                        #endregion
-
+                        
                         Trace.TraceInformation(string.Format("Done with '{0}'", queueMsg));
 
                         queue.DeleteMessage(msg);

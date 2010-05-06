@@ -15,11 +15,10 @@
     <div id="Header"><div class="tl"><div class="tr">
       <div id="ProfileTag">David (<asp:LinkButton id="Signout" text="Logout" onclick="SubmitBtn_Click" runat="server" />)</div>
       <div id="UserBar">
-        <div id="ProjectTitle"></div>
+        <div id="ProjectTitle">Test</div>
         <ul id="ProjectDropdown">
           <li>Global Evapotranspiration</li>
           <li>Cloud Nimbus</li>
-          <li id="ProjectDropdownAll"><a href="ViewProjects.aspx" target="Workspace">Projects</a></li>
         </ul>
       </div>
     </div></div></div>

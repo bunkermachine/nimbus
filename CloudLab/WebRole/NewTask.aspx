@@ -57,6 +57,12 @@
           <ajaxToolkit:ValidatorCalloutExtender runat="server" ID="SelectedValidatorCalloutExtender" TargetControlID="SelectedValidator" CssClass="validator" HighlightCssClass="validatorCalloutHighlight" />
         </td>
       </tr>
+          OR
+    <tr>
+        <td><label>Upload HDF(s)</label>
+        </td>
+        <td><asp:FileUpload runat="server" ID="FileUpload1" /></td>
+    </tr>
       <tr>
         <td><label>Executable</label></td>
         <td>
@@ -69,7 +75,6 @@
   <script language="javascript" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2"></script>
   <div id="ParameterControls">
     <div id="Map"></div>
-
     <fieldset>
       <legend>Location</legend>
       <label>Top</label> <asp:Textbox runat="server" ID="TopBound" />

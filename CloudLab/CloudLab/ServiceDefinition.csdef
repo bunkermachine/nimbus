@@ -15,7 +15,7 @@
       <Setting name="DiagnosticsConnectionString" />
     </ConfigurationSettings>
     <LocalResources>
-      <LocalStorage name="LocalStorage1" cleanOnRoleRecycle="false" sizeInMB="1000" />
+      <LocalStorage name="LocalStorage2" cleanOnRoleRecycle="false" sizeInMB="50" />
     </LocalResources>
   </WorkerRole>
 </ServiceDefinition>

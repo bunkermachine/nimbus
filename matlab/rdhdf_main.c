@@ -1,21 +1,24 @@
 /*
- * MATLAB Compiler: 4.11 (R2009b)
- * Date: Mon Apr 05 05:07:22 2010
- * Arguments: "-B" "macro_default" "-m" "-W" "main" "-T" "link:exe" "rdhdf.m" 
+ * MATLAB Compiler: 4.8 (R2008a)
+ * Date: Thu May 06 09:15:15 2010
+ * Arguments: "-B" "macro_default" "-m" "-W" "main" "-T" "link:exe" "RdHDF.m"
+ * "-o" "RDHDF" 
  */
+
 #include <stdio.h>
 #include "mclmcrrt.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern mclComponentData __MCC_rdhdf_component_data;
+extern mclComponentData __MCC_RDHDF_component_data;
 
 #ifdef __cplusplus
 }
 #endif
 
 static HMCRINSTANCE _mcr_inst = NULL;
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -49,35 +52,41 @@ static int mclDefaultErrorHandler(const char *s)
 } /* End extern "C" block */
 #endif
 
-#ifndef LIB_rdhdf_C_API
-#define LIB_rdhdf_C_API /* No special import/export declaration */
+/* This symbol is defined in shared libraries. Define it here
+ * (to nothing) in case this isn't a shared library. 
+ */
+#ifndef LIB_RDHDF_C_API 
+#define LIB_RDHDF_C_API /* No special import/export declaration */
 #endif
 
-LIB_rdhdf_C_API 
-bool MW_CALL_CONV rdhdfInitializeWithHandlers(
+LIB_RDHDF_C_API 
+bool MW_CALL_CONV RDHDFInitializeWithHandlers(
     mclOutputHandlerFcn error_handler,
-    mclOutputHandlerFcn print_handler)
+    mclOutputHandlerFcn print_handler
+)
 {
   if (_mcr_inst != NULL)
     return true;
   if (!mclmcrInitialize())
     return false;
-  if (!mclInitializeComponentInstanceWithEmbeddedCTF(&_mcr_inst, 
-                                                     &__MCC_rdhdf_component_data, true, 
-                                                     NoObjectType, ExeTarget, 
-                                                     error_handler, print_handler, 69687, 
-                                                     NULL))
+  if (!mclInitializeComponentInstanceWithEmbeddedCTF(&_mcr_inst,
+                                                     &__MCC_RDHDF_component_data,
+                                                     true, NoObjectType,
+                                                     ExeTarget, error_handler,
+                                                     print_handler, 69296, NULL))
     return false;
   return true;
 }
 
-LIB_rdhdf_C_API 
-bool MW_CALL_CONV rdhdfInitialize(void)
+LIB_RDHDF_C_API 
+bool MW_CALL_CONV RDHDFInitialize(void)
 {
-  return rdhdfInitializeWithHandlers(mclDefaultErrorHandler, mclDefaultPrintHandler);
+  return RDHDFInitializeWithHandlers(mclDefaultErrorHandler,
+                                     mclDefaultPrintHandler);
 }
-LIB_rdhdf_C_API 
-void MW_CALL_CONV rdhdfTerminate(void)
+
+LIB_RDHDF_C_API 
+void MW_CALL_CONV RDHDFTerminate(void)
 {
   if (_mcr_inst != NULL)
     mclTerminateInstance(&_mcr_inst);
@@ -89,14 +98,13 @@ int run_main(int argc, const char **argv)
   /* Generate and populate the path_to_component. */
   char path_to_component[(PATH_MAX*2)+1];
   separatePathName(argv[0], path_to_component, (PATH_MAX*2)+1);
-  __MCC_rdhdf_component_data.path_to_component = path_to_component; 
-  if (!rdhdfInitialize()) {
+  __MCC_RDHDF_component_data.path_to_component = path_to_component; 
+  if (!RDHDFInitialize()) {
     return -1;
   }
-  argc = mclSetCmdLineUserData(mclGetID(_mcr_inst), argc, argv);
-  _retval = mclMain(_mcr_inst, argc, argv, "rdhdf", 0);
+  _retval = mclMain(_mcr_inst, argc, argv, "RdHDF", 0);
   if (_retval == 0 /* no error */) mclWaitForFiguresToDie(NULL);
-  rdhdfTerminate();
+  RDHDFTerminate();
   mclTerminateApplication();
   return _retval;
 }
@@ -104,9 +112,9 @@ int run_main(int argc, const char **argv)
 int main(int argc, const char **argv)
 {
   if (!mclInitializeApplication(
-    __MCC_rdhdf_component_data.runtime_options, 
-    __MCC_rdhdf_component_data.runtime_option_count))
+    __MCC_RDHDF_component_data.runtime_options,
+    __MCC_RDHDF_component_data.runtime_option_count))
     return 0;
-
+  
   return mclRunMain(run_main, argc, argv);
 }

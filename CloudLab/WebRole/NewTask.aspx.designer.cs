@@ -103,6 +103,15 @@ namespace WebRole {
         protected global::AjaxControlToolkit.ValidatorCalloutExtender SelectedValidatorCalloutExtender;
         
         /// <summary>
+        /// FileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        
+        /// <summary>
         /// ExeFile control.
         /// </summary>
         /// <remarks>
@@ -110,24 +119,6 @@ namespace WebRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload ExeFile;
-        
-        /// <summary>
-        /// ExeValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ExeValidator;
-        
-        /// <summary>
-        /// ExeValidatorCallout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ValidatorCalloutExtender ExeValidatorCallout;
         
         /// <summary>
         /// LaunchTaskBtn control.
