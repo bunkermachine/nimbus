@@ -19,6 +19,7 @@ namespace WebRole
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Write("Hello, " + Server.HtmlEncode(User.Identity.Name));
+        
     }
 
     protected void SubmitBtn_Click(object sender, EventArgs e)
