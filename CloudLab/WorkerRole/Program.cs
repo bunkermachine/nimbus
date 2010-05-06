@@ -19,8 +19,9 @@ namespace WorkerRole
 
             try
             {
+                Trace.TraceInformation("befpre process start => " + exeFileName + ", " + hdfFileName);
                 process.Start();
-
+                Trace.TraceInformation("after process start");
             }
             catch (Exception E)
             {

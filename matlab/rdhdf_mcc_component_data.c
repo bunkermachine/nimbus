@@ -1,7 +1,8 @@
 /*
- * MATLAB Compiler: 4.11 (R2009b)
- * Date: Mon Apr 05 05:07:22 2010
- * Arguments: "-B" "macro_default" "-m" "-W" "main" "-T" "link:exe" "rdhdf.m" 
+ * MATLAB Compiler: 4.8 (R2008a)
+ * Date: Thu May 06 09:15:15 2010
+ * Arguments: "-B" "macro_default" "-m" "-W" "main" "-T" "link:exe" "RdHDF.m"
+ * "-o" "RDHDF" 
  */
 
 #include "mclmcrrt.h"
@@ -9,27 +10,27 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-const unsigned char __MCC_rdhdf_session_key[] = {
-    'A', '6', '4', '0', '3', '9', 'A', '6', 'C', '3', '4', 'E', '8', '8', '5',
-    'A', 'C', '3', 'F', 'B', 'A', 'A', '4', '0', 'A', '5', '0', 'F', 'C', '9',
-    '9', '1', '8', '9', 'C', 'B', '6', 'B', '1', 'F', 'B', '5', 'F', '5', 'C',
-    '5', 'D', 'D', '9', 'B', '6', '5', '2', '6', 'F', '4', '4', 'E', 'F', 'B',
-    '3', '8', '9', '2', '1', '7', '2', '5', '3', 'D', 'E', '5', '4', '3', '9',
-    'B', '0', '9', 'A', 'A', '6', '9', '2', '6', '0', '8', '1', '7', '8', 'E',
-    '3', '0', '9', 'A', 'C', 'C', '4', '1', 'F', '2', 'E', 'B', 'A', 'F', '1',
-    'D', '8', '6', 'F', 'C', '8', '3', 'C', '9', '7', '4', '5', 'A', '2', 'E',
-    'B', '2', '9', '6', '7', '1', '6', 'B', '1', '9', 'E', 'A', '2', 'D', 'B',
-    '1', 'C', 'D', '7', '8', '8', '1', '7', '9', '4', '0', '7', 'C', '7', 'D',
-    '8', '3', '8', 'A', 'C', '9', 'A', '4', 'C', '3', '8', '4', 'E', 'F', '7',
-    '3', 'E', 'F', '3', 'D', '4', 'A', '2', 'B', '0', '6', '7', 'B', 'C', '9',
-    'E', 'F', '9', '3', 'D', '5', '7', 'F', '2', 'E', '3', '3', 'B', '5', 'D',
-    '1', '0', 'E', 'E', '2', '3', 'B', '2', '6', 'F', '3', '3', 'C', '7', '1',
-    'C', 'E', '9', 'F', 'D', '5', '8', '4', 'F', 'A', '2', '7', 'B', 'C', 'A',
-    'A', 'B', '9', 'E', 'C', '1', 'F', '1', '1', '4', '0', 'A', '9', '3', 'B',
-    '6', '3', 'D', 'E', 'F', '0', 'F', 'B', 'C', '8', '5', 'F', '5', 'F', '1',
-    '6', '\0'};
+const unsigned char __MCC_RDHDF_session_key[] = {
+    'A', 'D', 'A', '2', '4', '3', '4', 'B', '4', '8', '5', 'A', '9', '9', 'F',
+    '8', '9', '9', '0', '4', '3', '0', 'E', '6', '4', '8', '2', '7', '8', 'C',
+    '9', '9', '3', 'B', '3', '6', 'B', 'C', '9', 'D', 'F', 'E', '9', '1', 'F',
+    '5', 'F', '5', '7', 'A', '5', 'A', '7', '2', '2', '8', '7', '9', 'E', 'E',
+    'D', '2', '5', 'E', '4', '5', '9', '7', '8', 'D', '8', 'A', '9', '3', '6',
+    '8', 'A', '5', 'B', 'D', 'D', '1', '5', '1', '9', '3', '7', '0', '3', '7',
+    '4', '0', '3', 'B', '6', '8', '0', '8', '5', '2', 'A', 'A', '8', '2', '4',
+    '2', '1', 'B', 'A', 'F', '2', 'F', '8', 'E', 'F', '7', 'B', '0', '4', 'B',
+    '6', '3', '3', '5', 'A', '3', 'C', 'A', 'B', 'D', '8', '7', '3', 'C', 'F',
+    'D', 'B', 'E', '5', '3', '5', '6', '9', 'F', 'B', 'F', 'B', '0', 'E', '1',
+    '7', 'B', '9', '0', '0', '4', '7', '1', '1', '8', 'D', '5', '2', 'D', '8',
+    '8', 'F', '1', 'E', '3', '8', 'E', '8', 'A', 'E', '6', 'D', '1', 'C', '7',
+    '7', '4', 'D', '8', '9', '8', '1', 'E', '3', '5', '3', '2', '3', '8', '6',
+    'E', 'C', 'A', 'C', 'A', '3', 'C', 'A', '7', '5', 'A', '1', 'C', '3', 'B',
+    'B', '2', 'D', 'F', 'E', '1', '8', '4', '9', '5', '4', '8', 'B', 'C', '1',
+    '7', 'C', 'E', '5', '7', '1', '4', '1', '5', '8', '3', '3', '5', 'F', '8',
+    '0', 'E', '4', 'B', 'B', '4', 'F', 'F', '9', '0', '3', '5', '9', '3', '4',
+    '0', '\0'};
 
-const unsigned char __MCC_rdhdf_public_key[] = {
+const unsigned char __MCC_RDHDF_public_key[] = {
     '3', '0', '8', '1', '9', 'D', '3', '0', '0', 'D', '0', '6', '0', '9', '2',
     'A', '8', '6', '4', '8', '8', '6', 'F', '7', '0', 'D', '0', '1', '0', '1',
     '0', '1', '0', '5', '0', '0', '0', '3', '8', '1', '8', 'B', '0', '0', '3',
@@ -53,89 +54,88 @@ const unsigned char __MCC_rdhdf_public_key[] = {
     'D', 'D', '6', '4', '9', '6', '7', 'C', 'B', '1', '4', '9', 'E', '5', '0',
     '2', '0', '1', '1', '1', '\0'};
 
-static const char * MCC_rdhdf_matlabpath_data[] = 
-  { "rdhdf/", "$TOOLBOXDEPLOYDIR/", "$TOOLBOXMATLABDIR/general/",
-    "$TOOLBOXMATLABDIR/ops/", "$TOOLBOXMATLABDIR/lang/",
-    "$TOOLBOXMATLABDIR/elmat/", "$TOOLBOXMATLABDIR/randfun/",
+static const char * MCC_RDHDF_matlabpath_data[] = 
+  { "RDHDF/", "toolbox/compiler/deploy/",
+    "$TOOLBOXMATLABDIR/general/", "$TOOLBOXMATLABDIR/ops/",
+    "$TOOLBOXMATLABDIR/lang/", "$TOOLBOXMATLABDIR/elmat/",
     "$TOOLBOXMATLABDIR/elfun/", "$TOOLBOXMATLABDIR/specfun/",
     "$TOOLBOXMATLABDIR/matfun/", "$TOOLBOXMATLABDIR/datafun/",
     "$TOOLBOXMATLABDIR/polyfun/", "$TOOLBOXMATLABDIR/funfun/",
     "$TOOLBOXMATLABDIR/sparfun/", "$TOOLBOXMATLABDIR/scribe/",
     "$TOOLBOXMATLABDIR/graph2d/", "$TOOLBOXMATLABDIR/graph3d/",
-    "$TOOLBOXMATLABDIR/specgraph/",
-    "$TOOLBOXMATLABDIR/graphics/", "$TOOLBOXMATLABDIR/uitools/",
-    "$TOOLBOXMATLABDIR/strfun/", "$TOOLBOXMATLABDIR/imagesci/",
-    "$TOOLBOXMATLABDIR/iofun/", "$TOOLBOXMATLABDIR/audiovideo/",
-    "$TOOLBOXMATLABDIR/timefun/", "$TOOLBOXMATLABDIR/datatypes/",
-    "$TOOLBOXMATLABDIR/verctrl/", "$TOOLBOXMATLABDIR/codetools/",
-    "$TOOLBOXMATLABDIR/helptools/", "$TOOLBOXMATLABDIR/winfun/",
-    "$TOOLBOXMATLABDIR/winfun/NET/", "$TOOLBOXMATLABDIR/demos/",
+    "$TOOLBOXMATLABDIR/specgraph/", "$TOOLBOXMATLABDIR/graphics/",
+    "$TOOLBOXMATLABDIR/uitools/", "$TOOLBOXMATLABDIR/strfun/",
+    "$TOOLBOXMATLABDIR/imagesci/", "$TOOLBOXMATLABDIR/iofun/",
+    "$TOOLBOXMATLABDIR/audiovideo/", "$TOOLBOXMATLABDIR/timefun/",
+    "$TOOLBOXMATLABDIR/datatypes/", "$TOOLBOXMATLABDIR/verctrl/",
+    "$TOOLBOXMATLABDIR/codetools/", "$TOOLBOXMATLABDIR/helptools/",
+    "$TOOLBOXMATLABDIR/winfun/", "$TOOLBOXMATLABDIR/demos/",
     "$TOOLBOXMATLABDIR/timeseries/", "$TOOLBOXMATLABDIR/hds/",
     "$TOOLBOXMATLABDIR/guide/", "$TOOLBOXMATLABDIR/plottools/",
     "toolbox/local/", "toolbox/shared/dastudio/",
     "$TOOLBOXMATLABDIR/datamanager/", "toolbox/compiler/" };
 
-static const char * MCC_rdhdf_classpath_data[] = 
+static const char * MCC_RDHDF_classpath_data[] = 
   { "" };
 
-static const char * MCC_rdhdf_libpath_data[] = 
+static const char * MCC_RDHDF_libpath_data[] = 
   { "" };
 
-static const char * MCC_rdhdf_app_opts_data[] = 
+static const char * MCC_RDHDF_app_opts_data[] = 
   { "" };
 
-static const char * MCC_rdhdf_run_opts_data[] = 
+static const char * MCC_RDHDF_run_opts_data[] = 
   { "" };
 
-static const char * MCC_rdhdf_warning_state_data[] = 
+static const char * MCC_RDHDF_warning_state_data[] = 
   { "off:MATLAB:dispatcher:nameConflict" };
 
 
-mclComponentData __MCC_rdhdf_component_data = { 
+mclComponentData __MCC_RDHDF_component_data = { 
 
   /* Public key data */
-  __MCC_rdhdf_public_key,
+  __MCC_RDHDF_public_key,
 
   /* Component name */
-  "rdhdf",
+  "RDHDF",
 
   /* Component Root */
   "",
 
   /* Application key data */
-  __MCC_rdhdf_session_key,
+  __MCC_RDHDF_session_key,
 
   /* Component's MATLAB Path */
-  MCC_rdhdf_matlabpath_data,
+  MCC_RDHDF_matlabpath_data,
 
   /* Number of directories in the MATLAB Path */
-  40,
+  38,
 
   /* Component's Java class path */
-  MCC_rdhdf_classpath_data,
+  MCC_RDHDF_classpath_data,
   /* Number of directories in the Java class path */
   0,
 
   /* Component's load library path (for extra shared libraries) */
-  MCC_rdhdf_libpath_data,
+  MCC_RDHDF_libpath_data,
   /* Number of directories in the load library path */
   0,
 
   /* MCR instance-specific runtime options */
-  MCC_rdhdf_app_opts_data,
+  MCC_RDHDF_app_opts_data,
   /* Number of MCR instance-specific runtime options */
   0,
 
   /* MCR global runtime options */
-  MCC_rdhdf_run_opts_data,
+  MCC_RDHDF_run_opts_data,
   /* Number of MCR global runtime options */
   0,
   
   /* Component preferences directory */
-  "rdhdf_551A8526C71CA487C9B41B48F131541D",
+  "RDHDF_EAA5D47C2EC33250BAD52E9D71C86C91",
 
   /* MCR warning status data */
-  MCC_rdhdf_warning_state_data,
+  MCC_RDHDF_warning_state_data,
   /* Number of MCR warning status modifiers */
   1,
 

@@ -33,6 +33,12 @@
       </asp:UpdatePanel>
       <asp:Button runat="server" ID="PopulateListBtn" text="Populate List" Onclick="PopulateListBtn_Click" />
     </tr>
+    OR
+    <tr>
+        <td><label>Upload HDF(s)</label>
+        </td>
+        <td><asp:FileUpload runat="server" ID="hdfFile" /></td>
+    </tr>
     <tr>
       <td><label>Executable</label></td>
       <td><asp:FileUpload runat="server" id="exeFile" /></td>
