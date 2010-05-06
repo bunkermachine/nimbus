@@ -43,26 +43,34 @@ namespace WebRole
 
         protected void LaunchTaskBtn_Click(object sender, System.EventArgs e)
         {
+            string projectName = "NewProject";
+            GetProgramContainer().GetBlockBlobReference(User.Identity.Name + "/" + projectName + "/" + TaskNameText.Text + "/" + exeFile.FileName).UploadFromStream(exeFile.FileContent);
+
             int year = Convert.ToInt32(YearText.Text);
             int day = Convert.ToInt32(DayText.Text);
             string DatasetFTP = SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
 
-            StringBuilder queueMsg = new StringBuilder();
-            queueMsg.Append(TaskNameText.Text);
-            queueMsg.Append(" " + exeFile.FileName);
-            queueMsg.Append(" " + DatasetFTP);
-
+            StringBuilder queueMsg;
             foreach (ListItem item in FileList.Items)
             {
                 if (item.Selected)
                 {
+                    queueMsg = new StringBuilder();
+                    queueMsg.Append(User.Identity.Name);
+                    queueMsg.Append(" " + projectName);
+                    queueMsg.Append(" " + TaskNameText.Text);
+                    queueMsg.Append(" " + exeFile.FileName);
+                    int[] indices = FileList.GetSelectedIndices();
+                    queueMsg.Append(" " + indices.Length);
+                    queueMsg.Append(" " + DatasetFTP);
+                    queueMsg.Append(" " + DatasetList.SelectedIndex);
                     queueMsg.Append(" " + item.Text);
+
+                    GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg.ToString())));
+                    System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", queueMsg));
                 }
             }
 
-            GetProgramContainer().GetBlockBlobReference(exeFile.FileName).UploadFromStream(exeFile.FileContent);
-            GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg.ToString())));
-            System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", queueMsg));
             Server.Transfer("MapControl.aspx");
         }
 

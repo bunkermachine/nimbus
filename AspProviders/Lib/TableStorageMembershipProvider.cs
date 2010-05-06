@@ -1180,7 +1180,7 @@ namespace Microsoft.Samples.ServiceHosting.AspProviders
 
                 svc.AddObject(_tableName, newUser);
                 svc.SaveChanges();
-
+                
                 status = MembershipCreateStatus.Success;
                 return new MembershipUser(this.Name,
                                                username,

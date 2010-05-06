@@ -92,8 +92,8 @@ namespace WorkerRole
                         string projectName = queueMsg.Substring(index+1, queueMsg.IndexOf('+', index+1));
                         index = queueMsg.IndexOf('+', index + 1);
                         string taskName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1));
-                        //index = queueMsg.IndexOf('+', index + 1);
-                        //string exeName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1));
+                        index = queueMsg.IndexOf('+', index + 1);
+                        string exeName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1));
                         index = queueMsg.IndexOf('+', index + 1);
                         string numDownloadsStr = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1));
                         int numDownloads = Convert.ToInt32(numDownloadsStr);
@@ -104,7 +104,7 @@ namespace WorkerRole
                         index = queueMsg.IndexOf('+', index + 1);
                         string FTPFileName = queueMsg.Substring(index + 1);
 
-                        string exeName = "program.exe";
+                        
 
                         //string exeName = queueMsg.Substring(0, queueMsg.IndexOf('+'));
                         //string hdfName = queueMsg.Substring(queueMsg.IndexOf('+') + 1);
@@ -115,7 +115,13 @@ namespace WorkerRole
 
                         CloudBlobDirectory directory = container.GetDirectoryReference(userName + "/" + projectName + "/" + taskName);
 
-                        int blobCount = directory.ListBlobs().c
+                        IEnumerable<IListBlobItem> blobs = directory.ListBlobs();
+                        int count = 0;
+                        foreach (IListBlobItem blobItem in blobs)
+                        {
+                            count++;
+                        }
+
 
                         //CloudBlockBlob hdfContent = container.GetBlockBlobReference(hdfName);
 
@@ -123,7 +129,7 @@ namespace WorkerRole
                         CloudBlockBlob uploadDownloadContent = downloadContainer.GetBlockBlobReference("downloadedFile.jpg");
 
                         string exePath = Path.Combine(RoleEnvironment.GetLocalResource("LocalStorage1").RootPath, exeName);
-                        string hdfPath = Path.Combine(RoleEnvironment.GetLocalResource("LocalStorage1").RootPath, hdfName);
+                        //string hdfPath = Path.Combine(RoleEnvironment.GetLocalResource("LocalStorage1").RootPath, hdfName);
 
                         //exe_content.DownloadToFile(exe_path);
                         //hdf_content.DownloadToFile(hdf_path);
