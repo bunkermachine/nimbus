@@ -13,12 +13,57 @@ namespace WebRole {
     public partial class ViewProjects {
         
         /// <summary>
-        /// ProjectList control.
+        /// NewProjectBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ProjectList;
+        protected global::System.Web.UI.WebControls.LinkButton NewProjectBtn;
+        
+        /// <summary>
+        /// CreateProjectDialog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CreateProjectDialog;
+        
+        /// <summary>
+        /// NewProjectName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NewProjectName;
+        
+        /// <summary>
+        /// npRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator npRequired;
+        
+        /// <summary>
+        /// CreateProjectBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CreateProjectBtn;
+        
+        /// <summary>
+        /// CloseDialogBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CloseDialogBtn;
     }
 }

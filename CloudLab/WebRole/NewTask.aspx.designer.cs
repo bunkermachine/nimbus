@@ -13,13 +13,13 @@ namespace WebRole {
     public partial class NewTask {
         
         /// <summary>
-        /// datasetList control.
+        /// taskName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox datasetList;
+        protected global::System.Web.UI.WebControls.TextBox taskName;
         
         /// <summary>
         /// fileList control.
@@ -29,6 +29,15 @@ namespace WebRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox fileList;
+        
+        /// <summary>
+        /// ListBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox ListBox1;
         
         /// <summary>
         /// exeFile control.

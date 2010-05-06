@@ -5,11 +5,22 @@
   <table class="inputForm">
     <tr>
       <td><label>Task Name</label></td>
-      <td><asp:ListBox ID="datasetList" runat="server" Width="300px" /></td>
+      <td><asp:Textbox ID="TaskNameText" runat="server" /></td>
     </tr>
     <tr>
       <td><label>Dataset</label></td>
-      <td><asp:ListBox ID="fileList" runat="server" Width="300px" SelectionMode="Multiple" /></td>
+      <td><asp:ListBox ID="DatasetList" runat="server" SelectionMode="Multiple" /></td>
+    </tr>
+    <tr>
+      <td><label>Files</label></td>
+      <asp:UpdatePanel runat="server" ID="Files">
+        <ContentTemplate>
+          <td><asp:ListBox ID="FileList" runat="server" SelectionMode="Multiple" /></td>
+        </ContentTemplate>
+        <Triggers>
+          <asp:AsyncPostBackTrigger ControlID="DatasetList" />
+        </Triggers>
+      </asp:UpdatePanel>
     </tr>
     <tr>
       <td><label>Executable</label></td>

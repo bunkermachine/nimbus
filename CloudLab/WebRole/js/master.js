@@ -19,7 +19,7 @@ var queue = [[0, 'MODISAOE_1']];
  */
 CloudLab = new function() {
   this.redisplay = function() {
-    $('#Workspace').width($(window).width()).height($(window).height() - 67);
+    $('#Workspace').width($(window).width() - 24).height($(window).height() - 67);
   }
 }
 

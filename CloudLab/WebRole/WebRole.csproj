@@ -128,6 +128,13 @@
       <DependentUpon>NewTask.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewTask.aspx.cs">
+      <DependentUpon>ViewTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewTask.aspx.designer.cs">
+      <DependentUpon>ViewTask.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Workspace.Master.cs">
       <DependentUpon>Workspace.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +162,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ViewTask.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
