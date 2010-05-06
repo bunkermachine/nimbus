@@ -49,15 +49,6 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.TextBox DayText;
         
         /// <summary>
-        /// Files control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel Files;
-        
-        /// <summary>
         /// FileList control.
         /// </summary>
         /// <remarks>
@@ -67,22 +58,22 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.ListBox FileList;
         
         /// <summary>
-        /// PopulateListBtn control.
+        /// SelectedFileList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PopulateListBtn;
+        protected global::System.Web.UI.WebControls.ListBox SelectedFileList;
         
         /// <summary>
-        /// hdfFile control.
+        /// FileUpload1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload hdfFile;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
         /// exeFile control.
@@ -101,5 +92,77 @@ namespace WebRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button LaunchTaskBtn;
+        
+        /// <summary>
+        /// topLeftLong control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox topLeftLong;
+        
+        /// <summary>
+        /// topLeftLat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox topLeftLat;
+        
+        /// <summary>
+        /// TopLat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TopLat;
+        
+        /// <summary>
+        /// BottomLat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox BottomLat;
+        
+        /// <summary>
+        /// LeftLong control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LeftLong;
+        
+        /// <summary>
+        /// RightLong control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RightLong;
+        
+        /// <summary>
+        /// FromDateText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FromDateText;
+        
+        /// <summary>
+        /// ToDateText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ToDateText;
     }
 }

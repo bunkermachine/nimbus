@@ -13,22 +13,13 @@ namespace WebRole {
     public partial class ViewProjects {
         
         /// <summary>
-        /// NewProjectBtn control.
+        /// ProjectListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton NewProjectBtn;
-        
-        /// <summary>
-        /// CreateProjectDialog control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel CreateProjectDialog;
+        protected global::System.Web.UI.WebControls.ListView ProjectListView;
         
         /// <summary>
         /// NewProjectName control.
@@ -40,30 +31,30 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.TextBox NewProjectName;
         
         /// <summary>
-        /// npRequired control.
+        /// CreateProjectLinkBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator npRequired;
+        protected global::System.Web.UI.WebControls.LinkButton CreateProjectLinkBtn;
         
         /// <summary>
-        /// CreateProjectBtn control.
+        /// NewProjectValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CreateProjectBtn;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NewProjectValidator;
         
         /// <summary>
-        /// CloseDialogBtn control.
+        /// NewProjectValidatorCallout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CloseDialogBtn;
+        protected global::AjaxControlToolkit.ValidatorCalloutExtender NewProjectValidatorCallout;
     }
 }

@@ -31,22 +31,42 @@ namespace WebRole
             }
         }
 
-        protected void PopulateListBtn_Click(object sender, System.EventArgs e)
+        protected void AddFile(object sender, System.EventArgs e)
         {
-            int year = Convert.ToInt32(YearText.Text);
-            int day = Convert.ToInt32(DayText.Text);
-            string DatasetFTP = SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
-            ArrayList files = DownloadFTP.GetFileList("ftp://" + DatasetFTP + "/", "anonymous", "guest");
-            FileList.DataSource = files;
-            FileList.DataBind();
+            ListItem addItem = FileList.SelectedItem;
+            addItem.Selected = false;
+            SelectedFileList.Items.Add(addItem);
+            FileList.Items.Remove(addItem);
         }
 
-        protected void LaunchTaskBtn_Click(object sender, System.EventArgs e)
+        protected void RemoveFile(object sender, System.EventArgs e)
+        {
+            ListItem removeItem = SelectedFileList.SelectedItem;
+            removeItem.Selected = false;
+            FileList.Items.Add(removeItem);
+            SelectedFileList.Items.Remove(removeItem);
+        }
+
+        protected void PopulateFileList(object sender, System.EventArgs e)
+        {
+            if (YearText.Text != "" && DayText.Text != "" && DatasetList.SelectedIndex >= 0)
+            {
+                int year = Convert.ToInt32(YearText.Text);
+                int day = Convert.ToInt32(DayText.Text);
+                string DatasetFTP = SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
+                ArrayList files = DownloadFTP.GetFileList("ftp://" + DatasetFTP + "/", "anonymous", "guest");
+                FileList.DataSource = files;
+                FileList.DataBind();
+            }
+        }
+
+        protected void LaunchTask(object sender, System.EventArgs e)
         {
             string projectName = "NewProject";
 
             int year = Convert.ToInt32(YearText.Text);
             int day = Convert.ToInt32(DayText.Text);
+<<<<<<< HEAD
             string DatasetFTP = "ftp://" + SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
             
             StringBuilder queueMsg;
@@ -78,16 +98,6 @@ namespace WebRole
 
             //Server.Transfer("MapControl.aspx");
         }
-
-        //protected void DatasetSelected(object sender, EventArgs e)
-        //{
-        //  // ftp://e4ftl01u.ecs.nasa.gov/MOLT/MOD09A1.005/2000.02.18/
-        //  // fileList.DataSource = GetFileList(datasetList.Text, "anonymous", "guest");
-        //  files = new ArrayList();
-        //  files.Add("Test");
-        //  fileList.DataSource = files;
-        //  fileList.DataBind();
-        //}
 
         private void CreateOnceContainerAndQueue()
         {
