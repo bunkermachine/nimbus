@@ -10,33 +10,33 @@
 namespace WebRole {
     
     
-    public partial class Login {
+    public partial class UserLogin {
         
         /// <summary>
-        /// form1 control.
+        /// form control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form;
         
         /// <summary>
-        /// Login1 control.
+        /// Login control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Login Login1;
+        protected global::System.Web.UI.WebControls.Login Login;
         
         /// <summary>
-        /// CreateUserWizard1 control.
+        /// CreateUserWizard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CreateUserWizard CreateUserWizard1;
+        protected global::System.Web.UI.WebControls.CreateUserWizard CreateUserWizard;
     }
 }

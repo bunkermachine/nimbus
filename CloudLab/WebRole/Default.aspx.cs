@@ -19,15 +19,11 @@ namespace WebRole
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Write("Hello, " + Server.HtmlEncode(User.Identity.Name));
-
-        FormsIdentity id = (FormsIdentity)User.Identity;
-        FormsAuthenticationTicket ticket = id.Ticket; 
     }
 
     protected void SubmitBtn_Click(object sender, EventArgs e)
     {
         FormsAuthentication.SignOut();
-        Response.Redirect("Login.aspx", true);
     }
 
 

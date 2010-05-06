@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WorkerRole
+namespace CloudLab.Common
 {
     
     public enum SatelliteType
@@ -72,7 +72,7 @@ namespace WorkerRole
     /// </summary>
     public class SourceInfo
     {
-        private static readonly ModisSourceProduct[] products = {
+        public static readonly ModisSourceProduct[] products = {
                             new ModisSourceProduct("MOD04_L2", "ladsweb.nascom.nasa.gov/allData/5/MOD04_L2", SatelliteType.Terra, ProductType.Atmos, ProjectType.Swath, 1),
                             new ModisSourceProduct("MOD05_L2", "ladsweb.nascom.nasa.gov/allData/5/MOD05_L2", SatelliteType.Terra, ProductType.Atmos, ProjectType.Swath, 1),
                             new ModisSourceProduct("MOD06_L2", "ladsweb.nascom.nasa.gov/allData/5/MOD06_L2", SatelliteType.Terra, ProductType.Atmos, ProjectType.Swath, 1),

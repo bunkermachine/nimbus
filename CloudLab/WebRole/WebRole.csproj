@@ -101,7 +101,7 @@
     <Content Include="js\master.js" />
     <Content Include="CreateProject.aspx" />
     <Content Include="js\workspace.js" />
-    <Content Include="Login.aspx" />
+    <Content Include="UserLogin.aspx" />
     <Content Include="NewTask.aspx" />
     <Content Include="css\workspace.css" />
     <Content Include="ViewProjects.aspx" />
@@ -122,12 +122,12 @@
     <Compile Include="CreateProject.aspx.designer.cs">
       <DependentUpon>CreateProject.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="UserLogin.aspx.cs">
+      <DependentUpon>UserLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="UserLogin.aspx.designer.cs">
+      <DependentUpon>UserLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewTask.aspx.cs">
       <DependentUpon>NewTask.aspx</DependentUpon>
@@ -164,14 +164,16 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Workspace.Master" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CloudLab.Common\Common.csproj">
+      <Project>{3EECC3AB-F8AD-4495-9976-9B08B55286B0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\AspProviders\Lib\AspProviders.csproj">
       <Project>{306D2F9E-D6D0-4D96-94F1-173C60A13875}</Project>
       <Name>AspProviders</Name>

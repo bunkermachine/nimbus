@@ -286,7 +286,7 @@ namespace Microsoft.Samples.ServiceHosting.AspProviders
             string ret = null;
             try
             {
-                ret = ConfigurationSettings.AppSettings[configName];
+                ret = System.Configuration.ConfigurationManager.AppSettings[configName];
             }
             // some exception happened when accessing the app settings section
             // most likely this is because there is no app setting file

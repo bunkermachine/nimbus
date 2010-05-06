@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using AjaxControlToolkit;
 
 namespace WebRole
 {
@@ -11,10 +12,10 @@ namespace WebRole
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArrayList projects = new ArrayList();
-            projects.Add("Global Evapotranspiration");
-            ProjectList.DataSource = projects;
-            ProjectList.DataBind();
+            //ArrayList projects = new ArrayList();
+            //projects.Add("Global Evapotranspiration");
+            //ProjectList.DataSource = projects;
+            //ProjectList.DataBind();
         }
 
         protected void NewProjectBtn_Click(object sender, EventArgs e)
