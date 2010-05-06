@@ -82,6 +82,11 @@ CloudLab.Sidebar = new function() {
       sidebarWidth = sidebar.width();
     } });
     sidebarHandle.click(CloudLab.Sidebar.collapse);
+
+    var newTask = $('#SidebarGeneric');
+    newTask.click(function() {
+      CloudLab.Workspace.set('NewTask');
+    });
   }
 
   this.setTitle = function(title) {
@@ -100,21 +105,14 @@ CloudLab.Sidebar = new function() {
 
   this.initList = function(list, style) {
     currentStyle = style;
-
     this.clearList();
     sidebar.show();
     // Add a list entry for each of the items
     for (var idx in list) {
       this.addElement(list[idx]);
     }
-    var newTask = $(document.createElement('li'));
-    newTask.text('Add Task');
-    newTask.click(function() {
-      CloudLab.Workspace.set('NewTask');
-    });
-    sidebarList.append(newTask);
-    sidebarContent.append(sidebarList);
     sidebarHandle.height(sidebar.height());
+    setTimeout("CloudLab.Sidebar.collapse()", 2000);
   };
 
   this.expand = function() {
@@ -131,7 +129,7 @@ CloudLab.Sidebar = new function() {
 
   this.clearList = function() {
     sidebar.hide();
-    sidebarContent.children().remove();
+    sidebarList.children().remove();
     sidebarHandle.height(sidebar.height());
   };
 };

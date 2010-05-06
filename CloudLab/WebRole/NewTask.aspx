@@ -23,7 +23,6 @@
         <td><label>Day</label></td>
         <td><asp:TextBox runat="server" ID="DayText" OnTextChanged="PopulateFileList" AutoPostBack="true" /></td>
       </tr>
-      <tr>
         <td><label>Available Files</label></td>
         <td>
           <asp:UpdatePanel runat="server" UpdateMode="Conditional">
@@ -75,14 +74,15 @@
   <script language="javascript" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2"></script>
   <div id="ParameterControls">
     <div id="Map"></div>
-    <fieldset>
-      <legend>Location</legend>
-      <label>Top</label> <asp:Textbox runat="server" ID="TopBound" />
-      <label>Bottom</label> <asp:Textbox runat="server" ID="Bottom" />
-      <label>Left</label> <asp:Textbox runat="server" ID="LeftBound" />
-      <label>Right</label> <asp:Textbox runat="server" ID="RightBound" />
-    </fieldset>
-
+    <h1>Location</h1>
+    <div id="LocationFormLeft">
+      <label>Top</label> <asp:Textbox runat="server" ID="TopBound" /><br />
+      <label>Bottom</label> <asp:Textbox runat="server" ID="Bottom" /><br />
+    </div>
+    <div id="LocationFormRight">
+      <label>Left</label> <asp:Textbox runat="server" ID="LeftBound" /><br />
+      <label>Right</label> <asp:Textbox runat="server" ID="RightBound" /><br />
+    </div>
   </div>
 </asp:Content>
 
@@ -108,13 +108,15 @@ $(function() {
 });
 
 function NewTask() {
-  CloudLab.Sidebar.addElement({
-    title: $('<%=TaskNameText.ClientID %>').text(),
-    description: 'Processing',
-    progress: '0',
-    click: function() {
-      CloudLab.Workspace.set('ViewTask.aspx')
-    }
-  });
+  if (Page_ClientValidate()) {
+    CloudLab.Sidebar.addElement({
+      title: $('<%=TaskNameText.ClientID %>').text(),
+      description: 'Processing',
+      progress: '0',
+      click: function() {
+        CloudLab.Workspace.set('ViewTask')
+      }
+    });
+  }
 }
 </asp:Content>

@@ -64,7 +64,7 @@ input { width: 50%; border: 0; padding: 3px;}
 #SidebarHandle { float: left; width: 11px; background: url(img/sidebar-handle.png) bottom no-repeat; cursor: w-resize; }
 
 #SidebarContent { padding-top: 1px; padding-bottom: 6px; margin-left: 11px; background: url(img/sidebar-bg.png) repeat-x bottom; }
-#SidebarContent li { background: #fff; margin-left: 3px; margin-top: 3px; padding: 3px; cursor: pointer; }
+#SidebarGeneric, #SidebarContent li { background: #fff; margin-left: 3px; margin-top: 3px; padding: 3px; cursor: pointer; }
 #SidebarContent li:hover { background: #eee; }
 
 #SidebarTitle { padding: 6px 6px 3px; margin-left: 11px; background: #e6f0f4; }

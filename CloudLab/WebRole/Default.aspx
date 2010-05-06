@@ -33,7 +33,10 @@
         </ul>
         <div id="SidebarHandle"></div>
         <h1 id="SidebarTitle">Tasks</h1>
-        <div id="SidebarContent"><ul id="SidebarList"></ul></div>
+        <div id="SidebarContent">
+          <ul id="SidebarList"></ul>
+          <div id="SidebarGeneric">New Task</div>
+        </div>
       </div>
       
       <div id="HUD">
