@@ -85,24 +85,6 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.ListBox SelectedFileList;
         
         /// <summary>
-        /// SelectedValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator SelectedValidator;
-        
-        /// <summary>
-        /// SelectedValidatorCalloutExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ValidatorCalloutExtender SelectedValidatorCalloutExtender;
-        
-        /// <summary>
         /// FileUpload1 control.
         /// </summary>
         /// <remarks>

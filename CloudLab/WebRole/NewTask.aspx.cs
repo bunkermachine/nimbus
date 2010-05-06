@@ -122,7 +122,7 @@ namespace WebRole
                     container.SetPermissions(permissions);
 
                     queueStorage = storageAccount.CreateCloudQueueClient();
-                    CloudQueue queue = queueStorage.GetQueueReference("uploadqueue3");
+                    CloudQueue queue = queueStorage.GetQueueReference("programqueue");
                     
                     queue.CreateIfNotExist();
                 }
@@ -149,7 +149,7 @@ namespace WebRole
         private CloudQueue GetProgramRunnerQueue()
         {
             CreateOnceContainerAndQueue();
-            return queueStorage.GetQueueReference("uploadqueue3");
+            return queueStorage.GetQueueReference("programqueue");
         }
     }
 }
