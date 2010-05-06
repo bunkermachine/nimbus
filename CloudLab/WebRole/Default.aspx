@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <iframe src="ViewProjects.aspx" name="Workspace" id="Workspace" frameborder="0" scrolling="no"></iframe>
+      <iframe src="ViewProjects.aspx" name="Workspace" id="Workspace" frameborder="0"></iframe>
     </div>  
     <!-- End content -->
     
