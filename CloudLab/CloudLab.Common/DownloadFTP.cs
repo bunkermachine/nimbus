@@ -15,38 +15,54 @@ namespace CloudLab.Common
     public class DownloadFTP
     {
         [STAThread]
-        public static byte[] getDataFromFTP()
+
+        public static byte[] getDataFromFTP(string FTPAddress, string fileName)
+        {
+            return downloadFile(FTPAddress, fileName, "anonymous", "guest");
+        }
+
+        public static byte[] getDataFromFTP(string productName, int year, int day, string tile)
         {
             /*
              * Function called when dataset is to be downloaded 
              */
-            //string FTPAddress = args[0];
-            //string filename = args[1];
-            //string productName = args[2];
-            //int year = args[3];
-            //int day = args[4];
-            //string downloadPath = args[5];
-
-            string productName = "MOD04_L2";
-            int year = 2000;
-            int day = 55;
-            //string downloadPath = "";
-            //string downloadPath = "C://BROWSE.MOD09A1.A2000049.h00v08.005.2006268222533.1.jpg	";
-
+            
             /* Find ftp URL from productName, year and day */
             string FTPAddress = SourceInfo.GetFtpUrl(productName, year, day);
             FTPAddress = "ftp://" + FTPAddress;
             //downloadSource(FTPAddress, downloadPath, "anonymous", "guest");
 
+            string yr = Convert.ToString(year);
+            string dy = Convert.ToString(day);
             // Find relevant file and return it
+            ArrayList possibleFileNames = findFileName(FTPAddress, productName, yr, dy, tile);
             string fileName = "MOD04_L2.A2000055.0010.005.2006253050115.hdf";
             return downloadFile(FTPAddress, fileName, /*downloadPath,*/ "anonymous", "guest");
         }
 
+        public static byte[] getDataFromFTP()
+        {
+            /*
+             * Function called when dataset is to be downloaded 
+             */
+            string productName = "MOD04_L2";
+            int year = 2000;
+            int day = 55;
+            string tile = "h00v10";
+            //string downloadPath = "";
+
+            /* Find ftp URL from productName, year and day */
+            string FTPAddress = SourceInfo.GetFtpUrl(productName, year, day);
+            FTPAddress = "ftp://" + FTPAddress;
+            
+            string fileName = "MOD04_L2.A2000055.0010.005.2006253050115.hdf";
+            return downloadFile(FTPAddress, fileName, /*downloadPath,*/ "anonymous", "guest");
+        }
 
         // Connects to the FTP server and downloads the specified file
         public static byte[] downloadFile(string FTPAddress, string fileName, /*string downloadPath,*/ string username, string password)
         {
+            
             byte[] downloadedData = new byte[0];
 
             try
@@ -127,22 +143,22 @@ namespace CloudLab.Common
             // For every tile in list, download file from ftp site
             //foreach (string t in tileList)
             //{
-                //string blobName = "SourceBlobName";
-                // Need to download from external FTP site
-                //get file list
+            //string blobName = "SourceBlobName";
+            // Need to download from external FTP site
+            //get file list
 
-                if (fileList == null)
-                    fileList = GetFileList(FTPAddress, "anonymous", "guest");
-                //fileList = GetFileList(false);
+            if (fileList == null)
+                fileList = GetFileList(FTPAddress, "anonymous", "guest");
+            //fileList = GetFileList(false);
 
-                if (fileList != null)
-                {
-                    foreach (string fileName in fileList)
-                        //for every file in list, download file
-                        downloadFile(FTPAddress, fileName, "anonymous", "guest");
-                        //store the downloaded file to blobName/containerName; this is happening in WorkerRole.cs as of now; might need to change that
-                }
-                return;
+            if (fileList != null)
+            {
+                foreach (string fileName in fileList)
+                    //for every file in list, download file
+                    downloadFile(FTPAddress, fileName, "anonymous", "guest");
+                //store the downloaded file to blobName/containerName; this is happening in WorkerRole.cs as of now; might need to change that
+            }
+            return;
             //}
 
         }
@@ -189,6 +205,28 @@ namespace CloudLab.Common
             password = string.Empty;
 
             return null;
+        }
+
+        public static ArrayList findFileName(string FTPAddress, string productName, string year, string day, string tile)
+        {
+            ArrayList list = GetFileList(FTPAddress, "anonymous", "guest");
+            ArrayList searchResults = new ArrayList();
+            if (day.Length == 2)
+                day = "0" + day;
+
+            // split the string and check for matches with each file in the list            
+            foreach (string fn in list)
+            {
+                String[] subString = fn.Split('.');
+
+                if ((String.Compare(subString[0], productName) == 0) && (String.Compare(subString[2], tile) == 0) && (String.Compare(subString[1], "A" + year + day) == 0))
+                {
+                    searchResults.Add(fn);
+                }
+
+            }
+            return searchResults;
+
         }
 
     }
