@@ -10,33 +10,24 @@
 namespace WebRole {
     
     
-    public partial class Default {
+    public partial class ViewTask {
         
         /// <summary>
-        /// form control.
+        /// TaskProgress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form;
+        protected global::System.Web.UI.WebControls.GridView TaskProgress;
         
         /// <summary>
-        /// Signout control.
+        /// TaskData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Signout;
-        
-        /// <summary>
-        /// Data control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Data;
+        protected global::System.Web.UI.WebControls.XmlDataSource TaskData;
     }
 }

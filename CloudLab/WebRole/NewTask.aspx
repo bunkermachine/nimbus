@@ -5,7 +5,11 @@
     <table class="inputForm">
       <tr>
         <td><label>Task Name</label></td>
-        <td><asp:Textbox runat="server" ID="TaskNameText" /></td>
+        <td>
+          <asp:Textbox runat="server" ID="TaskNameText" /><br />
+          <asp:RequiredFieldValidator runat="server" ID="TaskNameValidator" ControlToValidate="TaskNameText" ErrorMessage="Task must be given a name" />
+          <ajaxToolkit:ValidatorCalloutExtender runat="server" ID="TaskNameValidatorCallout" TargetControlID="TaskNameValidator" CssClass="validator" HighlightCssClass="validatorCalloutHighlight" />
+        </td>
       </tr>
       <tr>
         <td><label>Dataset</label></td>
@@ -49,14 +53,18 @@
               <asp:AsyncPostBackTrigger ControlID="FileList" />
             </Triggers>
           </asp:UpdatePanel>
+          <asp:RequiredFieldValidator runat="server" ID="SelectedValidator" ControlToValidate="SelectedFileList" ErrorMessage="Files must be added for processing" />
+          <ajaxToolkit:ValidatorCalloutExtender runat="server" ID="SelectedValidatorCalloutExtender" TargetControlID="SelectedValidator" CssClass="validator" HighlightCssClass="validatorCalloutHighlight" />
         </td>
       </tr>
       <tr>
         <td><label>Executable</label></td>
-        <td><asp:FileUpload runat="server" id="exeFile" /></td>
+        <td>
+          <asp:FileUpload runat="server" id="ExeFile" />
+        </td>
       </tr>
     </table>
-    <asp:Button runat="server" ID="LaunchTaskBtn" Text="Test" Onclick="LaunchTask" />
+    <asp:Button runat="server" ID="LaunchTaskBtn" Text="Test" CausesValidation="true" OnClientClick="NewTask()" Onclick="LaunchTask" />
   </div>
   <script language="javascript" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2"></script>
   <div id="ParameterControls">
@@ -64,18 +72,11 @@
 
     <fieldset>
       <legend>Location</legend>
-      <label>From (Northwest)</label> <asp:Textbox runat="server" ID="topLeftLong" />
-      <label>To (Southeast)</label> <asp:Textbox ClientID="topLeftLat" runat="server" ID="topLeftLat" />
+      <label>Top</label> <asp:Textbox runat="server" ID="TopBound" />
+      <label>Bottom</label> <asp:Textbox runat="server" ID="Bottom" />
+      <label>Left</label> <asp:Textbox runat="server" ID="LeftBound" />
+      <label>Right</label> <asp:Textbox runat="server" ID="RightBound" />
     </fieldset>
-
-    <asp:Textbox runat="server" ID="TopLat" />
-    <asp:Textbox runat="server" ID="BottomLat" />
-
-    <asp:Textbox runat="server" ID="LeftLong" />
-    <asp:Textbox runat="server" ID="RightLong" />
-
-    <asp:TextBox runat="server" ID="FromDateText" />
-    <asp:Textbox runat="server" ID="ToDateText" />
 
   </div>
 </asp:Content>
@@ -87,7 +88,7 @@ var tasks = [
     description: "Processing",
     progress: 50,
     click: function() {
-      CloudLab.Workspace.set("MapControl");
+      CloudLab.Workspace.set("ViewTask.aspx");
     }
   }
 ];
@@ -99,8 +100,16 @@ $(function() {
   var map = new VEMap('Map');
   map.LoadMap();
   map.SetMapStyle(VEMapStyle.Aerial);
-
-  // Setup the paramter controls
-  $("#fromDate, #toDate").datepicker();
 });
+
+function NewTask() {
+  CloudLab.Sidebar.addElement({
+    title: $('<%=TaskNameText.ClientID %>').text(),
+    description: 'Processing',
+    progress: '0',
+    click: function() {
+      CloudLab.Workspace.set('ViewTask.aspx')
+    }
+  });
+}
 </asp:Content>

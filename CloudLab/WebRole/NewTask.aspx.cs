@@ -68,7 +68,7 @@ namespace WebRole
 
             StringBuilder queueMsg = new StringBuilder();
             queueMsg.Append(TaskNameText.Text);
-            queueMsg.Append(" " + exeFile.FileName);
+            queueMsg.Append(" " + ExeFile.FileName);
             queueMsg.Append(" " + DatasetFTP);
 
             foreach (ListItem item in SelectedFileList.Items)
@@ -76,10 +76,10 @@ namespace WebRole
                 queueMsg.Append(" " + item.Text);
             }
 
-            GetProgramContainer().GetBlockBlobReference(exeFile.FileName).UploadFromStream(exeFile.FileContent);
+            GetProgramContainer().GetBlockBlobReference(ExeFile.FileName).UploadFromStream(ExeFile.FileContent);
             GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg.ToString())));
             System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", queueMsg));
-            Server.Transfer("MapControl.aspx");
+            Server.Transfer("ViewTask.aspx");
         }
 
         private void CreateOnceContainerAndQueue()

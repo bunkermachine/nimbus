@@ -71,7 +71,9 @@ CloudLab.Sidebar = new function() {
   var sidebarTitle = sidebar.children('#SidebarTitle');
   var sidebarContent = sidebar.children('#SidebarContent');
   var sidebarHandle = sidebar.children('#SidebarHandle');
+  var sidebarList = sidebarContent.children('#SidebarList');
   var sidebarWidth = 0;
+  var currentStyle = "";
 
   this.init = function() {
     this.clearList();
@@ -86,20 +88,24 @@ CloudLab.Sidebar = new function() {
     sidebarTitle.text(title);
   }
 
+  this.addElement = function(element) {
+    var template = sidebarTemplates.children('#SidebarTemplate' + currentStyle);
+    var sidebarListElement = template.clone();
+    sidebarListElement.removeAttr('id');
+    sidebarListElement.children('.title').text(element['title']);
+    sidebarListElement.children('.description').text('Status: ' + element['description'] + ' (' + element['progress'] + '%)');
+    sidebarListElement.click(element['click']);
+    sidebarList.append(sidebarListElement);
+  }
+
   this.initList = function(list, style) {
+    currentStyle = style;
+
     this.clearList();
     sidebar.show();
-    var template = sidebarTemplates.children('#SidebarTemplate' + style);
-    var sidebarList = $(document.createElement('ul'));
-    sidebarList.addClass('sidebarMode');
     // Add a list entry for each of the items
     for (var idx in list) {
-      var sidebarListElement = template.clone();
-      sidebarListElement.removeAttr('id');
-      sidebarListElement.children('.title').text(list[idx]['title']);
-      sidebarListElement.children('.description').text('Status: ' + list[idx]['description'] + ' (' + list[idx]['progress'] + '%)');
-      sidebarListElement.click(list[idx]['click']);
-      sidebarList.append(sidebarListElement);
+      this.addElement(list[idx]);
     }
     var newTask = $(document.createElement('li'));
     newTask.text('Add Task');

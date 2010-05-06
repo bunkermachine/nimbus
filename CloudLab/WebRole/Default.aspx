@@ -13,7 +13,7 @@
   <div id="ApplicationFrame">
     <!-- Begin header -->
     <div id="Header"><div class="tl"><div class="tr">
-      <div id="ProfileTag">David <asp:button id="Signout" text="Log out" onclick="SubmitBtn_Click" runat="server" /></div>
+      <div id="ProfileTag">David (<asp:LinkButton id="Signout" text="Logout" onclick="SubmitBtn_Click" runat="server" />)</div>
       <div id="UserBar">
         <div id="ProjectTitle"></div>
         <ul id="ProjectDropdown">
@@ -32,7 +32,9 @@
           <li id="SidebarTemplateBasic"><h1 class="title"></h1><span class="description"></span></li>
           <li id="SidebarTemplateSimple"><h1 class="title"></h1></li>
         </ul>
-        <div id="SidebarHandle"></div><h1 id="SidebarTitle">Tasks</h1><div id="SidebarContent"></div>
+        <div id="SidebarHandle"></div>
+        <h1 id="SidebarTitle">Tasks</h1>
+        <div id="SidebarContent"><ul id="SidebarList"></ul></div>
       </div>
       
       <div id="HUD">

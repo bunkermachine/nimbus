@@ -22,6 +22,24 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.TextBox TaskNameText;
         
         /// <summary>
+        /// TaskNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TaskNameValidator;
+        
+        /// <summary>
+        /// TaskNameValidatorCallout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ValidatorCalloutExtender TaskNameValidatorCallout;
+        
+        /// <summary>
         /// DatasetList control.
         /// </summary>
         /// <remarks>
@@ -67,13 +85,49 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.ListBox SelectedFileList;
         
         /// <summary>
-        /// exeFile control.
+        /// SelectedValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload exeFile;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SelectedValidator;
+        
+        /// <summary>
+        /// SelectedValidatorCalloutExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ValidatorCalloutExtender SelectedValidatorCalloutExtender;
+        
+        /// <summary>
+        /// ExeFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ExeFile;
+        
+        /// <summary>
+        /// ExeValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ExeValidator;
+        
+        /// <summary>
+        /// ExeValidatorCallout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ValidatorCalloutExtender ExeValidatorCallout;
         
         /// <summary>
         /// LaunchTaskBtn control.
@@ -83,5 +137,41 @@ namespace WebRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button LaunchTaskBtn;
+        
+        /// <summary>
+        /// TopBound control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TopBound;
+        
+        /// <summary>
+        /// Bottom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Bottom;
+        
+        /// <summary>
+        /// LeftBound control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LeftBound;
+        
+        /// <summary>
+        /// RightBound control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RightBound;
     }
 }
