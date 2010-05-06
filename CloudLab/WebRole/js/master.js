@@ -104,7 +104,7 @@ CloudLab.Sidebar = new function() {
     var newTask = $(document.createElement('li'));
     newTask.text('Add Task');
     newTask.click(function() {
-      Workspace.set('NewTask');
+      CloudLab.Workspace.set('NewTask');
     });
     sidebarList.append(newTask);
     sidebarContent.append(sidebarList);

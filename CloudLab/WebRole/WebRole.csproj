@@ -99,7 +99,6 @@
     <Content Include="js\jquery.ui.js" />
     <Content Include="js\jquery.uniform.js" />
     <Content Include="js\master.js" />
-    <Content Include="CreateProject.aspx" />
     <Content Include="js\workspace.js" />
     <Content Include="UserLogin.aspx" />
     <Content Include="NewTask.aspx" />
@@ -114,13 +113,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CreateProject.aspx.cs">
-      <DependentUpon>CreateProject.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CreateProject.aspx.designer.cs">
-      <DependentUpon>CreateProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserLogin.aspx.cs">
       <DependentUpon>UserLogin.aspx</DependentUpon>
@@ -164,7 +156,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Workspace.Master" />

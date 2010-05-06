@@ -4,7 +4,6 @@
 <html>
 <head runat="server">
   <title>CloudLab</title>
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css" />
   <link rel="stylesheet" type="text/css" href="css/reset.css" />
   <link rel="stylesheet" type="text/css" href="css/workspace.css" />
   <link rel="stylesheet" type="text/css" href="css/uniform.default.css" />
