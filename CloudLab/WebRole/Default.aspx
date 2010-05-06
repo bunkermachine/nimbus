@@ -8,7 +8,11 @@
   <script language="javascript" type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
-
+<form id="form1" runat="server">
+    <div>
+        <asp:button id="Signout" text="Log out" onclick="SubmitBtn_Click" runat="server"/>
+    </div>
+</form>
 <div id="CloudLab">
   <div id="ApplicationFrame">
     <!-- Begin header -->
