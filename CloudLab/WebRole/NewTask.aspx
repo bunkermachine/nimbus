@@ -25,7 +25,12 @@
       </tr>
         <td><label>Available Files</label></td>
         <td>
-          <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+          <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="FilePanel">
+            <ProgressTemplate>
+              <div>Searching for files...</div>
+            </ProgressTemplate>
+          </asp:UpdateProgress>
+          <asp:UpdatePanel id="FilePanel" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
               <asp:ListBox runat="server" Rows="10" ID="FileList" SelectionMode="Multiple" OnSelectedIndexChanged="AddFile" AutoPostBack="true" />
             </ContentTemplate>
@@ -55,7 +60,6 @@
           
         </td>
       </tr>
-          OR
     <tr>
         <td><label>Upload HDF(s)</label>
         </td>

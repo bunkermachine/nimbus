@@ -9,11 +9,16 @@
 </head>
 <body>
 <form id="form" runat="server">
+  <ajaxToolkit:ToolkitScriptManager ID="manager" EnablePartialRendering="true" runat="server" />
+
 <div id="CloudLab">
   <div id="ApplicationFrame">
     <!-- Begin header -->
     <div id="Header"><div class="tl"><div class="tr">
-      <div id="ProfileTag">David (<asp:LinkButton id="Signout" text="Logout" onclick="SubmitBtn_Click" runat="server" />)</div>
+      <div id="ProfileTag">
+        <asp:UpdatePanel runat="server">
+          <ContentTemplate><%=User.Identity.Name%></ContentTemplate>
+        </asp:UpdatePanel> (<asp:LinkButton id="Signout" text="Logout" onclick="SubmitBtn_Click" runat="server" />)</div>
       <div id="UserBar">
         <div id="ProjectTitle">Test</div>
         <ul id="ProjectDropdown">

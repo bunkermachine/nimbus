@@ -84,7 +84,6 @@ namespace WorkerRole
                 try
                 {
                     CloudQueueMessage msg = queue.GetMessage();
-                    //Trace.TraceInformation("I AM HERE => GOT MESSAGE !! \n");
                     if (msg != null)
                     {
                         string queueMsg = msg.AsString;
