@@ -86,24 +86,16 @@ namespace WorkerRole
                     CloudQueueMessage msg = queue.GetMessage();
                     if (msg != null)
                     {
-                        string queueMsg = msg.AsString;
-                        Trace.TraceInformation("MESSAGE IS => " + queueMsg + "\n");
-                        int index = queueMsg.IndexOf('+');
-                        string userName = queueMsg.Substring(0, index);
-                        string projectName = queueMsg.Substring(index+1, queueMsg.IndexOf('+', index+1) - (index+1));
-                        index = queueMsg.IndexOf('+', index + 1);
-                        string taskName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1));
-                        index = queueMsg.IndexOf('+', index + 1);
-                        string exeName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1));                
-                        index = queueMsg.IndexOf('+', index + 1);
-                        string numDownloadsStr = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1));
-                        int numDownloads = Convert.ToInt32(numDownloadsStr);
-                        index = queueMsg.IndexOf('+', index + 1);
-                        string FTPUrl = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1)); 
-                        index = queueMsg.IndexOf('+', index + 1);
-                        string FTPDatasetName = queueMsg.Substring(index + 1, queueMsg.IndexOf('+', index + 1) - (index + 1)); 
-                        index = queueMsg.IndexOf('+', index + 1);
-                        string FTPFileName = queueMsg.Substring(index + 1);
+                        Trace.TraceInformation("MESSAGE IS => " + msg.AsString + "\n");
+                        string [] queueMsg = msg.AsString.Split(new Char[] { '+' });
+                        string userName = queueMsg[0];
+                        string projectName = queueMsg[1];
+                        string taskName = queueMsg[2];
+                        string exeName = queueMsg[3];
+                        int numDownloads = Convert.ToInt32(queueMsg[4]);
+                        string FTPUrl = queueMsg[5];
+                        string FTPDatasetName = queueMsg[6];
+                        string FTPFileName = queueMsg[7];
                         
                         Trace.TraceInformation("FTP URL is => " + userName + ", " + projectName + ", " + taskName + ", " + numDownloadsStr);
                         Trace.TraceInformation("DATASET is => " + FTPUrl + ", " + FTPDatasetName + ", " + FTPFileName);
