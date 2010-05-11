@@ -97,7 +97,7 @@ namespace WorkerRole
                         string FTPDatasetName = queueMsg[6];
                         string FTPFileName = queueMsg[7];
                         
-                        Trace.TraceInformation("FTP URL is => " + userName + ", " + projectName + ", " + taskName + ", " + numDownloadsStr);
+                        Trace.TraceInformation("FTP URL is => " + userName + ", " + projectName + ", " + taskName + ", " + numDownloads);
                         Trace.TraceInformation("DATASET is => " + FTPUrl + ", " + FTPDatasetName + ", " + FTPFileName);
                         Trace.TraceInformation("FILE is => ");
 
