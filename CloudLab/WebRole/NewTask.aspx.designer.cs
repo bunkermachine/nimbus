@@ -67,6 +67,15 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.TextBox DayText;
         
         /// <summary>
+        /// FilePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel FilePanel;
+        
+        /// <summary>
         /// FileList control.
         /// </summary>
         /// <remarks>

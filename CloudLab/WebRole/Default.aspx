@@ -9,7 +9,7 @@
 </head>
 <body>
 <form id="form" runat="server">
-  <ajaxToolkit:ToolkitScriptManager ID="manager" EnablePartialRendering="true" runat="server" />
+<ajaxToolkit:ToolkitScriptManager ID="manager" EnablePartialRendering="true" runat="server" />
 
 <div id="CloudLab">
   <div id="ApplicationFrame">

@@ -1,4 +1,9 @@
 ﻿ <%@ Page Title="New Task" Language="C#" MasterPageFile="~/Workspace.Master" AutoEventWireup="true" CodeBehind="NewTask.aspx.cs" Inherits="WebRole.NewTask" %>
+
+<asp:Content ContentPlaceHolderID="Overlay" runat="server">
+  BAKFHDGHDJGHJSDGKL
+</asp>
+
 <asp:Content id="NewTaskControl" ContentPlaceHolderID="Content" runat="server">
   <div id="NewTask">
     <h1>Launch a new task</h1>
@@ -23,7 +28,8 @@
         <td><label>Day</label></td>
         <td><asp:TextBox runat="server" ID="DayText" OnTextChanged="PopulateFileList" AutoPostBack="true" /></td>
       </tr>
-        <td><label>Available Files</label></td>
+      <tr>
+        <td><label>Available Files <a onclick="CloudLab.Overlay.show()">Select</a></label></td>
         <td>
           <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="FilePanel">
             <ProgressTemplate>
@@ -89,7 +95,7 @@
   </div>
 </asp:Content>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Scripts" runat="server">
+<asp:Content ContentPlaceHolderID="Scripts" runat="server">
 var tasks = [
   {
     title: "Evapotranspiration",

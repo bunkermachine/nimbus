@@ -101,6 +101,7 @@ CloudLab.Sidebar = new function() {
     sidebarListElement.children('.description').text('Status: ' + element['description'] + ' (' + element['progress'] + '%)');
     sidebarListElement.click(element['click']);
     sidebarList.append(sidebarListElement);
+    this.preview();
   }
 
   this.initList = function(list, style) {
@@ -112,10 +113,11 @@ CloudLab.Sidebar = new function() {
       this.addElement(list[idx]);
     }
     sidebarHandle.height(sidebar.height());
-    setTimeout("CloudLab.Sidebar.collapse()", 2000);
+    this.preview();
   };
 
   this.expand = function() {
+    sidebar.width(sidebarHandle.width());
     sidebar.animate({ width: sidebarWidth }, 'fast');
     sidebarHandle.unbind('click');
     sidebarHandle.click(CloudLab.Sidebar.collapse);
@@ -125,6 +127,11 @@ CloudLab.Sidebar = new function() {
     sidebar.animate({ width: sidebarHandle.width() }, 'fast');
     sidebarHandle.unbind('click');
     sidebarHandle.click(CloudLab.Sidebar.expand);
+  };
+
+  this.preview = function() {
+    this.expand();
+    setTimeout(this.collapse, 2000);
   };
 
   this.clearList = function() {

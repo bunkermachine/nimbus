@@ -86,7 +86,8 @@ namespace WorkerRole
                     CloudQueueMessage msg = queue.GetMessage();
                     if (msg != null)
                     {
-                        Trace.TraceInformation("MESSAGE IS => " + msg.AsString + "\n");
+                        // Use breakpoints to read these values!
+
                         string [] queueMsg = msg.AsString.Split(new Char[] { '+' });
                         string userName = queueMsg[0];
                         string projectName = queueMsg[1];
@@ -97,10 +98,6 @@ namespace WorkerRole
                         string FTPDatasetName = queueMsg[6];
                         string FTPFileName = queueMsg[7];
                         
-                        Trace.TraceInformation("FTP URL is => " + userName + ", " + projectName + ", " + taskName + ", " + numDownloadsStr);
-                        Trace.TraceInformation("DATASET is => " + FTPUrl + ", " + FTPDatasetName + ", " + FTPFileName);
-                        Trace.TraceInformation("FILE is => ");
-
                         CloudBlockBlob uploadDownloadContent = container.GetBlockBlobReference(FTPDatasetName+"/"+FTPFileName);
                         uploadDownloadContent.UploadByteArray(DownloadFTP.getDataFromFTP(FTPUrl, FTPFileName));
                         CloudBlockBlob again = container.GetBlockBlobReference(userName+"/"+projectName+"/"+taskName+"/" + FTPFileName);

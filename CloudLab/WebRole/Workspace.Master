@@ -15,6 +15,11 @@
 
   <ajaxToolkit:ToolkitScriptManager ID="manager" EnablePartialRendering="true" runat="server" />
 
+  <div id="ModalOverlay">
+    <div id="ModalOverlayBackdrop"></div>
+    <div id="ModalOverlayContent"></div><asp:ContentPlaceHolder ID="Overlay" runat="server" /></div>
+  </div>
+
   <asp:ContentPlaceHolder ID="Content" runat="server" />
 
   <script type="text/javascript">
