@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,156 +9,9 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace CloudLab.Common
 {
-    class UserStatus
+    public class UserStatus
     {
-        class Project
-        {
-            class Task
-            {
-                private string taskName;
-                private string downloadedDummyFile;
-                private List<string> exes;
-                private List<string> dataFiles;
-
-                public Task(string taskName)
-                {
-                    setTaskName(taskName);
-                }
-
-                protected string getDownloadedDummyFile()
-                {
-                    return downloadedDummyFile;
-                }
-
-                protected void setDownloadedDummyFile(string downloadedDummyFile)
-                {
-                    this.downloadedDummyFile = downloadedDummyFile;
-                }
-
-                protected string getTaskName()
-                {
-                    return this.taskName;
-                }
-
-                protected void setTaskName(string taskName)
-                {
-                    this.taskName = taskName;
-                }
-
-                protected List<string> getExes()
-                {
-                    return this.exes;
-                }
-
-                protected List<string> getDataFiles()
-                {
-                    return this.dataFiles;
-                }
-            }
-
-            private string projectName;
-            private string projectDummyFile;
-            private Dictionary<string, Task> tasksMap;
-            private Dictionary<string, string> projectMetadata;
-            private CloudBlob projectDummyFileBlob;
-
-            public Project(string projectName, string projectDummyFile, CloudBlob projectDummyFileBlob)
-            {
-                setProjectName(projectName);
-                setProjectDummyFile(projectDummyFile);
-                setProjectDummyFileBlob(projectDummyFileBlob);
-            }
-
-            protected void setProjectDummyFile(string projectDummyFile)
-            {
-                this.projectDummyFile = projectDummyFile;
-            }
-
-            protected string getProjectDummyFile()
-            {
-                return this.projectDummyFile;
-            }
-
-            protected void setProjectDummyFileBlob(CloudBlob projectDummyFileBlob)
-            {
-                this.projectDummyFileBlob = projectDummyFileBlob;
-            }
-
-            protected CloudBlob getProjectDummyFileBlob()
-            {
-                return this.projectDummyFileBlob;
-            }
-
-            protected string getProjectName()
-            {
-                return this.projectName;
-            }
-
-            protected void setProjectName(string projectName)
-            {
-                this.projectName = projectName;
-            }
-
-            protected Dictionary<string, Task>.ValueCollection getTasksList()
-            {
-                return this.tasksMap.Values;
-            }
-
-            protected void addTaskToCurrentProject(string taskName, Task task)
-            {
-                this.tasksMap.Add(taskName, task);
-            }
-
-            protected bool isThisTaskUnderCurrentProject(string taskName)
-            {
-                return this.tasksMap.ContainsKey(taskName);
-            }
-
-            protected Task getTaskFromCurrentProject(string taskName)
-            {
-                return this.tasksMap[taskName];
-            }
-
-            protected void addProjectMetadata(string propertyName, string propertyValue)
-            {
-                this.projectMetadata.Add(propertyName, propertyValue);
-            }
-
-            protected bool isThisPropertySetInProjectMetadata(string propertyName)
-            {
-                return this.projectMetadata.ContainsKey(propertyName);
-            }
-
-            protected string getContainerMetadataValue(string propertyName)
-            {
-                return this.projectDummyFileBlob.Metadata[propertyName];
-            }
-
-            protected void commitContainerMetadata()
-            {
-                NameValueCollection containerMetaData = this.projectDummyFileBlob.Metadata;
-
-                foreach (string property in containerMetaData.Keys)
-                {
-                    this.projectDummyFileBlob.Metadata.Add(property, containerMetaData[property]);
-                }
-
-                foreach (string property in this.projectMetadata.Keys)
-                {
-                    this.projectDummyFileBlob.Metadata.Add(property, this.projectMetadata[property]);
-                }
-
-                this.projectDummyFileBlob.SetMetadata();
-
-                foreach (string property in this.projectMetadata.Keys)
-                {
-                    this.projectMetadata.Remove(property);
-                }
-            }
-
-        }
-        
-        protected CloudBlobContainer userContainer;
+        public CloudBlobContainer userContainer;
         private Dictionary<string, Project> projectsMap;
         private Project currentProject;
         private Dictionary<string, string> containerMetadata;
@@ -165,66 +19,73 @@ namespace CloudLab.Common
         public UserStatus(CloudBlobContainer userContainer)
         {
             setUserContainer(userContainer);
+            projectsMap = new Dictionary<string, Project>();
+            containerMetadata = new Dictionary<string, string>();
         }
 
-        protected void setUserContainer(CloudBlobContainer userContainer)
+        public void setUserContainer(CloudBlobContainer userContainer)
         {
             this.userContainer = userContainer;
         }
 
-        protected CloudBlobContainer getUserContainer()
+        public CloudBlobContainer getUserContainer()
         {
             return this.userContainer;
         }
         
-        protected Dictionary<string, Project>.ValueCollection getProjectsList()
+        public Dictionary<string, Project>.ValueCollection getProjectsList()
         {
             return this.projectsMap.Values;
         }
 
-        protected void addProjectToCurrentUser(string projectName, Project project)
+        public void addProjectToCurrentUser(string projectName, Project project)
         {
             this.projectsMap.Add(projectName, project);
         }
 
-        protected bool isThisProjectUnderCurrentUser(string projectName)
+        public bool isThisProjectUnderCurrentUser(string projectName)
         {
             return this.projectsMap.ContainsKey(projectName);
         }
 
-        protected Project getProjectFromCurrentUser(string projectName)
+        public Project getProjectFromCurrentUser(string projectName)
         {
             return this.projectsMap[projectName];
         }
 
-        protected void setCurrentProject(Project currentProject)
+        public void setCurrentProject(Project currentProject)
         {
             this.currentProject = currentProject;
         }
         
-        protected Project getCurrentProject()
+        public Project getCurrentProject()
         {
             return this.currentProject;
         }
 
-        protected void addContainerMetadata(string propertyName, string propertyValue)
+        public void addContainerMetadata(string propertyName, string propertyValue)
         {
             this.containerMetadata.Add(propertyName, propertyValue);
         }
 
-        protected string getContainerMetadataValue(string propertyName)
+        public string getContainerMetadataValue(string propertyName)
         {
             return this.userContainer.Metadata[propertyName];
         }
 
-        protected bool isThisPropertySetInContainerMetadata(string propertyName)
+        public bool isThisPropertySetInContainerMetadata(string propertyName)
         {
             return this.containerMetadata.ContainsKey(propertyName);
         }
 
-        protected void commitContainerMetadata()
+        public NameValueCollection getContainerMetadata()
         {
-            NameValueCollection containerMetaData = this.userContainer.Metadata;
+            return this.userContainer.Metadata;
+        }
+
+        public void commitContainerMetadata()
+        {
+            NameValueCollection containerMetaData = this.getContainerMetadata();
             
             foreach (string property in containerMetaData.Keys)
             {
@@ -235,12 +96,22 @@ namespace CloudLab.Common
             {
                 this.userContainer.Metadata.Add(property, this.containerMetadata[property]);
             }
-            
-            this.userContainer.SetMetadata();
-            
-            foreach (string property in this.containerMetadata.Keys)
+
+            try
             {
-                this.containerMetadata.Remove(property);
+                this.userContainer.SetMetadata();
+                foreach (string property in this.containerMetadata.Keys)
+                {
+                    this.containerMetadata.Remove(property);
+                }
+            }
+            catch (StorageClientException storageClientException)
+            {
+                Trace.TraceError(string.Format("Exception : '{0}'", storageClientException.Message));
+            }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                Trace.TraceError(string.Format("Exception : '{0}'", invalidOperationException.Message));
             }
         }
         
