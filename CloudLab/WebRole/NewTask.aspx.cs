@@ -28,6 +28,7 @@ namespace WebRole
                 DatasetList.DataSource = SourceInfo.products;
                 DatasetList.DataTextField = "productName";
                 DatasetList.DataBind();
+                //getAllFileLists();
             }
         }
 
@@ -47,16 +48,43 @@ namespace WebRole
             SelectedFileList.Items.Remove(removeItem);
         }
 
+        /*
+        public void getAllFileLists()
+        {
+            ModisSourceProduct[] src = SourceInfo.products;
+
+            foreach (ModisSourceProduct product in src)
+            {
+                product.FileList = DownloadFTP.GetFileList(product.baseFtpUrl, "anonymous", "guest");
+            }
+
+            return;
+        }
+        */
+
         protected void PopulateFileList(object sender, System.EventArgs e)
         {
             if (YearText.Text != "" && DayText.Text != "" && DatasetList.SelectedIndex >= 0)
             {
                 int year = Convert.ToInt32(YearText.Text);
                 int day = Convert.ToInt32(DayText.Text);
-                string DatasetFTP = SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
-                ArrayList files = DownloadFTP.GetFileList("ftp://" + DatasetFTP + "/", "anonymous", "guest");
-                FileList.DataSource = files;
-                FileList.DataBind();
+                ArrayList tmpList;
+
+                //Check if filelist is already populated
+                tmpList = SourceInfo.products[DatasetList.SelectedIndex].FileList;
+                if (tmpList != null)
+                {
+                    FileList.DataSource = tmpList;
+                    FileList.DataBind();
+                }
+                //If not, get file list in traditional way
+                else
+                {
+                    string DatasetFTP = SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
+                    ArrayList files = DownloadFTP.GetFileList("ftp://" + DatasetFTP + "/", "anonymous", "guest");
+                    FileList.DataSource = files;
+                    FileList.DataBind();
+                }
             }
         }
 
