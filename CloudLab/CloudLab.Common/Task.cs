@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace CloudLab.Common
 {
-    class Task
+    public class Task
     {
         private string taskName;
         private string taskDummyFile;
@@ -19,66 +20,74 @@ namespace CloudLab.Common
         public Task(string taskName)
         {
             setTaskName(taskName);
+            exes = new List<string>();
+            dataFiles = new List<string>();
+            taskMetadata = new Dictionary<string, string>();
         }
 
-        protected string getTaskDummyFile()
+        public string getTaskDummyFile()
         {
             return taskDummyFile;
         }
 
-        protected void setTaskDummyFile(string taskDummyFile)
+        public void setTaskDummyFile(string taskDummyFile)
         {
             this.taskDummyFile = taskDummyFile;
         }
 
-        protected void setTaskDummyFileBlob(CloudBlob taskDummyFileBlob)
+        public void setTaskDummyFileBlob(CloudBlob taskDummyFileBlob)
         {
             this.taskDummyFileBlob = taskDummyFileBlob;
         }
 
-        protected CloudBlob getTaskDummyFileBlob()
+        public CloudBlob getTaskDummyFileBlob()
         {
             return this.taskDummyFileBlob;
         }
 
-        protected string getTaskName()
+        public string getTaskName()
         {
             return this.taskName;
         }
 
-        protected void setTaskName(string taskName)
+        public void setTaskName(string taskName)
         {
             this.taskName = taskName;
         }
 
-        protected List<string> getExes()
+        public List<string> getExes()
         {
             return this.exes;
         }
 
-        protected List<string> getDataFiles()
+        public List<string> getDataFiles()
         {
             return this.dataFiles;
         }
 
-        protected void addTaskMetadata(string propertyName, string propertyValue)
+        public void addTaskMetadata(string propertyName, string propertyValue)
         {
             this.taskMetadata.Add(propertyName, propertyValue);
         }
 
-        protected bool isThisPropertySetInTaskMetadata(string propertyName)
+        public bool isThisPropertySetInTaskMetadata(string propertyName)
         {
             return this.taskMetadata.ContainsKey(propertyName);
         }
 
-        protected string getTaskMetadataValue(string propertyName)
+        public string getTaskMetadataValue(string propertyName)
         {
             return this.taskDummyFileBlob.Metadata[propertyName];
         }
 
-        protected void commitTaskMetadata()
+        public NameValueCollection getTaskMetadataFromBlob()
         {
-            NameValueCollection prevTaskMetaData = this.taskDummyFileBlob.Metadata;
+            return this.taskDummyFileBlob.Metadata;
+        }
+
+        public void commitTaskMetadata()
+        {
+            NameValueCollection prevTaskMetaData = this.getTaskMetadataFromBlob();
 
             foreach (string property in prevTaskMetaData.Keys)
             {
@@ -90,7 +99,14 @@ namespace CloudLab.Common
                 this.taskDummyFileBlob.Metadata.Add(property, this.taskMetadata[property]);
             }
 
-            this.taskDummyFileBlob.SetMetadata();
+            try
+            {
+                this.taskDummyFileBlob.SetMetadata();
+            }
+            catch (StorageClientException storageClientException)
+            {
+                Trace.TraceError(string.Format("Exception when processing queue item. Message: '{0}'", storageClientException.Message));
+            }
 
             foreach (string property in this.taskMetadata.Keys)
             {

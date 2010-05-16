@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace CloudLab.Common
 {
-    class UserStatus
+    public class UserStatus
     {
-        protected CloudBlobContainer userContainer;
+        public CloudBlobContainer userContainer;
         private Dictionary<string, Project> projectsMap;
         private Project currentProject;
         private Dictionary<string, string> containerMetadata;
@@ -18,66 +19,73 @@ namespace CloudLab.Common
         public UserStatus(CloudBlobContainer userContainer)
         {
             setUserContainer(userContainer);
+            projectsMap = new Dictionary<string, Project>();
+            containerMetadata = new Dictionary<string, string>();
         }
 
-        protected void setUserContainer(CloudBlobContainer userContainer)
+        public void setUserContainer(CloudBlobContainer userContainer)
         {
             this.userContainer = userContainer;
         }
 
-        protected CloudBlobContainer getUserContainer()
+        public CloudBlobContainer getUserContainer()
         {
             return this.userContainer;
         }
         
-        protected Dictionary<string, Project>.ValueCollection getProjectsList()
+        public Dictionary<string, Project>.ValueCollection getProjectsList()
         {
             return this.projectsMap.Values;
         }
 
-        protected void addProjectToCurrentUser(string projectName, Project project)
+        public void addProjectToCurrentUser(string projectName, Project project)
         {
             this.projectsMap.Add(projectName, project);
         }
 
-        protected bool isThisProjectUnderCurrentUser(string projectName)
+        public bool isThisProjectUnderCurrentUser(string projectName)
         {
             return this.projectsMap.ContainsKey(projectName);
         }
 
-        protected Project getProjectFromCurrentUser(string projectName)
+        public Project getProjectFromCurrentUser(string projectName)
         {
             return this.projectsMap[projectName];
         }
 
-        protected void setCurrentProject(Project currentProject)
+        public void setCurrentProject(Project currentProject)
         {
             this.currentProject = currentProject;
         }
         
-        protected Project getCurrentProject()
+        public Project getCurrentProject()
         {
             return this.currentProject;
         }
 
-        protected void addContainerMetadata(string propertyName, string propertyValue)
+        public void addContainerMetadata(string propertyName, string propertyValue)
         {
             this.containerMetadata.Add(propertyName, propertyValue);
         }
 
-        protected string getContainerMetadataValue(string propertyName)
+        public string getContainerMetadataValue(string propertyName)
         {
             return this.userContainer.Metadata[propertyName];
         }
 
-        protected bool isThisPropertySetInContainerMetadata(string propertyName)
+        public bool isThisPropertySetInContainerMetadata(string propertyName)
         {
             return this.containerMetadata.ContainsKey(propertyName);
         }
 
-        protected void commitContainerMetadata()
+        public NameValueCollection getContainerMetadata()
         {
-            NameValueCollection containerMetaData = this.userContainer.Metadata;
+            return this.userContainer.Metadata;
+        }
+
+        public void commitContainerMetadata()
+        {
+            NameValueCollection containerMetaData = this.getContainerMetadata();
             
             foreach (string property in containerMetaData.Keys)
             {
@@ -88,8 +96,15 @@ namespace CloudLab.Common
             {
                 this.userContainer.Metadata.Add(property, this.containerMetadata[property]);
             }
-            
-            this.userContainer.SetMetadata();
+
+            try
+            {
+                this.userContainer.SetMetadata();
+            }
+            catch (StorageClientException storageClientException)
+            {
+                Trace.TraceError(string.Format("Exception when processing queue item. Message: '{0}'", storageClientException.Message));
+            }
             
             foreach (string property in this.containerMetadata.Keys)
             {

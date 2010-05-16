@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace CloudLab.Common
 {
-    class Project
+    public class Project
     {
         private string projectName;
         private string projectDummyFile;
@@ -20,76 +21,83 @@ namespace CloudLab.Common
             setProjectName(projectName);
             setProjectDummyFile(projectDummyFile);
             setProjectDummyFileBlob(projectDummyFileBlob);
+            tasksMap = new Dictionary<string, Task>();
+            projectMetadata = new Dictionary<string, string>();
         }
 
-        protected void setProjectDummyFile(string projectDummyFile)
+        public void setProjectDummyFile(string projectDummyFile)
         {
             this.projectDummyFile = projectDummyFile;
         }
 
-        protected string getProjectDummyFile()
+        public string getProjectDummyFile()
         {
             return this.projectDummyFile;
         }
 
-        protected void setProjectDummyFileBlob(CloudBlob projectDummyFileBlob)
+        public void setProjectDummyFileBlob(CloudBlob projectDummyFileBlob)
         {
             this.projectDummyFileBlob = projectDummyFileBlob;
         }
 
-        protected CloudBlob getProjectDummyFileBlob()
+        public CloudBlob getProjectDummyFileBlob()
         {
             return this.projectDummyFileBlob;
         }
 
-        protected string getProjectName()
+        public string getProjectName()
         {
             return this.projectName;
         }
 
-        protected void setProjectName(string projectName)
+        public void setProjectName(string projectName)
         {
             this.projectName = projectName;
         }
 
-        protected Dictionary<string, Task>.ValueCollection getTasksList()
+        public Dictionary<string, Task>.ValueCollection getTasksList()
         {
             return this.tasksMap.Values;
         }
 
-        protected void addTaskToCurrentProject(string taskName, Task task)
+        public void addTaskToCurrentProject(string taskName, Task task)
         {
             this.tasksMap.Add(taskName, task);
         }
 
-        protected bool isThisTaskUnderCurrentProject(string taskName)
+        public bool isThisTaskUnderCurrentProject(string taskName)
         {
             return this.tasksMap.ContainsKey(taskName);
         }
 
-        protected Task getTaskFromCurrentProject(string taskName)
+        public Task getTaskFromCurrentProject(string taskName)
         {
             return this.tasksMap[taskName];
         }
 
-        protected void addProjectMetadata(string propertyName, string propertyValue)
+        public void addProjectMetadata(string propertyName, string propertyValue)
         {
             this.projectMetadata.Add(propertyName, propertyValue);
         }
 
-        protected bool isThisPropertySetInProjectMetadata(string propertyName)
+        public bool isThisPropertySetInProjectMetadata(string propertyName)
         {
             return this.projectMetadata.ContainsKey(propertyName);
         }
 
-        protected string getContainerMetadataValue(string propertyName)
+        public string getProjectMetadataValue(string propertyName)
         {
             return this.projectDummyFileBlob.Metadata[propertyName];
         }
 
-        protected void commitProjectMetadata()
+        public NameValueCollection getProjectMetadataFromBlob()
         {
-            NameValueCollection prevProjectMetaData = this.projectDummyFileBlob.Metadata;
+            return this.projectDummyFileBlob.Metadata;
+        }
+
+        public void commitProjectMetadata()
+        {
+            NameValueCollection prevProjectMetaData = this.getProjectMetadataFromBlob();
 
             foreach (string property in prevProjectMetaData.Keys)
             {
@@ -101,7 +109,14 @@ namespace CloudLab.Common
                 this.projectDummyFileBlob.Metadata.Add(property, this.projectMetadata[property]);
             }
 
-            this.projectDummyFileBlob.SetMetadata();
+            try
+            {
+                this.projectDummyFileBlob.SetMetadata();
+            }
+            catch (StorageClientException storageClientException)
+            {
+                Trace.TraceError(string.Format("Exception when processing queue item. Message: '{0}'", storageClientException.Message));
+            }
 
             foreach (string property in this.projectMetadata.Keys)
             {
