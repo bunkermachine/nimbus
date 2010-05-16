@@ -68,7 +68,9 @@ namespace WebRole
             int day = Convert.ToInt32(DayText.Text);
 
             string DatasetFTP = "ftp://" + SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
-            
+
+            CreateOnceContainerAndQueue();
+
             StringBuilder queueMsg;
             foreach (ListItem item in SelectedFileList.Items)
             {
@@ -85,8 +87,28 @@ namespace WebRole
 
                 string msg = queueMsg.ToString();
 
-                Response.Write("ENQUEUED => " + msg + "\n");
-
+                //Setting Metadata when a project and task are initiated.
+                
+                /*CloudBlob blobRef = blobStorage.GetBlobReference(projectName + "" + TaskNameText.Text);
+                blobRef.Metadata.Add("User", User.Identity.Name + " Blah");
+                blobRef.Metadata.Add("ProjectName", projectName);
+                blobRef.Metadata.Add("TaskName", TaskNameText.Text);
+                
+                //Could use a for loop if we know number of exes selected by user.
+                blobRef.Metadata.Add("ExeName", ExeFile.FileName);
+                blobRef.Metadata.Add("DatasetFTPURI", DatasetFTP);
+                blobRef.Metadata.Add("Dataset", DatasetList.SelectedValue);
+                blobRef.SetMetadata();*/
+                
+                Task newTask = new Task(TaskNameText.Text);
+                CloudBlob taskBlob = blobStorage.GetBlobReference(projectName + "/" + TaskNameText.Text);
+                newTask.setTaskDummyFileBlob(taskBlob);
+                newTask.addTaskMetadata("author", "sudarshan");
+                newTask.addTaskMetadata("timestamp", DateTime.Now.ToString("yyyy.MM.dd hh:mm:ss"));
+                newTask.commitTaskMetadata();
+               
+                Response.Write("ENQUEUED => " + msg + "\n"+"Metadata for User blob : "+newTask.getTaskMetadataFromBlob());
+                
                 GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg.ToString())));
                 System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", msg));
             }
