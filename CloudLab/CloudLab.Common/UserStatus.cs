@@ -17,9 +17,9 @@ namespace CloudLab.Common
     {
         private static UserStatus singleton = null;
 
+        public Project currentProject { get; set; }
         public CloudBlobContainer userContainer;
         private Dictionary<string, Project> projectsMap;
-        private Project currentProject;
         private Dictionary<string, string> containerMetadata;
 
         public static UserStatus getInstance() {
@@ -70,16 +70,6 @@ namespace CloudLab.Common
         public Project getProjectFromCurrentUser(string projectName)
         {
             return this.projectsMap[projectName];
-        }
-
-        public void setCurrentProject(Project currentProject)
-        {
-            this.currentProject = currentProject;
-        }
-        
-        public Project getCurrentProject()
-        {
-            return this.currentProject;
         }
 
         public void addContainerMetadata(string propertyName, string propertyValue)

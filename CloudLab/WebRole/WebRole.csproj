@@ -89,6 +89,7 @@
     <Content Include="css\img\sidebar-handle.png" />
     <Content Include="css\img\sprite.png" />
     <Content Include="css\img\workspace-bg.jpg" />
+    <Content Include="css\img\workspace-bg.png" />
     <Content Include="css\master.css" />
     <Content Include="css\reset.css" />
     <Content Include="css\uniform.default.css" />

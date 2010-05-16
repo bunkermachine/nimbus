@@ -33,10 +33,10 @@
           <asp:UpdatePanel runat="server" ID="SidebarPanel" OnLoad="UpdateSidebar">
             <ContentTemplate>
               <div id="SidebarLogin">
-                <asp:Login ID="Login" runat="server" />
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                  <ContentTemplate><%=User.Identity.Name%> (<asp:LinkButton id="Signout" text="Logout" onclick="SubmitBtn_Click" runat="server" />)</ContentTemplate>
-                </asp:UpdatePanel>
+                <asp:LoginView runat="server">
+                  <AnonymousTemplate><asp:Login ID="Login" runat="server" /></AnonymousTemplate>
+                  <LoggedInTemplate><asp:LoginName runat="server" /></LoggedInTemplate>
+                </asp:LoginView>
               </div>
               <div id="SidebarProjects">
                 <h1 class="sectionTitle">Projects</h1>

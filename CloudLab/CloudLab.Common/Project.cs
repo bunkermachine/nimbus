@@ -12,37 +12,17 @@ namespace CloudLab.Common
     {
         public string projectName { get; set; }
         private string projectDummyFile { get; set; }
+        public CloudBlob projectDummyFileBlob { get; set; }
         private Dictionary<string, Task> tasksMap;
         private Dictionary<string, string> projectMetadata;
-        private CloudBlob projectDummyFileBlob;
 
         public Project(string projectName, string projectDummyFile, CloudBlob projectDummyFileBlob)
         {
             this.projectName = projectName;
-            setProjectDummyFile(projectDummyFile);
-            setProjectDummyFileBlob(projectDummyFileBlob);
+            this.projectDummyFile = projectDummyFile;
+            this.projectDummyFileBlob = projectDummyFileBlob;
             tasksMap = new Dictionary<string, Task>();
             projectMetadata = new Dictionary<string, string>();
-        }
-
-        public void setProjectDummyFile(string projectDummyFile)
-        {
-            this.projectDummyFile = projectDummyFile;
-        }
-
-        public string getProjectDummyFile()
-        {
-            return this.projectDummyFile;
-        }
-
-        public void setProjectDummyFileBlob(CloudBlob projectDummyFileBlob)
-        {
-            this.projectDummyFileBlob = projectDummyFileBlob;
-        }
-
-        public CloudBlob getProjectDummyFileBlob()
-        {
-            return this.projectDummyFileBlob;
         }
 
         public Dictionary<string, Task>.ValueCollection getTasksList()

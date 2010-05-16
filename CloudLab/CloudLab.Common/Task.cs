@@ -10,59 +10,19 @@ namespace CloudLab.Common
 {
     public class Task
     {
-        private string taskName;
-        private string taskDummyFile;
-        private List<string> exes;
-        private List<string> dataFiles;
+        public string taskName { get; set; }
+        public string taskDummyFile { get; set; }
+        public CloudBlob taskDummyFileBlob { get; set; }
+        public List<string> exes { get; private set; }
+        private List<string> dataFiles { get; private set; }
         private Dictionary<string, string> taskMetadata;
-        private CloudBlob taskDummyFileBlob;
 
         public Task(string taskName)
         {
-            setTaskName(taskName);
-            exes = new List<string>();
-            dataFiles = new List<string>();
-            taskMetadata = new Dictionary<string, string>();
-        }
-
-        public string getTaskDummyFile()
-        {
-            return taskDummyFile;
-        }
-
-        public void setTaskDummyFile(string taskDummyFile)
-        {
-            this.taskDummyFile = taskDummyFile;
-        }
-
-        public void setTaskDummyFileBlob(CloudBlob taskDummyFileBlob)
-        {
-            this.taskDummyFileBlob = taskDummyFileBlob;
-        }
-
-        public CloudBlob getTaskDummyFileBlob()
-        {
-            return this.taskDummyFileBlob;
-        }
-
-        public string getTaskName()
-        {
-            return this.taskName;
-        }
-
-        public void setTaskName(string taskName)
-        {
             this.taskName = taskName;
-        }
-
-        public List<string> getExes()
-        {
-            return this.exes;
-        }
-
-        public List<string> getDataFiles()
-        {
-            return this.dataFiles;
+            this.exes = new List<string>();
+            this.dataFiles = new List<string>();
+            taskMetadata = new Dictionary<string, string>();
         }
 
         public void addTaskMetadata(string propertyName, string propertyValue)

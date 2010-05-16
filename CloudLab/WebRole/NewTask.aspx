@@ -94,6 +94,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="Scripts" runat="server">
+<script type="text/javascript">
 var tasks = [
   {
     title: "Evapotranspiration",
@@ -149,4 +150,5 @@ function NewTask() {
     });
   }
 }
+</script>
 </asp:Content>
