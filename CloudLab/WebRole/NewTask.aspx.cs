@@ -107,7 +107,7 @@ namespace WebRole
                 newTask.addTaskMetadata("timestamp", DateTime.Now.ToString("yyyy.MM.dd hh:mm:ss"));
                 newTask.commitTaskMetadata();
                
-                Response.Write("ENQUEUED => " + msg + "\n"+"Metadata for User blob : "+newTask.getTaskMetadataFromBlob());
+                Response.Write("ENQUEUED => " + msg + "\n"+"Metadata for User task blob : "+newTask.getTaskMetadataFromBlob()["author"]);
                 
                 GetProgramRunnerQueue().AddMessage(new CloudQueueMessage(System.Text.Encoding.UTF8.GetBytes(queueMsg.ToString())));
                 System.Diagnostics.Trace.WriteLine(String.Format("Enqueued '{0}'", msg));
