@@ -13,6 +13,42 @@ namespace WebRole {
     public partial class NewTask {
         
         /// <summary>
+        /// TopBound control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TopBound;
+        
+        /// <summary>
+        /// Bottom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Bottom;
+        
+        /// <summary>
+        /// LeftBound control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LeftBound;
+        
+        /// <summary>
+        /// RightBound control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RightBound;
+        
+        /// <summary>
         /// TaskNameText control.
         /// </summary>
         /// <remarks>
@@ -40,6 +76,78 @@ namespace WebRole {
         protected global::AjaxControlToolkit.ValidatorCalloutExtender TaskNameValidatorCallout;
         
         /// <summary>
+        /// FromDateText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FromDateText;
+        
+        /// <summary>
+        /// FromDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender FromDate;
+        
+        /// <summary>
+        /// ToDateText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ToDateText;
+        
+        /// <summary>
+        /// ToDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender ToDate;
+        
+        /// <summary>
+        /// TopLatText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TopLatText;
+        
+        /// <summary>
+        /// BottomLatText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox BottomLatText;
+        
+        /// <summary>
+        /// LeftLongText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LeftLongText;
+        
+        /// <summary>
+        /// RightLongText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RightLongText;
+        
+        /// <summary>
         /// DatasetList control.
         /// </summary>
         /// <remarks>
@@ -49,40 +157,22 @@ namespace WebRole {
         protected global::System.Web.UI.WebControls.ListBox DatasetList;
         
         /// <summary>
-        /// YearText control.
+        /// AvailableFilePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox YearText;
+        protected global::System.Web.UI.UpdatePanel AvailableFilePanel;
         
         /// <summary>
-        /// DayText control.
+        /// AvailableFileList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DayText;
-        
-        /// <summary>
-        /// FilePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel FilePanel;
-        
-        /// <summary>
-        /// FileList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox FileList;
+        protected global::System.Web.UI.WebControls.ListBox AvailableFileList;
         
         /// <summary>
         /// SelectedFileList control.
@@ -119,41 +209,5 @@ namespace WebRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button LaunchTaskBtn;
-        
-        /// <summary>
-        /// TopBound control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TopBound;
-        
-        /// <summary>
-        /// Bottom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Bottom;
-        
-        /// <summary>
-        /// LeftBound control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LeftBound;
-        
-        /// <summary>
-        /// RightBound control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RightBound;
     }
 }

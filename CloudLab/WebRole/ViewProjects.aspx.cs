@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,9 +16,7 @@ namespace WebRole
         {
             if (!Page.IsPostBack)
             {
-                ArrayList projects = new ArrayList();
-                projects.Add("Global Evapotranspiration");
-                ProjectListView.DataSource = projects;
+                ProjectListView.DataSource = UserState.GetProjects("Test");
                 ProjectListView.DataBind();
             }
         }
@@ -31,7 +29,8 @@ namespace WebRole
 
         protected void CreateProject(object sender, EventArgs e)
         {
-            //UserState.CurrentProject = NewProjectName.Text;
+            UserState.CurrentProject = NewProjectName.Text;
+            UserState.AddProject(NewProjectName.Text);
             Server.Transfer("NewTask.aspx");
         }
     }

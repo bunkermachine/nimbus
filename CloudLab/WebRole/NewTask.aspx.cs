@@ -2,6 +2,7 @@
 using System.Net;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -33,41 +34,60 @@ namespace WebRole
 
         protected void AddFile(object sender, System.EventArgs e)
         {
-            ListItem addItem = FileList.SelectedItem;
-            addItem.Selected = false;
-            SelectedFileList.Items.Add(addItem);
-            FileList.Items.Remove(addItem);
+            //string DatasetFTP;
+            //if ((DatasetFTP = GeneratePath()) != null) {
+            //    ListItem item = AvailableFileList.SelectedItem;
+            //    ListItem addItem = new ListItem(item.Text, DatasetFTP + "/" + item.Text);
+            //    SelectedFileList.Items.Add(addItem);
+            //    AvailableFileList.Items.Remove(addItem);
+            //}
         }
 
         protected void RemoveFile(object sender, System.EventArgs e)
         {
             ListItem removeItem = SelectedFileList.SelectedItem;
             removeItem.Selected = false;
-            FileList.Items.Add(removeItem);
+            AvailableFileList.Items.Add(removeItem);
             SelectedFileList.Items.Remove(removeItem);
+        }
+
+        protected List<string> DateRangeToPaths()
+        {
+            List<string> paths = new List<string>();
+            DateTime startDate, endDate;
+            if (DatasetList.SelectedIndex >= 0
+                && DateTime.TryParse(FromDateText.Text, out startDate)
+                && DateTime.TryParse(ToDateText.Text, out endDate))
+            {
+                while (startDate.CompareTo(endDate) <= 0)
+                {
+                    paths.Add("ftp://" + SourceInfo.products[DatasetList.SelectedIndex]
+                        .GetFtpUrl(startDate.Year, startDate.DayOfYear));
+                    startDate = startDate.AddDays(1);
+                }
+            }
+            return paths;
         }
 
         protected void PopulateFileList(object sender, System.EventArgs e)
         {
-            if (YearText.Text != "" && DayText.Text != "" && DatasetList.SelectedIndex >= 0)
+            List<string> paths = DateRangeToPaths();
+            List<string> files = new List<string>();
+            foreach (string path in paths)
             {
-                int year = Convert.ToInt32(YearText.Text);
-                int day = Convert.ToInt32(DayText.Text);
-                string DatasetFTP = SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
-                ArrayList files = DownloadFTP.GetFileList("ftp://" + DatasetFTP + "/", "anonymous", "guest");
-                FileList.DataSource = files;
-                FileList.DataBind();
+                List<string> ftpFiles = DownloadFTP.GetFileList(path, "anonymous", "guest");
+                if (ftpFiles != null)
+                {
+                    files.AddRange(ftpFiles);
+                }
             }
+            AvailableFileList.DataSource = files;
+            AvailableFileList.DataBind();
         }
 
         protected void LaunchTask(object sender, System.EventArgs e)
         {
             string projectName = "NewProject";
-
-            int year = Convert.ToInt32(YearText.Text);
-            int day = Convert.ToInt32(DayText.Text);
-
-            string DatasetFTP = "ftp://" + SourceInfo.products[DatasetList.SelectedIndex].GetFtpUrl(year, day);
             
             StringBuilder queueMsg;
             foreach (ListItem item in SelectedFileList.Items)
@@ -77,9 +97,9 @@ namespace WebRole
                 queueMsg.Append("+" + projectName);
                 queueMsg.Append("+" + TaskNameText.Text);
                 queueMsg.Append("+" + ExeFile.FileName);
-                int[] indices = FileList.GetSelectedIndices();
+                int[] indices = AvailableFileList.GetSelectedIndices();
                 queueMsg.Append("+" + indices.Length);
-                queueMsg.Append("+" + DatasetFTP);
+                queueMsg.Append("+" + item.Value);
                 queueMsg.Append("+" + DatasetList.SelectedValue);
                 queueMsg.Append("+" + item.Text);
 

@@ -1,25 +1,11 @@
 /**
- * Hardcoded Test Data
- * -------------------
- * Some sample data before we have the full fledged table setup
- */
-// User ID, Username, real name
-var users = [[0, 'davidli@cs.stanford.edu', 'David Li']];
-// User ID, Project Name, Project Shortname
-var projects = [];
-// Project ID, Task Name, Task Type, Progress
-var tasks = [];
-// Task ID, Queued Item
-var queue = [[0, 'MODISAOE_1']];
-
-/**
  * Website Interactions
  * --------------------
  * Controls most of the major page changes
  */
 CloudLab = new function() {
   this.redisplay = function() {
-    $('#Workspace').width($(window).width() - 24).height($(window).height() - 67);
+    $('#Content').width($(window).width() - 24).height($(window).height() - 67);
   }
 }
 
@@ -32,10 +18,8 @@ CloudLab = new function() {
 CloudLab.UserBar = new function() {
   var userBar = $('#UserBar');
   var projectTitle = $('#ProjectTitle');
-  var projectDropdown = $('#ProjectDropdown');
 
   this.init = function() {
-    projectTitle.click(CloudLab.UserBar.showProjects);
   };
 
   this.addProject = function(project) {
@@ -44,18 +28,6 @@ CloudLab.UserBar = new function() {
   this.setProject = function(projectName) {
     userBar.show();
     projectTitle.text(projectName);
-  };
-
-  this.showProjects = function() {
-    projectDropdown.show();
-    projectTitle.unbind('click');
-    projectTitle.click(CloudLab.UserBar.hideProjects);
-  };
-
-  this.hideProjects = function() {
-    projectDropdown.hide();
-    projectTitle.unbind('click');
-    projectTitle.click(CloudLab.UserBar.showProjects);
   };
 };
 
@@ -67,13 +39,10 @@ CloudLab.UserBar = new function() {
 
 CloudLab.Sidebar = new function() {
   var sidebar = $('#Sidebar');
-  var sidebarTemplates = sidebar.children('#SidebarTemplates');
-  var sidebarTitle = sidebar.children('#SidebarTitle');
-  var sidebarContent = sidebar.children('#SidebarContent');
-  var sidebarHandle = sidebar.children('#SidebarHandle');
-  var sidebarList = sidebarContent.children('#SidebarList');
+  var sidebarTemplates = sidebar.children('.templates');
+  var sidebarContent = sidebar.children('.content');
+  var sidebarHandle = sidebar.children('.handle');
   var sidebarWidth = 0;
-  var currentStyle = "";
 
   this.init = function() {
     this.clearList();
@@ -83,34 +52,41 @@ CloudLab.Sidebar = new function() {
     } });
     sidebarHandle.click(CloudLab.Sidebar.collapse);
 
-    var newTask = $('#SidebarGeneric');
-    newTask.click(function() {
+    $('#NewProjectBtn').click(function() {
+      CloudLab.Workspace.set('ViewProjects');
+    });
+
+    $('#NewTaskBtn').click(function() {
       CloudLab.Workspace.set('NewTask');
     });
   }
 
-  this.setTitle = function(title) {
-    sidebarTitle.text(title);
+  this.refresh = function() {
+    __doPostBack('SidebarPanel','');
   }
 
-  this.addElement = function(element) {
-    var template = sidebarTemplates.children('#SidebarTemplate' + currentStyle);
+  this.addTasks = function(task) {
+    var element = this.createElement(task, 'Basic');
+    $('#SidebarTasks').append(sidebarListElement);
+    this.preview();
+  }
+
+  this.addElement = function(element, style) {
+    var template = sidebarTemplates.children('#SidebarTemplate' + style);
     var sidebarListElement = template.clone();
     sidebarListElement.removeAttr('id');
     sidebarListElement.children('.title').text(element['title']);
     sidebarListElement.children('.description').text('Status: ' + element['description'] + ' (' + element['progress'] + '%)');
     sidebarListElement.click(element['click']);
-    sidebarList.append(sidebarListElement);
-    this.preview();
+    return sidebarListElement;
   }
 
   this.initList = function(list, style) {
-    currentStyle = style;
     this.clearList();
     sidebar.show();
     // Add a list entry for each of the items
     for (var idx in list) {
-      this.addElement(list[idx]);
+      this.addElement(list[idx], style);
     }
     sidebarHandle.height(sidebar.height());
     this.preview();
@@ -119,12 +95,14 @@ CloudLab.Sidebar = new function() {
   this.expand = function() {
     sidebar.width(sidebarHandle.width());
     sidebar.animate({ width: sidebarWidth }, 'fast');
+    $('#Workspace').animate({ marginRight: sidebarWidth }, 'fast');
     sidebarHandle.unbind('click');
     sidebarHandle.click(CloudLab.Sidebar.collapse);
   };
 
   this.collapse = function() {
     sidebar.animate({ width: sidebarHandle.width() }, 'fast');
+    $('#Workspace').animate({ marginRight: sidebarHandle.width() }, 'fast');
     sidebarHandle.unbind('click');
     sidebarHandle.click(CloudLab.Sidebar.expand);
   };
@@ -135,8 +113,6 @@ CloudLab.Sidebar = new function() {
   };
 
   this.clearList = function() {
-    sidebar.hide();
-    sidebarList.children().remove();
     sidebarHandle.height(sidebar.height());
   };
 };
@@ -179,9 +155,12 @@ $.fn.hud = function(options) {
  */
 
 CloudLab.Workspace = new function() {
-  var workspace = $('#Workspace');
+  var workspace = $('[name=Workspace]');
 
   this.init = function() {
+    workspace.bind('load', function() {
+      CloudLab.Sidebar.refresh();
+    });
   };
 
   this.set = function(mode) {

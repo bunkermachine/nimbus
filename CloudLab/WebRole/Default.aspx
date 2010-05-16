@@ -15,16 +15,8 @@
   <div id="ApplicationFrame">
     <!-- Begin header -->
     <div id="Header"><div class="tl"><div class="tr">
-      <div id="ProfileTag">
-        <asp:UpdatePanel runat="server">
-          <ContentTemplate><%=User.Identity.Name%></ContentTemplate>
-        </asp:UpdatePanel> (<asp:LinkButton id="Signout" text="Logout" onclick="SubmitBtn_Click" runat="server" />)</div>
       <div id="UserBar">
         <div id="ProjectTitle">Test</div>
-        <ul id="ProjectDropdown">
-          <li>Global Evapotranspiration</li>
-          <li>Cloud Nimbus</li>
-        </ul>
       </div>
     </div></div></div>
     <!-- End header -->
@@ -32,15 +24,45 @@
     <!-- Begin content -->
     <div id="Content">
       <div id="Sidebar">
-        <ul id="SidebarTemplates">
+        <ul class="templates">
           <li id="SidebarTemplateBasic"><h1 class="title"></h1><span class="description"></span></li>
           <li id="SidebarTemplateSimple"><h1 class="title"></h1></li>
         </ul>
-        <div id="SidebarHandle"></div>
-        <h1 id="SidebarTitle">Tasks</h1>
-        <div id="SidebarContent">
-          <ul id="SidebarList"></ul>
-          <div id="SidebarGeneric">New Task</div>
+        <div class="handle"></div>
+        <div class="content">
+          <asp:UpdatePanel runat="server" ID="SidebarPanel" OnLoad="UpdateSidebar">
+            <ContentTemplate>
+              <div id="SidebarLogin">
+                <asp:Login ID="Login" runat="server" />
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                  <ContentTemplate><%=User.Identity.Name%> (<asp:LinkButton id="Signout" text="Logout" onclick="SubmitBtn_Click" runat="server" />)</ContentTemplate>
+                </asp:UpdatePanel>
+              </div>
+              <div id="SidebarProjects">
+                <h1 class="sectionTitle">Projects</h1>
+                <asp:ListView id="ProjectListView" runat="server" OnItemCommand="OpenProject">
+                  <LayoutTemplate>
+                    <ul>
+                      <li runat="server" id="itemPlaceholder"></li>
+                    </ul>
+                  </LayoutTemplate>
+                  <ItemTemplate>
+                    <li runat="server" class="sidebarElement">
+                      <h1 class="title">
+                        <asp:LinkButton runat="server" id="ProjectButton" CommandName="SelectProject" CommandArgument="<%#Container.DataItem%>" Text="<%#Container.DataItem%>" />
+                      </h1>
+                    </li>
+                  </ItemTemplate>
+                </asp:ListView>
+                <div id="NewProjectBtn" class="sidebarElement">New Project</div>
+              </div>
+              <div id="SidebarTasks">
+                <h1 class="sectionTitle">Tasks</h1>
+                <ul></ul>
+                <div id="NewTaskBtn" class="sidebarElement">New Task</div>
+              </div>
+            </ContentTemplate>
+          </asp:UpdatePanel>
         </div>
       </div>
       
@@ -53,7 +75,9 @@
         </div>
       </div>
 
-      <iframe src="ViewProjects.aspx" name="Workspace" id="Workspace" frameborder="0"></iframe>
+      <div id="Workspace">
+        <iframe src="ViewProjects.aspx" name="Workspace" frameborder="0"></iframe>
+      </div>
     </div>  
     <!-- End content -->
     

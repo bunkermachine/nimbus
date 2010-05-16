@@ -11,6 +11,7 @@ using Microsoft.WindowsAzure.StorageClient;
 using System.Net;
 using AjaxControlToolkit;
 using System.Web.Security;
+using CloudLab.Common;
 
 namespace WebRole
 {
@@ -20,11 +21,27 @@ namespace WebRole
     {
     }
 
+    protected void UpdateSidebar(object sender, EventArgs e)
+    {
+        ProjectListView.DataSource = UserState.GetProjects("David");
+        ProjectListView.DataBind();
+    }
+
     protected void SubmitBtn_Click(object sender, EventArgs e)
     {
         FormsAuthentication.SignOut();
     }
 
+    protected void OpenProject(object sender, ListViewCommandEventArgs e)
+    {
+        //UserState.CurrentProject = e.CommandArgument.ToString();
+        Server.Transfer("NewTask.aspx");
+    }
 
+    protected void CreateProject(object sender, EventArgs e)
+    {
+        //UserState.CurrentProject = NewProjectName.Text;
+        Server.Transfer("NewTask.aspx");
+    }
   }
 }

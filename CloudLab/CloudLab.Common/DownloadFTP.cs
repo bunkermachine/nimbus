@@ -35,7 +35,7 @@ namespace CloudLab.Common
             string yr = Convert.ToString(year);
             string dy = Convert.ToString(day);
             // Find relevant file and return it
-            ArrayList possibleFileNames = findFileName(FTPAddress, productName, yr, dy, tile);
+            List<string> possibleFileNames = findFileName(FTPAddress, productName, yr, dy, tile);
             string fileName = "MOD04_L2.A2000055.0010.005.2006253050115.hdf";
             return downloadFile(FTPAddress, fileName, /*downloadPath,*/ "anonymous", "guest");
         }
@@ -132,7 +132,7 @@ namespace CloudLab.Common
         // Connects to the FTP server and downloads the entire data source and stores it on the cloud
         public static void downloadSource(string FTPAddress, string downloadPath, string username, string password)
         {
-            ArrayList fileList = null;
+            List<string> fileList = null;
 
             // Get container name from storage architecture
             //string containerName = "SourceContainerName";
@@ -165,9 +165,9 @@ namespace CloudLab.Common
 
 
         //Connects to the FTP server and request the list of available files
-        public static ArrayList GetFileList(string FTPAddress, string username, string password)
+        public static List<string> GetFileList(string FTPAddress, string username, string password)
         {
-            ArrayList files = new ArrayList();
+            List<string> files = new List<string>();
 
             try
             {
@@ -207,10 +207,10 @@ namespace CloudLab.Common
             return null;
         }
 
-        public static ArrayList findFileName(string FTPAddress, string productName, string year, string day, string tile)
+        public static List<string> findFileName(string FTPAddress, string productName, string year, string day, string tile)
         {
-            ArrayList list = GetFileList(FTPAddress, "anonymous", "guest");
-            ArrayList searchResults = new ArrayList();
+            List<string> list = GetFileList(FTPAddress, "anonymous", "guest");
+            List<string> searchResults = new List<string>();
             if (day.Length == 2)
                 day = "0" + day;
 
