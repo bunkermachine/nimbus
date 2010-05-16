@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
+using System.Diagnostics;
+using System.ComponentModel;
+using System.Data;
+using System.IO;
+using System.Net;
 
 namespace CloudLab.Common
 {
@@ -39,7 +45,6 @@ namespace CloudLab.Common
         public ProductType productType { get; set; }
         public ProjectType projectType { get; set; }
         public int observeInterval { get; set; }
-        
         public ModisSourceProduct(string name, string baseUrl, SatelliteType sateType, 
                                     ProductType prodType, ProjectType projType, int days)
         {

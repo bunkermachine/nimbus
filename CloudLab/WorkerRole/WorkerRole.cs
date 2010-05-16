@@ -97,7 +97,11 @@ namespace WorkerRole
                         string FTPUrl = queueMsg[5];
                         string FTPDatasetName = queueMsg[6];
                         string FTPFileName = queueMsg[7];
-                        
+
+                        Trace.TraceInformation("FTP URL is => " + userName + ", " + projectName + ", " + taskName + ", " + numDownloads);
+                        Trace.TraceInformation("DATASET is => " + FTPUrl + ", " + FTPDatasetName + ", " + FTPFileName);
+                        Trace.TraceInformation("FILE is => ");
+
                         CloudBlockBlob uploadDownloadContent = container.GetBlockBlobReference(FTPDatasetName+"/"+FTPFileName);
                         uploadDownloadContent.UploadByteArray(DownloadFTP.getDataFromFTP(FTPUrl, FTPFileName));
                         CloudBlockBlob again = container.GetBlockBlobReference(userName+"/"+projectName+"/"+taskName+"/" + FTPFileName);
