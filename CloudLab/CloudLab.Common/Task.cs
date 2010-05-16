@@ -102,16 +102,20 @@ namespace CloudLab.Common
             try
             {
                 this.taskDummyFileBlob.SetMetadata();
+                foreach (string property in this.taskMetadata.Keys)
+                {
+                    this.taskMetadata.Remove(property);
+                }
             }
             catch (StorageClientException storageClientException)
             {
-                Trace.TraceError(string.Format("Exception when processing queue item. Message: '{0}'", storageClientException.Message));
+                Trace.TraceError(string.Format("Exception : '{0}'", storageClientException.Message));
             }
-
-            foreach (string property in this.taskMetadata.Keys)
+            catch (InvalidOperationException invalidOperationException)
             {
-                this.taskMetadata.Remove(property);
+                Trace.TraceError(string.Format("Exception : '{0}'", invalidOperationException.Message));
             }
+            
         }
     }
 }

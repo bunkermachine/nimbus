@@ -100,15 +100,18 @@ namespace CloudLab.Common
             try
             {
                 this.userContainer.SetMetadata();
+                foreach (string property in this.containerMetadata.Keys)
+                {
+                    this.containerMetadata.Remove(property);
+                }
             }
             catch (StorageClientException storageClientException)
             {
-                Trace.TraceError(string.Format("Exception when processing queue item. Message: '{0}'", storageClientException.Message));
+                Trace.TraceError(string.Format("Exception : '{0}'", storageClientException.Message));
             }
-            
-            foreach (string property in this.containerMetadata.Keys)
+            catch (InvalidOperationException invalidOperationException)
             {
-                this.containerMetadata.Remove(property);
+                Trace.TraceError(string.Format("Exception : '{0}'", invalidOperationException.Message));
             }
         }
         
