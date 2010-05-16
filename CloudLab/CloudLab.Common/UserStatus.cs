@@ -5,16 +5,35 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Collections.Specialized;
+using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
+using System.Web.Security;
+using System.Web;
+using System.Net;
 
 namespace CloudLab.Common
 {
     public class UserStatus
     {
+        private static UserStatus singleton = null;
+
         public CloudBlobContainer userContainer;
         private Dictionary<string, Project> projectsMap;
         private Project currentProject;
         private Dictionary<string, string> containerMetadata;
+
+        public static UserStatus getInstance() {
+            if (singleton == null)
+            {
+                var storageAccount = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
+
+                MembershipUser currentUser = Membership.GetUser(HttpContext.Current.User.Identity.Name);
+                CloudBlobClient blobStorage = storageAccount.CreateCloudBlobClient();
+                CloudBlobContainer container = blobStorage.GetContainerReference(currentUser.UserName);
+                singleton = new UserStatus(container);
+            }
+            return singleton;
+        }
 
         public UserStatus(CloudBlobContainer userContainer)
         {

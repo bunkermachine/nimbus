@@ -10,15 +10,15 @@ namespace CloudLab.Common
 {
     public class Project
     {
-        private string projectName;
-        private string projectDummyFile;
+        public string projectName { get; set; }
+        private string projectDummyFile { get; set; }
         private Dictionary<string, Task> tasksMap;
         private Dictionary<string, string> projectMetadata;
         private CloudBlob projectDummyFileBlob;
 
         public Project(string projectName, string projectDummyFile, CloudBlob projectDummyFileBlob)
         {
-            setProjectName(projectName);
+            this.projectName = projectName;
             setProjectDummyFile(projectDummyFile);
             setProjectDummyFileBlob(projectDummyFileBlob);
             tasksMap = new Dictionary<string, Task>();
@@ -43,16 +43,6 @@ namespace CloudLab.Common
         public CloudBlob getProjectDummyFileBlob()
         {
             return this.projectDummyFileBlob;
-        }
-
-        public string getProjectName()
-        {
-            return this.projectName;
-        }
-
-        public void setProjectName(string projectName)
-        {
-            this.projectName = projectName;
         }
 
         public Dictionary<string, Task>.ValueCollection getTasksList()

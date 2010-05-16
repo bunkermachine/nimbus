@@ -107,6 +107,15 @@ CloudLab.Sidebar = new function() {
     sidebarHandle.click(CloudLab.Sidebar.expand);
   };
 
+  this.lock = function() {
+    this.collapse();
+    sidebarHandle.unbind('click');
+  };
+
+  this.unlock = function() {
+    sidebarHandle.click(CloudLab.Sidebar.expand);
+  };
+
   this.preview = function() {
     this.expand();
     setTimeout(this.collapse, 2000);

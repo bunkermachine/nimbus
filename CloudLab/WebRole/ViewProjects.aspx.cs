@@ -16,7 +16,7 @@ namespace WebRole
         {
             if (!Page.IsPostBack)
             {
-                ProjectListView.DataSource = UserState.GetProjects("Test");
+                ProjectListView.DataSource = UserStatus.getInstance().getProjectsList();
                 ProjectListView.DataBind();
             }
         }
@@ -30,7 +30,8 @@ namespace WebRole
         protected void CreateProject(object sender, EventArgs e)
         {
             UserState.CurrentProject = NewProjectName.Text;
-            UserState.AddProject(NewProjectName.Text);
+            // I would like to do this simple method of adding a project
+            // UserStatus.getInstance().addProjectToCurrentUser(new Project(NewProjectName.Text));
             Server.Transfer("NewTask.aspx");
         }
     }
