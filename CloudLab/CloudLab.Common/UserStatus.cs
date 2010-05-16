@@ -66,6 +66,7 @@ namespace CloudLab.Common
         public void addContainerMetadata(string propertyName, string propertyValue)
         {
             this.containerMetadata.Add(propertyName, propertyValue);
+            this.commitContainerMetadata();
         }
 
         public string getContainerMetadataValue(string propertyName)

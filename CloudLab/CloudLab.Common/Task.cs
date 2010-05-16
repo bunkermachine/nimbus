@@ -68,6 +68,7 @@ namespace CloudLab.Common
         public void addTaskMetadata(string propertyName, string propertyValue)
         {
             this.taskMetadata.Add(propertyName, propertyValue);
+            this.commitTaskMetadata();
         }
 
         public bool isThisPropertySetInTaskMetadata(string propertyName)

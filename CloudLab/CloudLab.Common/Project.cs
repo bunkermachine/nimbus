@@ -78,6 +78,7 @@ namespace CloudLab.Common
         public void addProjectMetadata(string propertyName, string propertyValue)
         {
             this.projectMetadata.Add(propertyName, propertyValue);
+            this.commitProjectMetadata();
         }
 
         public bool isThisPropertySetInProjectMetadata(string propertyName)
