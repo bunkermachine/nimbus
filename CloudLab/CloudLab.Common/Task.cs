@@ -14,7 +14,7 @@ namespace CloudLab.Common
         public string taskDummyFile { get; set; }
         public CloudBlob taskDummyFileBlob { get; set; }
         public List<string> exes { get; private set; }
-        private List<string> dataFiles { get; private set; }
+        public List<string> dataFiles { get; private set; }
         private Dictionary<string, string> taskMetadata;
 
         public Task(string taskName)
