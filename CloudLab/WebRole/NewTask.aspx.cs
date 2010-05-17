@@ -120,7 +120,7 @@ namespace WebRole
                 
                 Task newTask = new Task(TaskNameText.Text);
                 CloudBlob taskBlob = blobStorage.GetBlobReference(projectName + "/" + TaskNameText.Text);
-                newTask.setTaskDummyFileBlob(taskBlob);
+                newTask.taskDummyFileBlob = taskBlob;
                 newTask.addTaskMetadata("author", "sudarshan");
                 newTask.addTaskMetadata("timestamp", DateTime.Now.ToString("yyyy.MM.dd hh:mm:ss"));
                 newTask.commitTaskMetadata();
