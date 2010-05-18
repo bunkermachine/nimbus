@@ -30,8 +30,11 @@ namespace CloudLab.Common
             return this.tasksMap.Values;
         }
 
-        public void addTaskToCurrentProject(string taskName, Task task)
+        public void addTaskToCurrentProject(string taskName)
         {
+            string taskDummyFile = taskName + ".txt";
+            CloudBlob taskDummyFileBlob = UserStatus.getInstance().userContainer.GetBlobReference(projectName + "/" + projectDummyFile + "/" + taskDummyFile);
+            Task task = new Task(taskName, taskDummyFile, taskDummyFileBlob);
             this.tasksMap.Add(taskName, task);
         }
 

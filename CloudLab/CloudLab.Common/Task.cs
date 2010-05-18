@@ -17,9 +17,11 @@ namespace CloudLab.Common
         public List<string> dataFiles { get; private set; }
         private Dictionary<string, string> taskMetadata;
 
-        public Task(string taskName)
+        public Task(string taskName, string taskDummyFile, CloudBlob taskDummyFileBlob)
         {
             this.taskName = taskName;
+            this.taskDummyFile = taskDummyFile;
+            this.taskDummyFileBlob = taskDummyFileBlob;
             this.exes = new List<string>();
             this.dataFiles = new List<string>();
             taskMetadata = new Dictionary<string, string>();

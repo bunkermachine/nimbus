@@ -57,8 +57,11 @@ namespace CloudLab.Common
             return this.projectsMap.Values;
         }
 
-        public void addProjectToCurrentUser(string projectName, Project project)
+        public void addProjectToCurrentUser(string projectName)
         {
+            string projectDummyFile = projectName + ".txt";
+            CloudBlob projectDummyFileBlob = this.userContainer.GetBlobReference(projectName+"/"+projectDummyFile);
+            Project project = new Project(projectName, projectDummyFile, projectDummyFileBlob);
             this.projectsMap.Add(projectName, project);
         }
 
